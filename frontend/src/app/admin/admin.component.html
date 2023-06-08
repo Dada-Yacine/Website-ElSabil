@@ -77,10 +77,24 @@
               </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/planning']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/planning"
+                routerLinkActive #ms3_1="routerLinkActive"
+                [ngClass]="ms3_1.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\PlanningLogoWhite.png">
                       <span>Planning</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a [routerLink]="['/admin/classrooms']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/classrooms"
+                routerLinkActive #ms3_2="routerLinkActive"
+                [ngClass]="ms3_2.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                      <img src=".\..\..\..\assets\admin\side-nav\classroom.png">
+                      <span>Classrooms</span>
                   </button>
               </a>
           </li>
@@ -96,8 +110,11 @@
               </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/events']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/events"
+                routerLinkActive #ms3_3="routerLinkActive"
+                [ngClass]="ms3_3.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\EventLogoWhite.png">
                       <span>Evénements</span>
                   </button>

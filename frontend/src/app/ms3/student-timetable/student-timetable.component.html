@@ -1,0 +1,26 @@
+<div class="border p-3">
+    <table class="table table-bordered mt-4" style="border-collapse: collapse;" *ngIf="data.length>0">
+        <thead>
+            <tr>      
+                <th></th>     
+                <th *ngFor="let item of times ">
+                    {{item.start_time+" - "+item.end_time}}
+                </th>
+            </tr>
+        </thead>
+        <tbody class="border-top-0">
+            <tr *ngFor="let item of days ">
+                <td>{{daysOfWeek[item]}}</td>
+                <ng-container *ngFor="let session of data[item]">
+                    <td class="position-relative" *ngIf="session.group_id else e" [colSpan]="session.colspan" [ngClass]="{'currentSession':session.isCurrentSession}">
+                        {{session.type+" "+session.course_name}}
+                        <br>{{session.classroom_name}}
+                    </td>
+                    <ng-template #e>
+                        <td [colSpan]="session.colspan"></td>
+                    </ng-template>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</div>

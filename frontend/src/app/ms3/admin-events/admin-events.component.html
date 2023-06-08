@@ -1,0 +1,92 @@
+<div class="ms3-Wrapper border p-3">
+    <button class="btn btn-primary mt-4"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()">Add Event</button>
+    <table class="table table-bordered mt-4" style="border-collapse: collapse;">
+        <thead>
+            <tr>        
+                <th>Title</th>
+                <th>description</th>
+                <th>years</th>
+                <th>date</th>
+            </tr>
+        </thead>
+        <tbody class="border-top-0">
+            <tr *ngFor="let event of events ">
+                <td>{{event.title}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.years}}</td>
+                <td>
+                    {{event.date.toString().split('T')[0].split('-').reverse().join('-')}}<br>
+                    {{event.start_time+'-'+event.end_time}}
+                </td>
+                <td>
+                    <span class="badge badge-primary" (click)="showEditModal(event)">Edit</span>
+                    <span class="badge badge-danger ml-2" (click)="delete(event._id)">delete</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop fade" [ngClass]="{'show':showModal,'d-none':!showModal}"></div>
+<div class="modal fade" [ngClass]="{'d-block':showModal,'show':showModal}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ModalAdd?'Add':'Edit'}} event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #eventForm="ngForm">
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Title</label>
+                        <input name="title" #title="ngModel" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Description</label>
+                        <input name="description" #description="ngModel" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Image</label>
+                        <input type="file" accept="image/*" name="image" #image="ngModel" #img ngModel [required]="ModalAdd">
+                    </div>
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Levels</label>
+                        <select name="level" #level="ngModel" ngModel (change)="getYearsByLevel($event)">
+                            <option value="-1"></option>
+                            <option *ngFor="let level of levels" value="{{level.id}}">{{level.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Year</label>
+                        <select name="years" #years="ngModel" ngModel required multiple>
+                            <option *ngFor="let year of yearsList" value="{{year.id}}">{{year.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="date" #date="ngModel" ngModel required>
+                    </div>
+                    <div class="form-group time">
+                        <label>Start time</label>
+                        <input type="text" class="form-control" placeholder="12" name="timeStartH"  #timeStartH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
+                        <span class="px-2">:</span>
+                        <input type="text" class="form-control" placeholder="00" name="timeStartM"  #timeStartM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                    </div>
+                    <div class="form-group time">
+                        <label>End time</label>
+                        <input type="text" class="form-control" placeholder="12" name="timeEndH"  #timeEndtH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
+                        <span class="px-2">:</span>
+                        <input type="text" class="form-control" placeholder="00"  name="timeEndM" #timeEndtM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="eventForm.invalid" (click)="ModalAdd? add():save()">{{ModalAdd?'Add':'Save'}} </button>
+            </div>
+        </div>
+    </div>
+</div>

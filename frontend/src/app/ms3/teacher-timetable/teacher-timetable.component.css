@@ -1,0 +1,21 @@
+/*table*/
+th,td{
+    padding: 16px;
+    text-align: center;
+}
+.session{
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.currentSession{
+    background-color: #c5e1a5;
+}
+
+/*modal*/
+.modal-body input,.modal-body select{
+    display: inline-block;
+    width: 67%;
+}
+.modal-body label{
+    width: 33%;
+}

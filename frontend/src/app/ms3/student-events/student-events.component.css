@@ -1,0 +1,21 @@
+#carousel{
+    width: fit-content;
+    margin: 0 auto;
+}
+.carousel-caption{
+    width: 100%;
+    background-color: #000000c7;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.carousel-caption *{
+    text-align: start;
+    margin-bottom: 8px;
+    padding-left: 16px;
+}
+.carousel-item img{
+    width: 720px!important;
+    height: 480px!important;
+    object-fit: cover;
+}

@@ -15,6 +15,9 @@ import { YearmodifyComponent } from './admin/year/yearmodify/yearmodify.componen
 
 import { AdminComponent } from './admin/admin.component';
 import { StudentComponent } from './student/student.component';
+import { AdminTimetableComponent } from './ms3/admin-timetable/admin-timetable.component';
+import { AdminEventsComponent } from './ms3/admin-events/admin-events.component';
+import { AdminClassroomsComponent } from './ms3/admin-classrooms/admin-classrooms.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -29,7 +32,10 @@ const routes: Routes = [
     {path: 'anneescholaire/:id/modify', component: AyearmodifyComponent},
     {path: 'annee', component: YeartableComponent},
     {path: 'annee/create', component: YearcreateComponent},
-    {path: 'annee/:anneeId/modify', component: YearmodifyComponent}
+    {path: 'annee/:anneeId/modify', component: YearmodifyComponent},
+    {path: 'planning',component:AdminTimetableComponent},
+    {path: 'events',component:AdminEventsComponent},
+    {path: 'classrooms',component:AdminClassroomsComponent}
   ]
   },
   {path: 'student',

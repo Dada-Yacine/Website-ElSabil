@@ -1,0 +1,8 @@
+/*table*/
+th,td{
+    padding: 16px;
+    text-align: center;
+}
+.currentSession{
+    background-color: #c5e1a5;
+}

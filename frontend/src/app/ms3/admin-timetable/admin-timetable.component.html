@@ -1,0 +1,147 @@
+<div class="ms3-Wrapper border p-3">
+    <div class="select">
+        <div>
+            <label>Level: </label>
+            <select (change)="getYearsByLevel($event);getTeachersByLevel($event)">
+                <option value="-1"></option>
+                <option *ngFor="let level of levels" value="{{level.id}}">{{level.name}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Year: </label>
+            <select (change)="getGroupsByYear($event)">
+                <option value="-1"></option>
+                <option *ngFor="let year of years" value="{{year.id}}">{{year.name}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Group: </label>
+            <select (change)="setGroupId($event);getCoursesByGroupe($event)">
+                <option></option>
+                <option *ngFor="let group of groups" value="{{group.id}}">{{group.name}}</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary d-block mx-auto" style="max-width: 148px;"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()" *ngIf="s_group_id!=''">Add session</button>
+        </div>
+    </div>
+    <div class="select">
+        <div>
+            <label>Teacher: </label>
+            <select (change)="setTeacherId($event)">
+                <option></option>
+                <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.name}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Classroom: </label>
+            <select (change)="setClassroomId($event)">
+                <option value=""></option>
+                <option *ngFor="let classroom of classrooms" value="{{classroom._id}}">{{classroom.name}}</option>
+            </select>
+        </div>
+    </div>
+    <table class="table table-bordered mt-4" style="border-collapse: collapse;" *ngIf="data.length>0">
+        <thead>
+            <tr>      
+                <th></th>     
+                <th *ngFor="let item of times ">
+                    {{item.start_time+" - "+item.end_time}}
+                </th>
+            </tr>
+        </thead>
+        <tbody class="border-top-0">
+            <tr *ngFor="let item of days ">
+                <td>{{daysOfWeek[item]}}</td>
+                <ng-container *ngFor="let session of data[item]">
+                    <td class="position-relative" *ngIf="session.group_id else e" [colSpan]="session.colspan">
+                        {{session.type+" "+session.course_name}}
+                        <span *ngIf="s_group_id==''">{{session.group_name}}</span>
+                        <span *ngIf="s_classroom_id==''">{{session.classroom_name}}</span>
+                        <span *ngIf="s_teacher_id==''">{{session.teacher_full_name}}</span>
+                        <div class="sessionControl p-2" *ngIf="s_group_id!=''">
+                            <span class="badge badge-primary" (click)="showEditModal(session._id,item)">Edit</span>
+                            <span class="badge badge-danger ml-2" (click)="delete(session._id)">delete</span>
+                        </div>
+                    </td>
+                    <ng-template #e>
+                        <td [colSpan]="session.colspan"></td>
+                    </ng-template>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop fade" [ngClass]="{'show':showModal,'d-none':!showModal}"></div>
+<div class="modal fade" [ngClass]="{'d-block':showModal,'show':showModal}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ModalAdd?'Add':'Edit'}} session</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #sessionForm="ngForm">
+                <div class="form-group">
+                    <label>Course</label>
+                    <select name="course_id"  #course_id="ngModel" ngModel required>
+                        <option value=""></option>
+                        <option *ngFor="let course of courses" value="{{course.id}}">{{course.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Session type</label>
+                    <input type="text" class="form-control" name="type"  #type="ngModel" ngModel required placeholder="Enter session type">
+                </div>
+                <div class="form-group">
+                    <label>Classroom</label>
+                    <select name="classroom_id"  #classroom_id="ngModel" ngModel required>
+                        <option value=""></option>
+                        <option *ngFor="let classroom of classrooms" value="{{classroom._id}}">{{classroom.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Day</label>
+                    <select name="day"  #day="ngModel" ngModel required>
+                        <option value=""></option>
+                        <option value="0">Sunday</option>
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                    </select>
+                </div>
+                <div class="form-group time">
+                    <label>Start time</label>
+                    <input type="text" class="form-control" placeholder="12" name="timeStartH"  #timeStartH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
+                    <span class="px-2">:</span>
+                    <input type="text" class="form-control" placeholder="00" name="timeStartM"  #timeStartM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                </div>
+                <div class="form-group time">
+                    <label>End time</label>
+                    <input type="text" class="form-control" placeholder="12" name="timeEndH"  #timeEndtH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
+                    <span class="px-2">:</span>
+                    <input type="text" class="form-control" placeholder="00"  name="timeEndM" #timeEndtM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                </div>
+                <div class="form-group">
+                    <label>Teacher</label>
+                    <select name="teacher_id"  #teacher_id="ngModel" ngModel required>
+                        <option value=""></option>
+                        <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.name}}</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="sessionForm.invalid" (click)="ModalAdd? save():edit()">{{ModalAdd?'Add':'Save'}} </button>
+        </div>
+      </div>
+    </div>
+  </div>

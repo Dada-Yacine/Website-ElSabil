@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ATopNavComponent } from './admin/top-nav/top-nav.component';
 import { STopNavComponent } from './student/top-nav/top-nav.component';
 import { TTopNavComponent } from './teacher/top-nav/top-nav.component';
+import { ms3 } from './ms3/ms3.module';
 
 
 
@@ -29,7 +30,8 @@ import { TTopNavComponent } from './teacher/top-nav/top-nav.component';
     StudentModule,
     TeacherModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    ms3
   ],
   providers: [],
   bootstrap: [AppComponent]

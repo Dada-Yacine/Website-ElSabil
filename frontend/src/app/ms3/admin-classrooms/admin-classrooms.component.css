@@ -1,0 +1,22 @@
+/*table*/
+th,td{
+    padding: 16px;
+    text-align: center;
+}
+.sessionControl{
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+}
+td span{
+    cursor: pointer;
+}
+/*modal*/
+.modal-body input,.modal-body select{
+    display: inline-block;
+    width: 67%;
+}
+.modal-body label{
+    width: 33%;
+}
