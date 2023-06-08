@@ -1,0 +1,59 @@
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Durée Année Scholaire</td>
+        <td><input type="number" disabled
+          #anneeScolaireId [value]="activeData?.anneeScolaireId"></td>
+      </tr>
+      <tr>
+        <td>Durée Année Scholaire</td>
+        <td>
+          <select #anneeScolaireNom (change)="updateValueIdAyear(anneeScolaireNom.value)">
+            <option hidden [value]="activeData?.anneeScolaireNom">{{ activeData?.anneeScolaireNom }}</option>
+            <option *ngFor="let ayear of DataAYear" [value]="ayear.nom">{{ ayear.nom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Niveau</td>
+        <td><input type="number" disabled
+          #niveauId [value]="activeData?.niveauId"></td>
+      </tr>
+      <tr>
+        <td>Nom Niveau</td>
+        <td>
+          <select #niveauNom (change)="updateValueIdLevel(niveauNom.value)">
+            <option hidden [value]="activeData?.niveauNom">{{ activeData?.niveauNom }}</option>
+            <option *ngFor="let level of DataLevel" [value]="level.niveauNom">{{ level.niveauNom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Année</td>
+        <td><input type="number" disabled #anneeId [value]="activeData?.anneeId"></td>
+      </tr>
+      <tr>
+        <td>Nom Année</td>
+        <td><input type="text" #anneeNom [value]="activeData?.anneeNom"></td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>N° D'étudiants</td>
+        <td ><input type="number" disabled #nombreEtudiants [value]="activeData?.nombreEtudiants"></td>
+      </tr>
+      <tr >
+        <td>N° Max Etudiants</td>
+        <td><input type="number" min="1" step="1" #nombreMaxEtudiants [value]="activeData?.nombreMaxEtudiants"></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getValues(anneeId.value,anneeScolaireId.value, niveauId.value, nombreEtudiants.value,
+  anneeScolaireNom.value, niveauNom.value, anneeNom.value,nombreMaxEtudiants.value)">
+  Sauvgarder</button>
+  <button class="CancelBtn" [routerLink]="['/admin/annee']">Annuler</button>
+</div>

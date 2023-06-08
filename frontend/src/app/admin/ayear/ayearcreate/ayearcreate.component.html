@@ -1,0 +1,20 @@
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Durée Annee Scolaire</td>
+        <td>Auto</td>
+      </tr>
+      <tr>
+        <td>Durée Annee Scolaire</td>
+        <td><input type="text" #nom></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn" (click)="getNom(nom.value)">Ajouter</button>
+  <button class="CancelBtn" [routerLink]="['/admin/anneescholaire']">Annuler</button>
+</div>

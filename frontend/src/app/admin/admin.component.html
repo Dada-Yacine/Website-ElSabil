@@ -1,0 +1,110 @@
+<app-top-nav></app-top-nav>
+<aside class="AsideNavBar">
+  <nav>
+      <div class="WebsiteLogoContainer">
+          <a href="#"><img src=".\..\..\..\assets\home\icons\graduation-cap-solid.svg">El Sabil</a>
+      </div>
+      <hr>
+      <ul>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\TeacherLogoWhite.png">
+                      <span>Enseignants</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\StudentLogoWhite.png">
+                      <span>Etudiants</span>
+                  </button>
+              </a>
+          </li>
+      </ul>
+      <hr>
+      <ul>
+
+          <li>
+              <a [routerLink]="['/admin/niveau']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button  routerLink="/admin/niveau"
+                  routerLinkActive #rla4="routerLinkActive"
+                  [ngClass]="rla4.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                      <img src=".\..\..\..\assets\admin\side-nav\LevelLogoWhite.png">
+                      <span>Niveaux</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a [routerLink]="['/admin/annee']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/annee"
+                  routerLinkActive #rla5="routerLinkActive"
+                  [ngClass]="rla5.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                      <img src=".\..\..\..\assets\admin\side-nav\YearLogoWhite.png">
+                      <span>Années</span>
+                  </button>
+              </a>
+          </li>
+
+          <li>
+            <a [routerLink]="['/admin/anneescholaire']"
+            href="javascript:void(0)" class="NavTabWrapperInactive">
+                <button routerLink="/admin/anneescholaire"
+                routerLinkActive #rla6="routerLinkActive"
+                [ngClass]="rla6.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                    <img src=".\..\..\..\assets\admin\side-nav\YearSchoolLogoWhite.png">
+                    <span>A. Scholaire</span>
+                </button>
+            </a>
+          </li>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\GroupLogoWhite.png">
+                      <span>Groupes</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
+                      <span>Cours</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\PlanningLogoWhite.png">
+                      <span>Planning</span>
+                  </button>
+              </a>
+          </li>
+      </ul>
+      <hr>
+      <ul>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\BulletinLogoWhite.png">
+                      <span>Bulletins</span>
+                  </button>
+              </a>
+          </li>
+          <li>
+              <a href="#" class="NavTabWrapperInactive">
+                  <button class="NavTabInactive">
+                      <img src=".\..\..\..\assets\admin\side-nav\EventLogoWhite.png">
+                      <span>Evénements</span>
+                  </button>
+              </a>
+          </li>
+      </ul>
+  </nav>
+</aside>
+
+<router-outlet></router-outlet>

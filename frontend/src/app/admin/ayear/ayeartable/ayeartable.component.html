@@ -1,0 +1,26 @@
+<div class="AllWrapper">
+  <a [routerLink]="['/admin/anneescholaire/create']"
+  href="javascript:void(0)" class="Add">
+      <button >
+          <span>Ajouter une Année Scolaire</span>
+      </button>
+  </a>
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Durée</th>
+        <th class="snapright">Actions</th>
+      </tr>
+      <tr *ngFor="let ayear of AyearData; let i=index">
+        <td>{{i}}</td>
+        <td>{{ayear.nom}}</td>
+        <td class="snapright">
+          <button class="EditBtn" [routerLink]="['/admin/anneescholaire/', ayear.id, 'modify']">Modifier</button>
+           |
+          <button class="DeleteBtn" (click)="deleteayear(ayear.id)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

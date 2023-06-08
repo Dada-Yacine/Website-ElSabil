@@ -1,0 +1,30 @@
+<div class="AllWrapper">
+  <a [routerLink]="['/admin/niveau/create']"
+  href="javascript:void(0)" class="Add">
+      <button >
+          <span>Ajouter un Niveau</span>
+      </button>
+  </a>
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Nom</th>
+        <th>N° Etudiants</th>
+        <th>N° Max Etudiants</th>
+        <th class="snapright">Actions</th>
+      </tr>
+      <tr *ngFor="let level of LevelsData; let i=index">
+        <td>{{i}}</td>
+        <td>{{level.niveauNom}}</td>
+        <td>{{level.nombreDetudiants}}</td>
+        <td>{{level.nombreMaxDetudiants}}</td>
+        <td class="snapright">
+          <button class="EditBtn" [routerLink]="['/admin/niveau/', level.niveauId, 'modify']">Modifier</button>
+           |
+          <button class="DeleteBtn" (click)="deletelevel(level.niveauId)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

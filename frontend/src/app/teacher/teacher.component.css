@@ -1,0 +1,266 @@
+/* General */
+@import url('https://fonts.cdnfonts.com/css/arial-rounded-mt-bold');
+
+html {
+    background-color: #F4F4F4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+/* General */
+
+/* General */
+@import url('https://fonts.cdnfonts.com/css/arial-rounded-mt-bold');
+
+html {
+    background-color: #F4F4F4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+/* General */
+
+
+.AsideNavBar {
+  position: absolute;
+  width: 260px;
+  min-height: 1200px;
+  height:100%;
+  top: 0;
+  left: 0;
+  background-color: #F9F9F9;
+  border-radius: 0px 22px 22px 0px;
+  z-index: 2;
+}
+
+.AsideNavBar nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.WebsiteLogoContainer {
+  position: relative;
+  width: 150px;
+  height: 32px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.WebsiteLogoContainer img {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  top: 5px;
+  display: inline-block;
+  filter: invert(66%) sepia(8%) saturate(2947%) hue-rotate(108deg) brightness(92%) contrast(99%);
+}
+
+.WebsiteLogoContainer a {
+  margin: auto;
+  position: relative;
+  font-size: 28px;
+  display: inline-block;
+}
+
+.WebsiteLogoContainer a:active {
+  color: black;
+  text-decoration: none;
+}
+
+.WebsiteLogoContainer a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.WebsiteLogoContainer a:link {
+  color: black;
+  text-decoration: none;
+}
+
+.WebsiteLogoContainer a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.AsideNavBar hr {
+  position: relative;
+  width: 180px;
+  margin: auto;
+  opacity: 0.25;
+  border: 2px solid #8D8C93;
+  border-radius: 180px;
+}
+
+.AsideNavBar hr:nth-of-type(1) {
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.AsideNavBar hr:nth-of-type(2) {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.AsideNavBar hr:nth-of-type(3) {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.AsideNavBar ul {
+  list-style-type: none;
+}
+
+.AsideNavBar a {
+  text-decoration: none;
+}
+
+.AsideNavBar li {
+  position: relative;
+  width: 100%;
+  align-items: center;
+}
+/* General */
+
+/* Navigation Tab Active */
+.NavTabWrapperActive {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  cursor: default;
+}
+
+.NavTabActive {
+  position: relative;
+  display: block;
+  width: 180px;
+  height: 53px;
+  left: 0;
+  margin: auto;
+  background: #1C1B20;
+  border-radius: 12px;
+  border-style: none;
+  text-align: left;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: all 0.5s;
+  animation-timing-function:ease;
+}
+
+.NavTabActive:hover {
+  position: relative;
+  display: block;
+  left: 20px;
+  animation-timing-function:ease;
+  transition: all 0.5s;
+  box-shadow: -15px 0px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
+.NavTabActive img {
+  float: left;
+  display: block;
+  width: 19px;
+  height: 19px;
+  margin-right: 12px;
+  margin-left: 16px;
+  transition: all 0.5s;
+}
+/* End Navigation Tab Active */
+
+/* Navigation Tab Inctive */
+.NavTabWrapperInactive {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  cursor: default;
+}
+
+.NavTabInactive {
+  position: relative;
+  display: block;
+  width: 180px;
+  height: 53px;
+  left: 0;
+  margin: auto;
+  background: #F4F4F4;
+  border-radius: 12px;
+  border-style: none;
+  text-align: left;
+  cursor: pointer;
+  color: #A5A5A9;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: all 0.5s;
+  animation-timing-function:ease;
+}
+
+.NavTabInactive span {
+  position: relative;
+  transition: all 0.5s;
+}
+
+.NavTabInactive span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: all 0.5s;
+}
+
+.NavTabInactive:hover span {
+  padding-right: 20px;
+  transition: all 0.5s;
+}
+
+.NavTabInactive:hover span:after {
+  opacity: 1;
+  right: 0;
+  transition: all 0.5s;
+}
+
+.NavTabInactive:hover {
+  position: relative;
+  display: block;
+  left: 20px;
+  animation-timing-function:ease;
+  color: #FFFFFF;
+  background: #1C1B20;
+  transition: all 0.5s;
+}
+
+.NavTabInactive img {
+  float: left;
+  display: block;
+  width: 19px;
+  height: 19px;
+  margin-right: 12px;
+  margin-left: 16px;
+  transition: all 0.5s;
+  opacity: 0.5;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+.NavTabInactive:hover img {
+  opacity: 1;
+  -webkit-filter: invert(0%);
+  filter: invert(0%);
+  transition: all 0.5s;
+}
+/* End Navigation Tab Inctive */

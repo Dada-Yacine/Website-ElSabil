@@ -1,0 +1,21 @@
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Durée Annee Scolaire</td>
+        <td><input type="number" disabled #id [value]="activeData?.id"></td>
+      </tr>
+      <tr>
+        <td>Durée Annee Scolaire</td>
+        <td><input type="text" #nom [value]="activeData?.nom"></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getallvalues(id.value, nom.value)">Sauvgarder</button>
+  <button class="CancelBtn" [routerLink]="['/admin/anneescholaire']">Annuler</button>
+</div>

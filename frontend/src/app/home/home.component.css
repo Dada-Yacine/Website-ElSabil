@@ -1,0 +1,511 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap");
+* {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #2AC38D;
+}
+
+
+
+section, footer {
+  padding: 3rem 5%;
+}
+
+section:nth-child(even) {
+  background: #f6f6f6;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heading span {
+  font-size: 2rem;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.heading h3 {
+  padding-top: 1rem;
+  font-size: 3rem;
+  color: #263238;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1.2rem 3rem;
+  cursor: pointer;
+  color: #000;
+  background: #2AC38D;
+  font-size: 1.7rem;
+}
+
+.btn:hover {
+  background: #05AA70;
+}
+
+.btn-2 {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1.2rem 3rem;
+  cursor: pointer;
+  color: #fff;
+  background: #263238;
+  font-size: 1.7rem;
+}
+
+.btn-2:hover {
+  color: #fff;
+  background-color: #DE002F;
+}
+
+.header {
+  z-index: 1000;
+  background: #000;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar a{
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+
+#log-in {
+    background-color: #2AC38D;
+    padding-inline: 30px;
+    padding-block: 10px;
+    border-radius: 24px;
+
+}
+
+#log-in:hover {
+  color: #000;
+}
+
+.header .logo {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.header .logo i {
+  color: #2AC38D;
+}
+
+.header .navbar a {
+  color: #fff;
+}
+
+.navbar a:hover {
+  color: #2AC38D;
+}
+
+
+#menu-btn {
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2.5rem;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  z-index: 10000;
+  display: none;
+}
+
+#menu-btn.fa-times {
+  background: #fff;
+  color: #263238;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.home .image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 40rem;
+          flex: 1 1 40rem;
+}
+
+.home .image img {
+  width: 100%;
+}
+
+.home .content {
+  width: 45rem;
+}
+
+.home .content span {
+  color: #000;
+  font-size: 2rem;
+}
+
+.home .content h3 {
+  color: #263238;
+  font-size: 3rem;
+  padding: 2rem 0;
+}
+
+.home .content h3 a {
+  color: #000;
+}
+
+.home .content h3 a:hover {
+  text-decoration: underline;
+}
+
+.home .content p {
+  font-size: 1.4rem;
+  color: #777;
+  padding-bottom: 1rem;
+  line-height: 2;
+}
+
+.info-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.info-container .box {
+  padding: 3rem;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+  border: 0.1rem solid #999;
+}
+
+.info-container .box i {
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  border-radius: 50%;
+  background: #2AC38D;
+  color: #000;
+  text-align: center;
+}
+
+.info-container .box h3 {
+  font-size: 2rem;
+  padding-bottom: .5rem;
+  color: #263238;
+}
+
+.info-container .box p {
+  font-size: 1.5rem;
+  color: #777;
+}
+
+.about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about .image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 40rem;
+          flex: 1 1 40rem;
+}
+
+.about .image img {
+  width: 100%;
+}
+
+.about .content {
+  width: 45rem;
+}
+
+.about .content span {
+  font-size: 2rem;
+  color: #000;
+}
+
+.about .content h3 {
+  padding-top: 2rem;
+  font-size: 2.4rem;
+  color: #263238;
+}
+
+.about .content p {
+  padding: 1.5rem 0;
+  line-height: 2;
+  font-size: 1.4rem;
+  color: #777;
+}
+
+
+
+.contact .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.contact .row .contact-info-container {
+  width: 40rem;
+}
+
+.contact .row .contact-info-container .box {
+  margin-bottom: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.contact .row .contact-info-container .box i {
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 1.7rem;
+  background: #2AC38D;
+  color: #000;
+  border-radius: 50%;
+  text-align: center;
+  margin-top: -1rem;
+}
+
+.contact .row .contact-info-container .box h3 {
+  font-size: 2rem;
+  color: #263238;
+  padding-bottom: 1rem;
+}
+
+.contact .row .contact-info-container .box p {
+  font-size: 1.5rem;
+  color: #777;
+  line-height: 2;
+}
+
+.contact .row .contact-info-container .share {
+  padding-top: 1rem;
+}
+
+.contact .row .contact-info-container .share a {
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  background: #2AC38D;
+  color: #000;
+  margin-right: .1rem;
+  text-align: center;
+}
+
+.contact .row .contact-info-container .share a:hover {
+  background: #000;
+}
+
+.contact .row form {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 42rem;
+          flex: 1 1 42rem;
+}
+
+.contact .row form .inputBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.contact .row form .inputBox input {
+  width: 49%;
+}
+
+.contact .row form .inputBox input, .contact .row form textarea {
+  padding: 1.4rem;
+  background: #f6f6f6;
+  text-transform: none;
+  color: #777;
+  margin: .7rem 0;
+  font-size: 1.6rem;
+  border: 0.1rem solid #999;
+}
+
+.contact .row form textarea {
+  width: 100%;
+  resize: none;
+  height: 15rem;
+}
+
+.reviews .box-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(30rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.reviews .box-container .box {
+  text-align: center;
+  padding: 3rem;
+  background: #fff;
+  border: 0.1rem solid #999;
+}
+
+.reviews .box-container .box img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.reviews .box-container .box h3 {
+  font-size: 2rem;
+  color: #263238;
+}
+
+.reviews .box-container .box p {
+  line-height: 2;
+  padding: 2rem 0;
+  font-size: 1.3rem;
+  color: #777;
+}
+
+.reviews .box-container .box .stars i {
+  font-size: 1.7rem;
+  color: #2AC38D;
+}
+
+
+
+footer {
+  margin-top: 5rem;
+}
+.footer h4 {
+  font-size: 2rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5rem
+}
+
+.footer-container > div h4 {
+  margin-bottom: 1.2rem;
+}
+
+.footer-1 p {
+  margin: 1rem 0 2rem;
+}
+
+footer ul li , footer p {
+  margin-bottom: 0.7rem;
+  list-style: none;
+}
+
+footer ul li a , footer p {
+  color: #000;
+  font-size: 1.5rem;
+}
+
+footer ul li a:hover{
+  color: #2AC38D;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-1 a {
+  text-decoration: none;
+  color: #2AC38D;
+}
+
+section {
+  padding-left: 67.797px;
+  padding-right: 67.797px;
+}
+
+body {
+  zoom: 67%;
+}
+
+.logosvg {
+  height: 35px;
+  width: 35px;
+  filter: invert(66%) sepia(8%) saturate(2947%) hue-rotate(108deg) brightness(92%) contrast(99%);
+}
+
+.logosvgrest {
+  position: relative;
+  top: 8px;
+  height: 40px;
+  width: 40px;
+}
+
+.logosvgrest1 {
+  position: relative;
+  top: 8px;
+  height: 35px;
+  width: 35px;
+}

@@ -1,0 +1,56 @@
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Durée Année Scholaire</td>
+        <td>{{ autoAYearValue }}</td>
+      </tr>
+      <tr>
+        <td>Durée Année Scholaire</td>
+        <td>
+          <select #anneeScolaireNom (change)="updateValueIdAyear(anneeScolaireNom.value)">
+            <option hidden value="default">Sélectionez une Durée</option>
+            <option *ngFor="let ayear of DataAYear" [value]="ayear.nom">{{ ayear.nom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Niveau</td>
+        <td>{{ autoLevelValue }}</td>
+      </tr>
+      <tr>
+        <td>Nom Niveau</td>
+        <td>
+          <select #niveauNom (change)="updateValueIdLevel(niveauNom.value)">
+            <option hidden value="default">Sélectionez un Niveau</option>
+            <option *ngFor="let level of DataLevel" [value]="level.niveauNom">{{ level.niveauNom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Année</td>
+        <td>Auto</td>
+      </tr>
+      <tr>
+        <td>Nom Année</td>
+        <td><input type="text" #anneeNom></td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>N° D'étudiants</td>
+        <td>NaN</td>
+      </tr>
+      <tr >
+        <td>N° Max Etudiants</td>
+        <td><input type="number" min="1" step="1" #nombreMaxEtudiants></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getValues(anneeScolaireNom.value, niveauNom.value, anneeNom.value,nombreMaxEtudiants.value)">
+  Ajouter</button>
+  <button class="CancelBtn" [routerLink]="['/admin/annee']">Annuler</button>
+</div>

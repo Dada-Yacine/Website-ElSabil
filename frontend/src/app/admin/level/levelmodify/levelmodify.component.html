@@ -1,0 +1,30 @@
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Niveau</td>
+        <td><input type="number" disabled #niveauId [value]="activeData?.niveauId"></td>
+      </tr>
+      <tr>
+        <td>Nom Niveau</td>
+        <td><input type="text" #niveauNom [value]="activeData?.niveauNom"></td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>N° Etudiants</td>
+        <td><input type="number" disabled #nombreDetudiants [value]="activeData?.nombreDetudiants"></td>
+      </tr>
+      <tr>
+        <td>N° Max Etudiants</td>
+        <td><input type="number" min="1" step="1" #nombreMaxDetudiants [value]="activeData?.nombreMaxDetudiants"></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getallvalues(niveauId.value, niveauNom.value,
+  nombreDetudiants.value, nombreMaxDetudiants.value)">Sauvgarder</button>
+  <button class="CancelBtn" [routerLink]="['/admin/niveau']">Annuler</button>
+</div>

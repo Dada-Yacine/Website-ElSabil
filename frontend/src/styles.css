@@ -1,0 +1,15 @@
+/* General */
+@import url('https://fonts.cdnfonts.com/css/arial-rounded-mt-bold');
+
+html {
+    background-color: #F4F4F4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+/* General */

@@ -1,0 +1,34 @@
+<div class="AllWrapper">
+  <a [routerLink]="['/admin/annee/create']"
+  href="javascript:void(0)" class="Add">
+      <button >
+          <span>Ajouter une Année</span>
+      </button>
+  </a>
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Durée</th>
+        <th>Niveau</th>
+        <th>Année</th>
+        <th>N° Etudiants</th>
+        <th>N° Max Etudiants</th>
+        <th class="snapright">Actions</th>
+      </tr>
+      <tr *ngFor="let year of YearsData ; let i=index">
+        <td>{{i}}</td>
+        <td>{{year.anneeScolaireNom}}</td>
+        <td>{{year.niveauNom}}</td>
+        <td>{{year.anneeNom}}</td>
+        <td>{{year.nombreEtudiants}}</td>
+        <td>{{year.nombreMaxEtudiants}}</td>
+        <td class="snapright">
+          <button class="EditBtn" [routerLink]="['/admin/annee/', year.anneeId, 'modify']">Modifier</button>
+           |
+          <button class="DeleteBtn" (click)="deleteyear(year.anneeId)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
