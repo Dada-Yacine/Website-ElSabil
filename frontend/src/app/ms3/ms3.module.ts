@@ -9,6 +9,7 @@ import { TeacherAbsenceComponent } from './teacher-absence/teacher-absence.compo
 import { AdminClassroomsComponent } from './admin-classrooms/admin-classrooms.component';
 import { StudentEventsComponent } from './student-events/student-events.component';
 import { AdminEventsComponent } from './admin-events/admin-events.component';
+import { AdminAbsenceComponent } from './admin-absence/admin-absence.component';
 
 
 
@@ -22,7 +23,8 @@ import { AdminEventsComponent } from './admin-events/admin-events.component';
     TeacherAbsenceComponent,
     AdminClassroomsComponent,
     StudentEventsComponent,
-    AdminEventsComponent
+    AdminEventsComponent,
+    AdminAbsenceComponent,
   ],
   imports: [
     CommonModule,

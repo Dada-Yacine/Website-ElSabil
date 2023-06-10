@@ -1,11 +1,12 @@
 <div class="ms3-Wrapper border p-3">
-    <button class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()">Add Event</button>
+    <button class="btn btn-primary mt-4"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()">Ajouter un Evenement</button>
     <table class="ms3-table table table-bordered mt-4" style="border-collapse: collapse;">
         <thead>
             <tr>        
-                <th>Title</th>
+                <th>Titre</th>
                 <th>description</th>
-                <th>years</th>
+                <th>Niveau</th>
+                <th>Annees</th>
                 <th>date</th>
                 <th>Actions</th>
             </tr>
@@ -14,14 +15,15 @@
             <tr *ngFor="let event of events ">
                 <td>{{event.title}}</td>
                 <td>{{event.description}}</td>
-                <td>{{event.years}}</td>
+                <td>{{getLevelName(event.level)}}</td>
+                <td>{{event.yearsNames}}</td>
                 <td>
                     {{event.date.toString().split('T')[0].split('-').reverse().join('-')}}<br>
                     {{event.start_time+'-'+event.end_time}}
                 </td>
                 <td>
-                    <span class="badge badge-primary" (click)="showEditModal(event)">Edit</span>
-                    <span class="badge badge-danger ml-2" (click)="delete(event._id)">delete</span>
+                    <span class="badge badge-primary" (click)="showEditModal(event)">modifier</span>
+                    <span class="badge badge-danger ml-2" (click)="delete(event._id)">supprimer</span>
                 </td>
             </tr>
         </tbody>
@@ -42,51 +44,76 @@
             <div class="modal-body">
                 <form #eventForm="ngForm">
                     <div class="form-group">
-                        <label style="vertical-align: top;">Title</label>
+                        <label style="vertical-align: top;">Titre</label>
                         <input name="title" #title="ngModel" ngModel required>
+                        <span class="errors" *ngIf="title.touched">
+                            <small class="text-danger" *ngIf="title.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group">
                         <label style="vertical-align: top;">Description</label>
                         <input name="description" #description="ngModel" ngModel required>
+                        <span class="errors" *ngIf="description.touched">
+                            <small class="text-danger" *ngIf="description.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group">
                         <label style="vertical-align: top;">Image</label>
                         <input type="file" accept="image/*" name="image" #image="ngModel" #img ngModel [required]="ModalAdd">
+                        <span class="errors" *ngIf="image.touched">
+                            <small class="text-danger" *ngIf="image.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group">
-                        <label style="vertical-align: top;">Levels</label>
-                        <select name="level" #level="ngModel" ngModel (change)="getYearsByLevel($event)">
+                        <label style="vertical-align: top;">Niveau</label>
+                        <select name="level" #level="ngModel" ngModel (change)="getYearsByLevel($event)" required>
                             <option value="-1"></option>
-                            <option *ngFor="let level of levels" value="{{level.id}}">{{level.name}}</option>
+                            <option *ngFor="let level of levels" value="{{level.niveauId}}">{{level.niveauNom}}</option>
                         </select>
+                        <span class="errors" *ngIf="level.touched">
+                            <small class="text-danger" *ngIf="level.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group">
-                        <label style="vertical-align: top;">Year</label>
+                        <label style="vertical-align: top;">Annees</label>
                         <select name="years" #years="ngModel" ngModel required multiple>
-                            <option *ngFor="let year of yearsList" value="{{year.id}}">{{year.name}}</option>
+                            <option *ngFor="let year of yearsList" value="{{year.anneeId}}">{{year.anneeNom}}</option>
                         </select>
+                        <span class="errors" *ngIf="years.touched">
+                            <small class="text-danger" *ngIf="years.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" name="date" #date="ngModel" ngModel required>
+                        <input type="date" name="date" #date="ngModel" ngModel required min="{{minDate}}" max="{{maxDate}}">
+                        <span class="errors" *ngIf="date.touched">
+                            <small class="text-danger" *ngIf="date.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group time">
-                        <label>Start time</label>
+                        <label>Heure de debut</label>
                         <input type="text" class="form-control" placeholder="12" name="timeStartH"  #timeStartH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
                         <span class="px-2">:</span>
                         <input type="text" class="form-control" placeholder="00" name="timeStartM"  #timeStartM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                        <span class="errors" *ngIf="timeStartH.touched || timeStartM.touched">
+                            <small class="text-danger" *ngIf="timeStartH.errors?.['required']||timeStartM.errors?.['required']">Ce champ est obligatoire</small> 
+                        </span>
                     </div>
                     <div class="form-group time">
-                        <label>End time</label>
+                        <label>Heure de fin</label>
                         <input type="text" class="form-control" placeholder="12" name="timeEndH"  #timeEndtH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
                         <span class="px-2">:</span>
                         <input type="text" class="form-control" placeholder="00"  name="timeEndM" #timeEndtM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                        <span class="errors" *ngIf="timeEndtH.touched || timeEndtM.touched">
+                            <small class="text-danger" *ngIf="timeEndtH.errors?.['required']||timeEndtM.errors?.['required']">End time is required</small> 
+                            <small class="text-danger" *ngIf="timeStartH.value>timeEndtH.value || (timeStartH.value==timeEndtH.value && timeStartM.value>=timeEndtM.value)">L'Heure de fin doit etre superieure a L'Heure de debut</small> 
+                        </span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Close</button>
-                <button type="button" class="btn btn-primary" [disabled]="eventForm.invalid" (click)="ModalAdd? add():save()">{{ModalAdd?'Add':'Save'}} </button>
+                <button type="button" class="btn btn-primary" [disabled]="eventForm.invalid || timeStartH.value>timeEndtH.value || (timeStartH.value==timeEndtH.value && timeStartM.value>=timeEndtM.value)" (click)="ModalAdd? add():save()">{{ModalAdd?'Ajouter':'Sauvegarder'}} </button>
             </div>
         </div>
     </div>

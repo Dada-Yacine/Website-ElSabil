@@ -28,4 +28,24 @@ export class AbsenceService {
   delete(id:string|undefined){
     return this.http.delete('http://localhost:3000/absence/'+id,{responseType:'json'});
   }
+
+  
+  getAbsencesByGroupAndSessionAndDate(group_id:string,session_id:string,date:string){
+    let url = 'http://localhost:3000/absence/filter?';
+    if(group_id!=undefined && group_id!="") 
+      url +='group_id='+group_id
+
+    if(session_id!=undefined && session_id!="") {
+      if(url.at(url.length-1)!="?") 
+      url +='&';
+      url +='session_id='+session_id ;
+    }
+
+    if(date!=undefined && date!="") {
+      if(url.at(url.length-1)!="?") 
+        url +='&';
+      url +='date='+date;
+    }
+    return this.http.get(url,{responseType:'json'});
+  }
 }

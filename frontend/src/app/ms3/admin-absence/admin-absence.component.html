@@ -1,0 +1,104 @@
+<div class="ms3-Wrapper border p-3">
+    <div class="select">
+        <div>
+            <label>Niveau: </label>
+            <select (change)="getYearsByLevel($event)">
+                <option value="-1"></option>
+                <option *ngFor="let level of levels" value="{{level.niveauId}}">{{level.niveauNom}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Annee: </label>
+            <select (change)="getGroupsByYear($event)">
+                <option value="-1"></option>
+                <option *ngFor="let year of years" value="{{year.anneeId}}">{{year.anneeNom}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Groupe: </label>
+            <select (change)="setGroupId($event)">
+                <option></option>
+                <option *ngFor="let group of groups" value="{{group.groupeId}}">{{group.nomGroupe}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="select">
+        <div>
+            <label>Jour: </label>
+            <select (change)="setDay($event);date.value=''">
+                <option value="-1"></option>
+                <option *ngFor="let day of daysOfWeek;let i = index" value="{{i}}">{{day}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Seance: </label>
+            <select (change)="setSessionId($event)">
+                <option></option>
+                <option *ngFor="let session of sessionsf" value="{{session._id}}">
+                    {{session.course_name+' ('+session.start_time+'-'+session.end_time+')'}}
+                </option>
+            </select>
+        </div>
+        <div>
+            <label>Date: </label>
+            <input type="date" #date (change)="setDate($event)" min="{{minDate}}" max="{{maxDate}}">
+        </div>
+    </div>
+    <table class="ms3-table table table-bordered mt-4" style="border-collapse: collapse;">
+        <thead>
+            <tr>      
+                <th *ngIf="s_date=='' || s_day==-1">Date</th>     
+                <th *ngIf="s_session_id==''">Cours</th>
+                <th>Etudiant</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="border-top-0">
+            <tr *ngFor="let absence of absencesf ">
+                <td *ngIf="s_date=='' || s_day==-1">
+                    {{s_day==-1?getDay(absence.date):''}} 
+                    {{s_date==''?absence.date.toString().split('T')[0].split('-').reverse().join('-'):''}}
+                </td>
+                <td *ngIf="s_session_id==''">{{absence.course_name}}</td>
+                <td>{{absence.student_full_name}}</td>
+                <td>{{absence.status == 1 ? 'justified':'not justified'}}</td>
+                <td>
+                    <span class="badge badge-primary" (click)="showEditModal(absence)">modifier</span>
+                    <span class="badge badge-danger ml-2" (click)="delete(absence._id)">supprimer</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal-backdrop fade" [ngClass]="{'show':showModal,'d-none':!showModal}"></div>
+<div class="modal fade" [ngClass]="{'d-block':showModal,'show':showModal}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modifier le status d'absence</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #absenceForm="ngForm">
+                    <div class="form-group">
+                        <label style="vertical-align: top;">Status</label>
+                        <select name="status" #status="ngModel" ngModel required>
+                            <option value="0">not justified</option>
+                            <option value="1">justified</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="absenceForm.invalid" (click)="save()">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>

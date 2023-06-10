@@ -1,40 +1,40 @@
 <div class="ms3-Wrapper border p-3">
     <div class="select">
         <div>
-            <label>Level: </label>
+            <label>Niveau: </label>
             <select (change)="getYearsByLevel($event);getTeachersByLevel($event)">
-                <option value="-1"></option>
-                <option *ngFor="let level of levels" value="{{level.id}}">{{level.name}}</option>
-            </select>
-        </div>
-        <div>
-            <label>Year: </label>
-            <select (change)="getGroupsByYear($event)">
-                <option value="-1"></option>
-                <option *ngFor="let year of years" value="{{year.id}}">{{year.name}}</option>
-            </select>
-        </div>
-        <div>
-            <label>Group: </label>
-            <select (change)="setGroupId($event);getCoursesByGroupe($event)">
                 <option></option>
-                <option *ngFor="let group of groups" value="{{group.id}}">{{group.name}}</option>
+                <option *ngFor="let level of levels" value="{{level.niveauId}}">{{level.niveauNom}}</option>
             </select>
         </div>
         <div>
-            <button class="btn btn-primary d-block mx-auto" style="max-width: 148px;"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()" *ngIf="s_group_id!=''">Add session</button>
+            <label>Annee: </label>
+            <select (change)="getGroupsByYear($event);getCoursesByAnnee($event)">
+                <option></option>
+                <option *ngFor="let year of years" value="{{year.anneeId}}">{{year.anneeNom}}</option>
+            </select>
+        </div>
+        <div>
+            <label>Groupe: </label>
+            <select (change)="setGroupId($event)">
+                <option></option>
+                <option *ngFor="let group of groups" value="{{group.groupeId}}">{{group.nomGroupe}}</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary d-block mx-auto"  data-toggle="modal" data-target="#exampleModalCenter" (click)="show()" *ngIf="s_group_id!=''">Ajouter une Seance</button>
         </div>
     </div>
     <div class="select">
         <div>
-            <label>Teacher: </label>
+            <label>Enseignant: </label>
             <select (change)="setTeacherId($event)">
                 <option></option>
-                <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.name}}</option>
+                <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.prenom+' '+teacher.nom}}</option>
             </select>
         </div>
         <div>
-            <label>Classroom: </label>
+            <label>Salle: </label>
             <select (change)="setClassroomId($event)">
                 <option value=""></option>
                 <option *ngFor="let classroom of classrooms" value="{{classroom._id}}">{{classroom.name}}</option>
@@ -60,8 +60,8 @@
                         <span *ngIf="s_classroom_id==''">{{session.classroom_name}}</span>
                         <span *ngIf="s_teacher_id==''">{{session.teacher_full_name}}</span>
                         <div class="sessionControl p-2" *ngIf="s_group_id!=''">
-                            <span class="badge badge-primary" (click)="showEditModal(session._id,item)">Edit</span>
-                            <span class="badge badge-danger ml-2" (click)="delete(session._id)">delete</span>
+                            <span class="badge badge-primary" (click)="showEditModal(session._id,item)">modifier</span>
+                            <span class="badge badge-danger ml-2" (click)="delete(session._id)">supprimer</span>
                         </div>
                     </td>
                     <ng-template #e>
@@ -79,7 +79,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">{{ModalAdd?'Add':'Edit'}} session</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ModalAdd?'Ajouter':'Modifier'}} Seance</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -87,25 +87,34 @@
         <div class="modal-body">
             <form #sessionForm="ngForm">
                 <div class="form-group">
-                    <label>Course</label>
+                    <label>Cours</label>
                     <select name="course_id"  #course_id="ngModel" ngModel required>
                         <option value=""></option>
-                        <option *ngFor="let course of courses" value="{{course.id}}">{{course.name}}</option>
+                        <option *ngFor="let course of courses" value="{{course.coursId}}">{{course.coursNom}}</option>
                     </select>
+                    <span class="errors" *ngIf="course_id.touched">
+                        <small class="text-danger" *ngIf="course_id.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label>Session type</label>
+                    <label>Seance type</label>
                     <input type="text" class="form-control" name="type"  #type="ngModel" ngModel required placeholder="Enter session type">
+                    <span class="errors" *ngIf="type.touched">
+                        <small class="text-danger" *ngIf="type.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label>Classroom</label>
+                    <label>Salle</label>
                     <select name="classroom_id"  #classroom_id="ngModel" ngModel required>
                         <option value=""></option>
                         <option *ngFor="let classroom of classrooms" value="{{classroom._id}}">{{classroom.name}}</option>
                     </select>
+                    <span class="errors" *ngIf="classroom_id.touched">
+                        <small class="text-danger" *ngIf="classroom_id.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label>Day</label>
+                    <label>Jour</label>
                     <select name="day"  #day="ngModel" ngModel required>
                         <option value=""></option>
                         <option value="0">Sunday</option>
@@ -116,31 +125,44 @@
                         <option value="5">Friday</option>
                         <option value="6">Saturday</option>
                     </select>
+                    <span class="errors" *ngIf="day.touched">
+                        <small class="text-danger" *ngIf="day.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
                 <div class="form-group time">
-                    <label>Start time</label>
+                    <label>Heure de debut</label>
                     <input type="text" class="form-control" placeholder="12" name="timeStartH"  #timeStartH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
                     <span class="px-2">:</span>
                     <input type="text" class="form-control" placeholder="00" name="timeStartM"  #timeStartM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                    <span class="errors" *ngIf="timeStartH.touched || timeStartM.touched">
+                        <small class="text-danger" *ngIf="timeStartH.errors?.['required']||timeStartM.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
                 <div class="form-group time">
-                    <label>End time</label>
+                    <label>Heure de fin</label>
                     <input type="text" class="form-control" placeholder="12" name="timeEndH"  #timeEndtH="ngModel" ngModel required pattern="2[0-3]|[0-1][\d]" [maxLength]="2">
                     <span class="px-2">:</span>
                     <input type="text" class="form-control" placeholder="00"  name="timeEndM" #timeEndtM="ngModel" ngModel required pattern="[0-5][\d]" [maxLength]="2">
+                    <span class="errors" *ngIf="timeEndtH.touched || timeEndtM.touched">
+                        <small class="text-danger" *ngIf="timeEndtH.errors?.['required']||timeEndtM.errors?.['required']">Ce champ est obligatoire</small> 
+                        <small class="text-danger" *ngIf="timeStartH.value>timeEndtH.value || (timeStartH.value==timeEndtH.value && timeStartM.value>=timeEndtM.value)">L'Heure de fin doit etre superieure a L'Heure de debut</small> 
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label>Teacher</label>
+                    <label>Enseignant</label>
                     <select name="teacher_id"  #teacher_id="ngModel" ngModel required>
                         <option value=""></option>
-                        <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.name}}</option>
+                        <option *ngFor="let teacher of teachers" value="{{teacher.id}}">{{teacher.prenom+' '+teacher.nom}}</option>
                     </select>
+                    <span class="errors" *ngIf="teacher_id.touched">
+                        <small class="text-danger" *ngIf="teacher_id.errors?.['required']">Ce champ est obligatoire</small> 
+                    </span>
                 </div>
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="sessionForm.invalid" (click)="ModalAdd? save():edit()">{{ModalAdd?'Add':'Save'}} </button>
+          <button type="button" class="btn btn-primary" [disabled]="sessionForm.invalid || timeStartH.value>timeEndtH.value || (timeStartH.value==timeEndtH.value && timeStartM.value>=timeEndtM.value)" (click)="ModalAdd? save():edit()">{{ModalAdd?'Ajouter':'Sauvegarder'}} </button>
         </div>
       </div>
     </div>

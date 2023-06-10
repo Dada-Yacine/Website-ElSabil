@@ -12,7 +12,7 @@ import { MsService } from '../services/ms.service';
   styleUrls: ['./admin-timetable.component.css']
 })
 export class AdminTimetableComponent implements OnInit {
-  daysOfWeek: String[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  daysOfWeek: String[] = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   data: any[] = [];
   times: any[] = [];
   days: number[] = [];
@@ -43,10 +43,11 @@ export class AdminTimetableComponent implements OnInit {
 
   edit(){
     let session = this.getFormData();
-    this.timetableService.editSession(this.sessionID,session).subscribe((err)=>{
-      this.hide()
-      this.sessionForm.reset()
-      this.get()
+    this.timetableService.editSession(this.sessionID,session).subscribe((res:any)=>{      
+      if(!res.Dupl){
+        this.hide()
+        this.get()
+      }
     })
   }
   delete(id:string){
@@ -56,9 +57,11 @@ export class AdminTimetableComponent implements OnInit {
   }
   save() {
     let session = this.getFormData();
-    this.timetableService.addSession(session).subscribe((err) => {
-      this.hide()
-      this.get()
+    this.timetableService.addSession(session).subscribe((res:any) => {
+      if(!res.Dupl){
+        this.hide()
+        this.get()
+      }
     })
   }
   get() {
@@ -99,6 +102,8 @@ export class AdminTimetableComponent implements OnInit {
     })
   }
   getYearsByLevel(event:any){
+    this.s_group_id = "";
+    this.s_teacher_id = "";
     this.years = [];
     this.groups = [];
     if((this.s_group_id != "" || this.s_teacher_id != "") && this.s_classroom_id != ""){
@@ -124,10 +129,10 @@ export class AdminTimetableComponent implements OnInit {
         this.changeDetection.detectChanges();
       })
   }
-  getCoursesByGroupe(event:any){
+  getCoursesByAnnee(event:any){
     this.courses = [];
     if(event.target.value && event.target.value!="")
-      this.ms.getCoursesByGroupe(event.target.value).subscribe((res)=>{
+      this.ms.getCoursesByAnnee(event.target.value).subscribe((res)=>{
         this.courses = res;
         this.changeDetection.detectChanges();
       })
@@ -176,11 +181,12 @@ export class AdminTimetableComponent implements OnInit {
   getFormData():Session{
     let session = new Session();
     session.group_id = this.s_group_id;
-    session.group_name = this.groups.find((item:any)=>{return item.id == this.s_group_id}).name;
+    session.group_name = this.groups.find((item:any)=>{return item.groupeId == this.s_group_id}).nomGroupe;
     session.course_id = this.sessionForm.controls['course_id'].value;
-    session.course_name = this.courses.find((item:any)=>{return item.id == session.course_id}).name;
+    session.course_name = this.courses.find((item:any)=>{return item.coursId == session.course_id}).coursNom;
     session.teacher_id = this.sessionForm.controls['teacher_id'].value;
-    session.teacher_full_name = this.teachers.find((item:any)=>{return item.id == session.teacher_id}).name;
+    let t = this.teachers.find((item:any)=>{return item.id == session.teacher_id});
+    session.teacher_full_name = t.prenom +' '+ t.nom;
     session.classroom_id = this.sessionForm.controls['classroom_id'].value;
     session.day = this.sessionForm.controls['day'].value;
     session.type = this.sessionForm.controls['type'].value;

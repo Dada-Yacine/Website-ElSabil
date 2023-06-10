@@ -10,6 +10,8 @@ import { MsService } from '../services/ms.service';
   styleUrls: ['./admin-events.component.css']
 })
 export class AdminEventsComponent  implements OnInit{
+  minDate!:string;
+  maxDate!:string;
   event_id!:string;
   events:IEvent[] = []
   ModalAdd:boolean = false
@@ -19,15 +21,45 @@ export class AdminEventsComponent  implements OnInit{
   showModal: boolean = false;
   levels:any = [];
   yearsList:any = [];
-  constructor(private eventService:EventService, private changeDetection: ChangeDetectorRef,private ms:MsService){}
+  yearsByLevelList:any = []
+  constructor(private eventService:EventService, private changeDetection: ChangeDetectorRef,private ms:MsService){
+    ms.getAcademicYears().subscribe((res:any)=>{
+      let dates = ms.getLastAcademicYear(res);
+      this.minDate = dates.min;
+      this.maxDate = dates.max;
+    })
+  }
   ngOnInit() {
     this.get();
     this.getLevels();
   }
+  getLevelName(id:any){
+    return this.levels.find((item:any)=>{return item.niveauId == id})?.niveauNom;
+  }
+  getYearName(id:any,list:any){
+    return list.find((item:any)=>{return item.anneeId == id})?.anneeNom;
+  }
   get(){
     this.eventService.getAll().subscribe((res:any)=>{
       this.events = res;
-      this.changeDetection.detectChanges()
+      for(let e of this.events){
+        if(this.yearsByLevelList[Number.parseInt(e.level)]){
+          e.yearsNames = [];
+          for(let y of e.years){
+            e.yearsNames.push(this.getYearName(y,this.yearsByLevelList[Number.parseInt(e.level)]));
+          }
+          this.changeDetection.detectChanges()
+        }else{
+          this.ms.getYearsByLevel(e.level).subscribe((res:any)=>{
+            this.yearsByLevelList[Number.parseInt(e.level)] = res;
+            e.yearsNames = [];
+            for(let y of e.years){
+              e.yearsNames.push(this.getYearName(y,this.yearsByLevelList[Number.parseInt(e.level)]));
+            }
+            this.changeDetection.detectChanges()
+          })
+        }
+      }
     })
   }
   delete(id:string|undefined){
@@ -76,6 +108,11 @@ export class AdminEventsComponent  implements OnInit{
     this.event_id = event._id ? event._id : "";
     this.eventForm.controls['title'].setValue(event.title)
     this.eventForm.controls['description'].setValue(event.description)
+    this.eventForm.controls['level'].setValue(event.level)
+    this.ms.getYearsByLevel(event.level).subscribe((res)=>{
+      this.yearsList = res;
+      this.changeDetection.detectChanges();
+    })
     this.eventForm.controls['years'].setValue(event.years)
     this.eventForm.controls['date'].setValue(event.date.toString().split('T')[0])
     this.eventForm.controls['timeStartH'].setValue(event.start_time.split(':')[0])
@@ -89,10 +126,12 @@ export class AdminEventsComponent  implements OnInit{
     event.title = this.eventForm.controls['title'].value;
     event.description = this.eventForm.controls['description'].value;
     event.image_name = "img";
+    event.level = this.eventForm.controls['level'].value;
     event.years = this.eventForm.controls['years'].value;
     event.date = this.eventForm.controls['date'].value;
     event.start_time = this.eventForm.controls['timeStartH'].value + ':' + this.eventForm.controls['timeStartM'].value;
     event.end_time = this.eventForm.controls['timeEndH'].value + ':' + this.eventForm.controls['timeEndM'].value;
+    console.log(event)
     return event
   }
 }

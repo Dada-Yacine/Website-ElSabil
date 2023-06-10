@@ -1,5 +1,5 @@
-<div class="border p-3">
-    <table class="table table-bordered mt-4" style="border-collapse: collapse;" *ngIf="data.length>0">
+<div class="ms3-Wrapper border p-3">
+    <table class="ms3-table table table-bordered mt-4" style="border-collapse: collapse;" *ngIf="data.length>0">
         <thead>
             <tr>      
                 <th></th>     
@@ -41,13 +41,13 @@
                 <form #absenceForm="ngForm">
                     <div class="form-group">
                         <label>Date</label>
-                        <input type="date" name="date" #date="ngModel" (change)="selectDate()" ngModel required>
+                        <input type="date"  min="{{minDate}}" max="{{maxDate}}" name="date" #date="ngModel" (change)="selectDate()" ngModel required>
                     </div>
                     <div class="form-group">
                         <label style="vertical-align: top;">Student</label>
                         <select name="students_id" #student_id="ngModel" ngModel required multiple>
-                            <ng-container *ngFor="let student of students">
-                                <option value="{{student.id}}">{{student.name}}</option>
+                            <ng-container *ngFor="let student of studentsf">
+                                <option value="{{student.id}}">{{student.prenom+' '+student.nom}}</option>
                             </ng-container>
                         </select>
                     </div>

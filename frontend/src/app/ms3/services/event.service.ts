@@ -11,11 +11,15 @@ export class EventService {
   getAll(){
     return this.http.get('http://localhost:3000/event',{responseType:'json'});
   }
+  getEventsByAnnee(id:string){
+    return this.http.get('http://localhost:3000/event/byYear/'+id,{responseType:'json'});
+  }
   add(event:IEvent,image:File){
     const formData: FormData = new FormData();
     formData.append('image', image);
     formData.append('title', event.title);
     formData.append('description', event.description);
+    formData.append('level', event.level);
     for (var i = 0; i < event.years.length; i++) {
       formData.append('years[]', event.years[i]);
     }
@@ -29,6 +33,7 @@ export class EventService {
     formData.append('image', image);
     formData.append('title', event.title);
     formData.append('description', event.description);
+    formData.append('level', event.level);
     for (var i = 0; i < event.years.length; i++) {
       formData.append('years', event.years[i]);
     }

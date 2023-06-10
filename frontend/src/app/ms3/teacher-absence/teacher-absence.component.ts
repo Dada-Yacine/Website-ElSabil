@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AbsenceService } from '../services/absence.service';
 import { IAbsence } from '../models/absence.model';
+import { S2Service } from 'src/app/ms1/services/s2.service';
 
 @Component({
   selector: 'app-teacher-absence',
@@ -9,15 +10,18 @@ import { IAbsence } from '../models/absence.model';
   styleUrls: ['./teacher-absence.component.css']
 })
 export class TeacherAbsenceComponent implements OnInit{
-  daysOfWeek: String[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  id:string = "10";
+  daysOfWeek: String[] = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+  id:string;
   absence!:IAbsence;
   absences:IAbsence[] = []
 
   @ViewChild('absenceForm') absenceForm!: NgForm;
   showModal: boolean = false;
 
-  constructor(private absenceService:AbsenceService, private changeDetection: ChangeDetectorRef){}
+  constructor(private absenceService:AbsenceService, private changeDetection: ChangeDetectorRef,
+    private auth:S2Service){
+      this.id = this.auth.getUserId();
+    }
   ngOnInit() {
     this.get(this.id);
   }

@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { TimetableService } from '../services/timetable.service';
+import { MsService } from '../services/ms.service';
+import { S2Service } from 'src/app/ms1/services/s2.service';
 
 @Component({
   selector: 'app-student-timetable',
@@ -7,14 +9,19 @@ import { TimetableService } from '../services/timetable.service';
   styleUrls: ['./student-timetable.component.css']
 })
 export class StudentTimetableComponent implements OnInit{
-  daysOfWeek: String[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  daysOfWeek: String[] = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
   data: any[] = [];
   times: any[] = [];
   days: number[] = [];
-  id:number = 14;
-  constructor(private timetableService:TimetableService){}
+  id:number;
+  constructor(private timetableService:TimetableService,private msService:MsService,
+    private auth:S2Service){
+      this.id = Number.parseInt(this.auth.getUserId());
+    this.msService.getStudent(this.id.toString()).subscribe((res:any)=>{
+      this.get(res.idgroupe);
+    })
+  }
   ngOnInit() {
-    this.get(this.id);
   }
   get(id: number) {
     this.data = [];

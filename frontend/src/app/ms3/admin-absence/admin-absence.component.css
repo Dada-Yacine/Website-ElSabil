@@ -1,3 +1,20 @@
+.select > * {
+    width: 29%;
+    margin-right: 2%;
+    margin-left: 2%;
+    display: inline-block;    
+    min-width: 196px;
+}
+.select > div {
+    margin-top: 10px;
+}
+.select > div label{
+    width: 35%;
+    margin-right: 5%;
+}
+.select > div *{
+    width: 50%;
+}
 /*table*/
 th,td{
     padding: 16px;
@@ -19,16 +36,4 @@ td span{
 }
 .modal-body label{
     width: 33%;
-}
-.time input{
-    display: inline-block;
-    width: 48px;
-}
-/*errors*/
-form .errors{
-    display: block;
-    margin-left: 33%;
-}
-form .errors small{
-    display: block;
 }

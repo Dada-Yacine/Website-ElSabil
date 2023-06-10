@@ -22,16 +22,17 @@ export class TimetableService {
     let url = 'http://localhost:3000/timetable/filter?';
     if(group_id!=undefined && group_id!="") 
       url +='group_id='+group_id
-
+    if(teacher_id!=undefined && teacher_id!="") {
     if(url.at(url.length-1)!="?") 
       url +='&';
-    if(teacher_id!=undefined && teacher_id!="") 
       url +='teacher_id='+teacher_id ;
+    }
 
-    if(url.at(url.length-1)!="?") 
-      url +='&';
-    if(classroom_id!=undefined && classroom_id!="") 
+    if(classroom_id!=undefined && classroom_id!="") {
+      if(url.at(url.length-1)!="?") 
+        url +='&';
       url +='classroom_id='+classroom_id;
+    }
     return this.http.get(url,{responseType:'json'});
   }
   addSession(session:ISession){

@@ -48,3 +48,11 @@ td>span{
 td:hover .sessionControl{
     visibility: visible;
 }
+/*errors*/
+form .errors{
+    display: block;
+    margin-left: 33%;
+}
+form .errors small{
+    display: block;
+}
