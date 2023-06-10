@@ -39,6 +39,12 @@ import { ReponseTaskComponent } from './ms1/reponse-task/reponse-task.component'
 import { TeacherComponentDash } from './teacher/teacher.component';
 
 import { StudentComponentDash } from './student/student.component';
+import { AdminAbsenceComponent } from './ms3/admin-absence/admin-absence.component';
+import { StudentAbsenceComponent } from './ms3/student-absence/student-absence.component';
+import { StudentEventsComponent } from './ms3/student-events/student-events.component';
+import { StudentTimetableComponent } from './ms3/student-timetable/student-timetable.component';
+import { TeacherAbsenceComponent } from './ms3/teacher-absence/teacher-absence.component';
+import { TeacherTimetableComponent } from './ms3/teacher-timetable/teacher-timetable.component';
 
 
 
@@ -74,18 +80,29 @@ const routes: Routes = [
     {path: 'course', component: CoursetableComponent},
     {path: 'course/create', component: CoursecreateComponent},
     {path: 'course/:coursId/modify', component: CoursemodifyComponent},
+    {path: 'absences', component:AdminAbsenceComponent},
   ]
   },
   {path: 'student',
   component: StudentComponentDash,
   children: [
     {path: 'tasketudiant', component:ReponseTaskComponent},
+
+    /*ms3*/
+    {path: 'absences', component:StudentAbsenceComponent},
+    {path: 'events', component:StudentEventsComponent},
+    {path: 'planning', component:StudentTimetableComponent},
+
   ]
   },
   {path: 'teacher',
   component: TeacherComponentDash,
   children: [
     {path: 'tasks', component: TasksComponent },
+
+    /*ms3*/
+    {path: 'absences', component:TeacherAbsenceComponent},
+    {path: 'planning', component:TeacherTimetableComponent},
   ]
   },
 ];

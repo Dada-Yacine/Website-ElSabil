@@ -117,13 +117,7 @@
                     <label>Jour</label>
                     <select name="day"  #day="ngModel" ngModel required>
                         <option value=""></option>
-                        <option value="0">Sunday</option>
-                        <option value="1">Monday</option>
-                        <option value="2">Tuesday</option>
-                        <option value="3">Wednesday</option>
-                        <option value="4">Thursday</option>
-                        <option value="5">Friday</option>
-                        <option value="6">Saturday</option>
+                        <option *ngFor="let day of daysOfWeek;let i = index" value="{{i}}">{{day}}</option>
                     </select>
                     <span class="errors" *ngIf="day.touched">
                         <small class="text-danger" *ngIf="day.errors?.['required']">Ce champ est obligatoire</small> 

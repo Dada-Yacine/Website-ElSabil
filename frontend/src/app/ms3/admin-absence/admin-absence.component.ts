@@ -88,8 +88,9 @@ export class AdminAbsenceComponent implements OnInit{
   setDay(event:any){
     this.s_day = event.target.value;
     if(this.s_day!=-1 && (this.s_date!="" || this.s_session_id!="")){
-      this.s_date = "";
       this.s_session_id = "";
+      if(this.getDayFromDate(this.s_date)!=this.s_day)
+        this.s_date = "";
       this.get();
     }
     if(this.s_day!=-1){
@@ -151,5 +152,8 @@ export class AdminAbsenceComponent implements OnInit{
   }
   getDay(date:Date){
     return this.daysOfWeek[new Date(date).getDay()]
+  }
+  getDayFromDate(date:string){
+    return new Date(date).getDay();
   }
 }

@@ -25,7 +25,7 @@
     <div class="select">
         <div>
             <label>Jour: </label>
-            <select (change)="setDay($event);date.value=''">
+            <select (change)="setDay($event);(s_day!=-1&&getDayFromDate(date.value)!=s_day)?date.value='':''">
                 <option value="-1"></option>
                 <option *ngFor="let day of daysOfWeek;let i = index" value="{{i}}">{{day}}</option>
             </select>

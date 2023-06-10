@@ -29,21 +29,38 @@
       <hr>
       <ul>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
-                      <img src=".\..\..\..\assets\admin\side-nav\PlanningLogoWhite.png">
-                      <span>Planning</span>
-                  </button>
-              </a>
-          </li>
-          <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
-                      <img src=".\..\..\..\assets\admin\side-nav\EventLogoWhite.png">
-                      <span>Evénements</span>
-                  </button>
-              </a>
-          </li>
+            <a [routerLink]="['/student/planning']"
+            href="javascript:void(0)" class="NavTabWrapperInactive">
+                <button routerLink="/student/planning"
+                routerLinkActive #ms3_1="routerLinkActive"
+                [ngClass]="ms3_1.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                    <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
+                    <span>Planning</span>
+                </button>
+            </a>
+            </li>
+            <li>
+                <a [routerLink]="['/student/absences']"
+                href="javascript:void(0)" class="NavTabWrapperInactive">
+                    <button routerLink="/student/absences"
+                    routerLinkActive #ms3_2="routerLinkActive"
+                    [ngClass]="ms3_2.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                        <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
+                        <span>Absences</span>
+                    </button>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/student/events']"
+                href="javascript:void(0)" class="NavTabWrapperInactive">
+                    <button routerLink="/student/events"
+                    routerLinkActive #ms3_3="routerLinkActive"
+                    [ngClass]="ms3_3.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                        <img src=".\..\..\..\assets\admin\side-nav\EventLogoWhite.png">
+                        <span>Evénements</span>
+                    </button>
+                </a>
+            </li>
       </ul>
   </nav>
 </aside>
