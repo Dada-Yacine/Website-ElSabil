@@ -1,0 +1,77 @@
+<body class="mat-typography">
+<h2>Modifier l'étudiant</h2>
+
+<form (submit)="modifierEtudiant()" #form="ngForm" *ngIf="etudiant">
+
+  <div>
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="etudiant.nom" required>
+  </div>
+
+  <div>
+    <label for="prenom">Prénom</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="etudiant.prenom" required>
+  </div>
+
+  <div>
+    <label for="dateNaissance">Date de naissance</label>
+    <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="etudiant.dateNaissance" required>
+  </div>
+
+
+
+  <div>
+    <label for="numeroTelephone">Numéro de téléphone</label>
+    <input type="text" id="numeroTelephone" name="numeroTelephone" [(ngModel)]="etudiant.numeroTelephone" required>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="etudiant.email" required>
+  </div>
+
+  <div>
+    <label for="niveau">Niveau:</label>
+    <select id="niveau" [(ngModel)]="selectedNiveau" name="niveau" (change)="getAnnees()" required>
+      <option *ngFor="let niveau of niveaux" [ngValue]="niveau" [selected]="niveau.niveauNom === etudiant.niveau">{{ niveau.niveauNom }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="adresse">wilaya:</label>
+    <input type="text" id="adresse" [(ngModel)]="adresseWilaya" name="wilaya" required>
+  </div>
+  <div>
+    <label for="ville">Ville:</label>
+    <input type="text" id="ville" [(ngModel)]="adresseVille" name="ville" required>
+  </div>
+
+  <div>
+    <label for="rue">Rue:</label>
+    <input type="text" id="rue" [(ngModel)]="adresseRue" name="rue" required>
+  </div>
+
+  <div>
+    <label for="annee">Année:</label>
+    <select id="annee" [(ngModel)]="selectedAnnee" name="annee" (change)="getGroupes()" required>
+      <option *ngFor="let annee of annees" [ngValue]="annee" [selected]="annee.anneeNom === etudiant.annee">{{ annee.anneeNom }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="groupe">Groupe:</label>
+    <select id="groupe" [(ngModel)]="selectedGroupe" name="groupe">
+      <option *ngFor="let groupe of groupes" [ngValue]="groupe" [selected]="groupe.groupeNom === etudiant.groupe">{{ groupe.groupeNom }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="active">Active:</label>
+    <select id="active" [(ngModel)]="etudiant.active" name="active" required>
+      <option value="True">true</option>
+      <option value="False">false</option>
+    </select>
+  </div>
+
+  <button type="submit">Enregistrer</button>
+</form>
+</body>

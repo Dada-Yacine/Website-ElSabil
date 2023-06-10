@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+
 import { HomeComponent } from './home/home.component';
-import { TeacherComponent } from './teacher/teacher.component';
+import { CloginComponent } from './clogin/clogin.component';
+import { ResetComponent } from './reset/reset.component';
+import { ProfileComponent } from './profile/profile.component';
+
+import { AdminComponent } from './admin/admin.component';
+import { EtudiantListComponent } from './ms1/etudiant-list/etudiant-list.component';
+import { EtudiantComponent } from './ms1/etudiant/etudiant.component';
+import { EtudiantModifierComponent } from './ms1/etudiant-modifier/etudiant-modifier.component';
+
+import { TeacherListComponent } from './ms1/teacher-list/teacher-list.component';
+import { TeacherComponent } from './ms1/teacher/teacher.component';
+import { TeachermodifierComponent } from './ms1/teachermodifier/teachermodifier.component';
+
 import { LeveltableComponent } from './admin/level/leveltable/leveltable.component';
 import { LevelcreateComponent } from './admin/level/levelcreate/levelcreate.component';
 import { LevelmodifyComponent } from './admin/level/levelmodify/levelmodify.component';
@@ -11,19 +25,37 @@ import { AyearmodifyComponent } from './admin/ayear/ayearmodify/ayearmodify.comp
 import { YeartableComponent } from './admin/year/yeartable/yeartable.component';
 import { YearcreateComponent } from './admin/year/yearcreate/yearcreate.component';
 import { YearmodifyComponent } from './admin/year/yearmodify/yearmodify.component';
-
-
-import { AdminComponent } from './admin/admin.component';
-import { StudentComponent } from './student/student.component';
 import { AdminTimetableComponent } from './ms3/admin-timetable/admin-timetable.component';
 import { AdminEventsComponent } from './ms3/admin-events/admin-events.component';
 import { AdminClassroomsComponent } from './ms3/admin-classrooms/admin-classrooms.component';
 
+import { PageChangeMotPasseComponent } from './page-change-mot-passe/page-change-mot-passe.component';
+import { TasksComponent } from './ms1/tasks/tasks.component';
+import { ReponseTaskComponent } from './ms1/reponse-task/reponse-task.component';
+
+import { TeacherComponentDash } from './teacher/teacher.component';
+
+import { StudentComponentDash } from './student/student.component';
+
+
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'login', component:CloginComponent},
+  {path: 'reset', component:ResetComponent},
+  {path: 'changermotpasse', component:PageChangeMotPasseComponent},
+  {path: 'profil', component:ProfileComponent},
   {path: 'admin',
   component: AdminComponent,
   children: [
+    {path: 'teacher', component:TeacherComponent},
+    {path: 'teacherlist', component:TeacherListComponent},
+    {path: 'teacherMod/:id', component:TeachermodifierComponent},
+    {path: 'etuList', component: EtudiantListComponent },
+    {path: 'etuMod/:id', component: EtudiantModifierComponent },
+    {path: 'ajouterEtu', component:EtudiantComponent},
+
+
     {path: 'niveau', component: LeveltableComponent},
     {path: 'niveau/create', component: LevelcreateComponent},
     {path: 'niveau/:niveauId/modify', component: LevelmodifyComponent},
@@ -33,19 +65,21 @@ const routes: Routes = [
     {path: 'annee', component: YeartableComponent},
     {path: 'annee/create', component: YearcreateComponent},
     {path: 'annee/:anneeId/modify', component: YearmodifyComponent},
-    {path: 'planning',component:AdminTimetableComponent},
-    {path: 'events',component:AdminEventsComponent},
-    {path: 'classrooms',component:AdminClassroomsComponent}
+    {path: 'planning', component:AdminTimetableComponent},
+    {path: 'events', component:AdminEventsComponent},
+    {path: 'classrooms', component:AdminClassroomsComponent},
   ]
   },
   {path: 'student',
-  component: StudentComponent,
+  component: StudentComponentDash,
   children: [
+    {path: 'tasketudiant', component:ReponseTaskComponent},
   ]
   },
   {path: 'teacher',
-  component: TeacherComponent,
+  component: TeacherComponentDash,
   children: [
+    {path: 'tasks', component: TasksComponent },
   ]
   },
 ];

@@ -1,0 +1,46 @@
+
+<body class="mat-typography">
+	<img class="wave" src="../../assets/ms1/wave.jpg">
+	<div class="container">
+		<div class="img">
+			<img src="assets/ms1/bg.svg">
+		</div>
+
+		<div class="login-content">
+
+
+			<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+				<img src="assets/ms1/avatar.svg">
+				<h2 class="title">Connexion</h2>
+				<strong class="alert alert-danger" *ngIf="error">{{ error }}</strong>
+           		<div class="input-div one" [class.focus]="focusUsername">
+           		   <div class="i">
+           		   		<i><img class="logosvgrest" src="./../../assets/ms1/user-solid.svg"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5 [class.hide]="focusUsername">Nom d'utilisateur</h5>
+           		   		<input type="text" class="input" id="username" formControlName="username" required  #username  (focus)="onFocusUsername()" (blur)="onBlurUsername()">
+							  <small class="text-danger" *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                Nom d'utilisateur est nécessaire
+							</small>
+					</div>
+           		</div>
+           		<div class="input-div pass" [class.focus]="focusPassword">
+           		   <div class="i">
+           		    	<i><img class="logosvgrest" src="./../../assets/ms1/lock-solid.svg"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5 [class.hide]="focusPassword">Mot de passe</h5>
+           		    	<input type="password" class="input" id="password" formControlName="password" required #password (focus)="onFocusPassword()" (blur)="onBlurPassword()">
+						   <small class="text-danger" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                Mot de passe est nécessaire
+						</small>
+					</div>
+            	</div>
+            	<a href="javascript:void(0)" (click)="onForgotPassword()">Mot de passe oubliée ?</a>
+            	<input type="submit" class="btn" value="Connexion">
+            </form>
+        </div>
+    </div>
+
+</body>

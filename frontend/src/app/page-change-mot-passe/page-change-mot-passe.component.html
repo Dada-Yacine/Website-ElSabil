@@ -1,0 +1,59 @@
+<body class="mat-typography">
+<div class="row m-3">
+    <div class="card col-md-5 text-center mr-1">
+        <div class="col">
+            <div class="mb-3 mt-3">
+              <img [src]="profilePictureUrl" alt="Profile Picture+ '?timestamp=' + timestamp" class="rounded-circle" width="200px" height="200px">
+            </div>
+            <div class="m-3">
+                <h2   *ngIf="user">{{user.nom}}&nbsp;{{user.prenom}}</h2>
+                <small class="form-text text-muteo" *ngIf="user">{{user.adresse.wilaya}}</small>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card col-md-7  " style="box-shadow: 5px;" >
+    <form  (ngSubmit)="onSubmit()"  [formGroup]="passwordForm">
+
+      <div class="form-group">
+        <label for="oldPassword">Ancien mot de passe</label>
+        <input type="password" class="form-control" id="oldPassword" name="oldPassword"  formControlName="oldPassword" >
+        <small class="text-danger" *ngIf="passwordForm.get('oldPassword')?.touched && passwordForm.get('oldPassword')?.errors?.['required']">
+          Ce champ est obligatoire
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Nouveau mot de passe:</label>
+        <input type="password" class="form-control" id="newPassword" name="newPassword"  formControlName="newPassword">
+        <small class="text-danger" *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['required']">
+          veuillez entrer le nouveau mot de passe
+        </small>
+        <small class="text-danger" *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['minlength']">
+          Le nouveau mot de passe doit comporter au moins 6 caractères
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmez le mot de passe:</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"   formControlName="confirmPassword">
+        <small class="text-danger" *ngIf="passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.errors?.['required']">
+          veuillez entrer le mot de passe de confirmation
+        </small>
+        <small class="text-danger" *ngIf="passwordForm.hasError('passwordMismatch') && isConfirmPasswordTouched()">
+          Les mots de passe ne correspondent pas.
+        </small>
+      </div>
+
+      <button type="submit"  class="btn  btn-success"style="margin-left: 50%;margin-top:5%">Change password</button>
+
+    </form>
+
+
+
+
+    </div>
+
+
+  </div>
+
+  </body>

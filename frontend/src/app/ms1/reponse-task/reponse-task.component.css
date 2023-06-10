@@ -1,0 +1,43 @@
+@import "../../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css";
+@import "../../../assets/css/bootstrap.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-secondary + .btn-secondary {
+    margin-left: 10px;
+  }
+  .bg-gray {
+    background-color: #f0f0f0;
+  }
+  .drag-drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dragging {
+    background-color: #f8f8f8;
+  }
+
+  .drag-drop-text, .drag-drop-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+  }
+
+  .drag-drop-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+  }
+
+  .default-notification {
+    background-color: #cbcecc;
+    color: white;
+  }
+
+  .error-notification {
+    background-color: #f44336;
+    color: white;
+  }

@@ -1,0 +1,104 @@
+<body class="mat-typography">
+
+<!--<ul class="list-group">
+  <li class="list-group-item" *ngFor="let task of task; let even = even" [ngClass]="{ 'bg-white': even, 'bg-light': !even }">
+    <div class="row">
+      <div class="col-md-6">
+        <span class="task-name">{{ task.name }}</span>
+      </div>
+      <div class="col-md-3">
+        <span class="task-date">{{ task.date }}</span>
+      </div>
+      <div class="col-md-3">
+        <div class="d-flex align-items-start">
+          <button class="btn btn-primary" (click)="downloadTask(task.id)">Download Task</button>
+          <div class="mx-2"></div> // Add horizontal spacing between buttons
+          <button class="btn btn-secondary" (click)="showFileInput = true">Add travail</button>
+        </div>
+        <input class="form-control-file mt-2" *ngIf="showFileInput" type="file" #fileInput (change)="addSolution(etudiantId, task.id, fileInput); showFileInput = false">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <span class="task-file">{{ task.file }}</span>
+      </div>
+    </div>
+  </li>
+</ul>
+-->
+
+
+<div *ngFor="let course of courses | keyvalue">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of course.value; let even = even" [ngClass]="{ 'bg-white': even, 'bg-light': !even }">
+      <div class="row">
+        <div class="col-md-3">
+          <span class="task-name">{{ task.course.name }} </span>
+        </div>
+        <div class="col-md-3">
+          <span class="task-name"> {{ task.name }}</span>
+        </div>
+        <div class="col-md-3">
+          <span class="task-date">{{ task.date }}</span>
+        </div>
+        <div class="col-md-3">
+          <div class="d-flex align-items-start">
+            <div class="mt-2">
+              <button class="btn btn-secondary" (click)="activeRow = task.id">Add travail</button>
+              <button class="btn btn-primary" (click)="downloadTask(task.id)">Download Task</button>
+
+              <input class="form-control-file" *ngIf="activeRow === task.id" type="file" #fileInput (change)="addSolution(etudiantId, task.id, fileInput);activeRow = null">
+
+              <div class="drag-drop-area" *ngIf="activeRow === task.id"
+                (drop)="handleDrop($event, task.id)"
+                (dragover)="handleDragOver($event)"
+                [ngClass]="{ 'dragging': fileIsDragging }">
+                <div class="drag-drop-text" *ngIf="!fileIsDragging">
+                  <p>Drag and drop file here</p>
+                </div>
+                <div class="drag-drop-overlay" *ngIf="fileIsDragging">
+                  <p>Release to add file</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="task-file">{{ task.file }}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- task-list.component.html -->
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

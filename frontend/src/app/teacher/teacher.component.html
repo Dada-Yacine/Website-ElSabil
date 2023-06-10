@@ -1,4 +1,4 @@
-<app-top-nav></app-top-nav>
+<app-ttop-nav></app-ttop-nav>
 <aside class="AsideNavBar">
   <nav>
       <div class="WebsiteLogoContainer">
@@ -15,10 +15,13 @@
               </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/teacher/tasks']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/teacher/tasks"
+                  routerLinkActive #rla1_2="routerLinkActive"
+                  [ngClass]="rla1_2.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
-                      <span>Groupe</span>
+                      <span>Devoir</span>
                   </button>
               </a>
           </li>

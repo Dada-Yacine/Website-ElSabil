@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeacherComponent } from './teacher.component';
+import { TeacherComponentDash } from './teacher.component';
 import { TTopNavComponent } from './top-nav/top-nav.component';
 import { RouterModule } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    TeacherComponent,
+    TeacherComponentDash,
     TTopNavComponent
   ],
   imports: [

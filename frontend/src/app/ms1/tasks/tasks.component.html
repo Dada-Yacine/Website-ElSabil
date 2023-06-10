@@ -1,0 +1,119 @@
+<body class="mat-typography">
+
+  <div class="container">
+    <h1 style="text-align: center;">Creer Devoir</h1>
+    <div class="card custom-card custom-form">
+      <div class="card-body">
+        <form *ngIf="!editMode" (ngSubmit)="createTask()">
+          <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="task.name" name="name" #name="ngModel" minlength="4" required>
+            <div *ngIf="name.errors && (name.invalid || name.untouched)">
+              <small class="text-danger" *ngIf="name.errors['required']">ce champs est obligatoire</small>
+              <small class="text-danger" *ngIf="name.errors['minlength']">trop court!!</small>
+         </div>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" [(ngModel)]="task.date" name="date" #date="ngModel" required>
+            <div *ngIf="date.errors && (date.invalid || date.untouched)">
+              <small class="text-danger" *ngIf="date.errors['required']">veuillez saisir la date</small>
+
+         </div>
+          </div>
+          <div class="form-group">
+            <label for="course_name">Nom de Coure:</label>
+            <select class="form-control" id="course_name" [(ngModel)]="selectedCourseName" name="course_name" required>
+              <option *ngFor="let course of courses" [value]="course.name">{{ course.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fileInput">Fichier:</label>
+            <input type="file" class="form-control-file" id="fileInput" #fileInput name="fileInput" (change)="onFileSelected(fileInput)" required>
+          </div>
+          <button type="submit" class="btn btn-primary update-button">
+            <i class="fas fa-save"></i>
+            Creer
+          </button>
+        </form>
+        <form *ngIf="editMode" (ngSubmit)="updateTask()">
+          <div class="form-group">
+            <label for="name">Nom:</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="task.name" name="name" #name="ngModel" minlength="4" required>
+            <div *ngIf="name.errors && (name.invalid || name.untouched)">
+                   <small class="text-danger" *ngIf="name.errors['required']">ce champs est obligatoire</small>
+                   <small class="text-danger" *ngIf="name.errors['minlength']">trop court!!</small>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" [(ngModel)]="task.date" name="date" required>
+          </div>
+          <div class="form-group">
+            <label for="course_name">Nom de Coure:</label>
+            <select class="form-control" id="course_name" [(ngModel)]="selectedCourseName" name="course_name" required>
+              <option *ngFor="let course of courses" [value]="course.name">{{ course.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fileInput">Fichier:</label>
+            <input type="file" class="form-control-file" id="fileInput" #fileInput name="fileInput" (change)="onFileSelected(fileInput)" required>
+          </div>
+          <button type="submit" class="btn btn-primary update-button">
+            <i class="fas fa-save"></i>
+            Modifier
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <h1>devoirs</h1>
+
+    <table class="table table-striped"class="table table-rounded">
+      <thead  class="thead-dark">
+        <tr>
+          <th>Nom</th>
+          <th>Date</th>
+          <th>Coure</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.name }}</td>
+          <td>{{ task.date }}</td>
+          <td>{{ task.course?.name}}</td>
+
+          <td>
+            <div class="row">
+              <div class="col-sm-3">
+            <button *ngIf="task.id !== undefined" (click)="downloadTask(task.id)">Download</button>
+          </div>
+
+            <div class="col-sm-3">
+
+
+          <button class="btn btn-primary" (click)="editTask(task)">
+              <i class="fas fa-pencil-alt"></i>
+              Modifier
+            </button>
+            </div>
+            <div class="col-sm-3">
+            <button class="btn btn-danger" (click)="deleteTask(task?.id || 0)">
+              <i class="fas fa-trash"></i>
+              Supprimer
+            </button>
+          </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Add Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Add Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  </div>
+
+</body>

@@ -1,0 +1,93 @@
+<body class="mat-typography">
+<h2>Add Student</h2>
+
+<form (submit)="ajouterEtudiant()">
+  <div>
+    <label for="nom">Family Name:</label>
+    <input type="text" id="nom" [(ngModel)]="nouvelEtudiant.nom" name="nom" required>
+  </div>
+
+  <div>
+    <label for="prenom">Fisrt Name:</label>
+    <input type="text" id="prenom" [(ngModel)]="nouvelEtudiant.prenom" name="prenom" required>
+  </div>
+
+  <div>
+    <label for="dateNaissance">Date of birth:</label>
+    <input type="date" id="dateNaissance" [(ngModel)]="nouvelEtudiant.dateNaissance" name="dateNaissance" required>
+  </div>
+
+  <div>
+    <label for="adresse">wilaya:</label>
+    <input type="text" id="adresse" [(ngModel)]="adresseWilaya" name="wilaya" required>
+  </div>
+  <div>
+    <label for="ville">Ville:</label>
+    <input type="text" id="ville" [(ngModel)]="adresseVille" name="ville" required>
+  </div>
+
+  <div>
+    <label for="rue">Rue:</label>
+    <input type="text" id="rue" [(ngModel)]="adresseRue" name="rue" required>
+  </div>
+
+
+  <div>
+    <label for="numeroTelephone">Phone Number:</label>
+    <input type="tel" id="numeroTelephone" [(ngModel)]="nouvelEtudiant.numeroTelephone" name="numeroTelephone" required>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="nouvelEtudiant.email" name="email" required>
+  </div>
+
+  <div>
+    <label for="motDePasse">Password:</label>
+    <input type="password" id="motDePasse" [(ngModel)]="nouvelEtudiant.motDePasse" name="motDePasse" required>
+  </div>
+  <div>
+    <label for="role">Role:</label>
+    <select id="role" [(ngModel)]="nouvelEtudiant.role" name="role" required>
+      <option value="etudiant">Student</option>
+
+    </select>
+  </div>
+  <div>
+    <label for="niveau">Niveau:</label>
+    <select id="niveau" [(ngModel)]="selectedNiveau" name="niveau" (change)="getAnnees()" required>
+      <option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau.niveauNom }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="annee">Année:</label>
+    <select id="annee" [(ngModel)]="selectedAnnee" name="annee" (change)="getGroupes()" required>
+      <option *ngFor="let annee of annees" [ngValue]="annee">{{ annee.anneeNom }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="groupe">Groupe:</label>
+    <select id="groupe" [(ngModel)]="selectedGroupe" name="groupe" >
+      <option *ngFor="let groupe of groupes" [ngValue]="groupe">{{ groupe.groupeNom }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="active">Active:</label>
+    <select id="active" [(ngModel)]="nouvelEtudiant.active" name="active" required>
+      <option value="true">true</option>
+      <option value="false">false</option>
+    </select>
+  </div>
+
+
+
+
+
+
+
+  <button type="submit">Add</button>
+</form>
+</body>
+

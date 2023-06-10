@@ -493,19 +493,20 @@ body {
 .logosvg {
   height: 35px;
   width: 35px;
+  margin-top: -8px;
   filter: invert(66%) sepia(8%) saturate(2947%) hue-rotate(108deg) brightness(92%) contrast(99%);
 }
 
 .logosvgrest {
   position: relative;
-  top: 8px;
+  top: -2px;
   height: 40px;
   width: 40px;
 }
 
 .logosvgrest1 {
   position: relative;
-  top: 8px;
+  top: -2px;
   height: 35px;
   width: 35px;
 }

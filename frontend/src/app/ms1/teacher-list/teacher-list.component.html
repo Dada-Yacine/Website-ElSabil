@@ -1,0 +1,46 @@
+<body class="mat-typography">
+<h2>Liste of teachers</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>FamilyName</th>
+    <th>FisrtName</th>
+    <th>Date Of Birth</th>
+    <td>wilaya</td>
+    <td>Ville</td>
+    <td> rue</td>
+    <th>Phone Number</th>
+    <th>Email</th>
+    <th>Level</th>
+    <th>Year</th>
+
+    <th>Status</th>
+    <th>Action</th>
+
+  </tr>
+  <tr *ngFor="let etudiant of etudiants">
+    <td>#</td>
+    <td>{{ etudiant.nom }}</td>
+    <td>{{ etudiant.prenom }}</td>
+    <td>{{ etudiant.dateNaissance | date }}</td>
+    <td>{{ etudiant.adresse?.wilaya }}</td>
+    <td>{{ etudiant.adresse?.ville }}</td>
+    <td>{{ etudiant.adresse?.rue }}</td>
+
+    <td>{{ etudiant.numeroTelephone }}</td>
+    <td>{{ etudiant.email }}</td>
+    <td>{{ etudiant.niveau }}</td>
+    <td>{{ etudiant.annee}}</td>
+
+
+    <td>{{etudiant.active}}</td>
+
+    <td>
+      <button class="mod" (click)="modifierEtudiant(etudiant.id)">Edit</button>
+      <button class="supp" (click)="supprimerEtudiant(etudiant.id,etudiant.role)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+  </body>

@@ -1,0 +1,103 @@
+@import "../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css";
+@import "../../assets/css/bootstrap.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Couleurs */
+.card {
+    background-color: white;
+  }
+
+  .profile-picture img {
+    border: 5px solid darkgreen;
+  }
+
+  .user-name {
+    color: darkgreen;
+  }
+
+  .btn-success {
+    background-color: green;
+    border-color: green;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: darkred;
+    border-color: darkred;
+    color: white;
+  }
+
+  /* Positionnement et styles des boutons */
+  .file-upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .custom-file-input {
+    display: none;
+  }
+
+  .custom-file-label {
+    display: flex;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 0.25rem;
+    cursor: pointer;
+   ;
+  }
+
+  .custom-file-label::before {
+    content: '\f07b';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 0.5rem;
+  }
+  .container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .btn-upload {
+    display: flex;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    width: 200px; /* Largeur personnalisée */
+    height: 80px;
+
+  }
+  .custom-file{
+    margin-top: 7px;
+  }
+  table td, table th {
+    padding: 10px; /* Ajoute un espace interne aux cellules */
+  }
+
+  table tr {
+    height: 60px; /* Hauteur personnalisée */
+  }
+
+  .btn-upload::before {
+    content: '\f093';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: 0.5rem;
+  }
+  .upload-button {
+    margin-top: 10px;
+  }
+
+  .upload-icon {
+    margin-right: 30px;
+  }
+
+  /* Ajoutez ce CSS à votre fichier CSS existant ou à votre balise <style> dans le composant Angular */

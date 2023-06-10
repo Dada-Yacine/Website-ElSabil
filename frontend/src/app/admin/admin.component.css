@@ -62,7 +62,7 @@ html {
   width: 30px;
   height: 30px;
   margin-right: 10px;
-  top: 5px;
+  top: -3px;
   display: inline-block;
   filter: invert(66%) sepia(8%) saturate(2947%) hue-rotate(108deg) brightness(92%) contrast(99%);
 }
@@ -178,6 +178,7 @@ html {
   margin-right: 12px;
   margin-left: 16px;
   transition: all 0.5s;
+  margin-top: 2px;
 }
 /* End Navigation Tab Active */
 
@@ -218,7 +219,7 @@ html {
   content: '\00bb';
   position: absolute;
   opacity: 0;
-  top: 0;
+  top: -5;
   right: -15px;
   transition: all 0.5s;
 }
@@ -255,6 +256,7 @@ html {
   opacity: 0.5;
   -webkit-filter: invert(100%);
   filter: invert(100%);
+  margin-top: 2px;
 }
 
 .NavTabInactive:hover img {

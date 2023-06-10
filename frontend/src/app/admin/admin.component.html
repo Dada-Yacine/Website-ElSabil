@@ -1,4 +1,4 @@
-<app-top-nav></app-top-nav>
+<app-atop-nav></app-atop-nav>
 <aside class="AsideNavBar">
   <nav>
       <div class="WebsiteLogoContainer">
@@ -7,16 +7,22 @@
       <hr>
       <ul>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/teacherlist']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/teacherlist"
+                  routerLinkActive #rla2="routerLinkActive"
+                  [ngClass]="rla2.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\TeacherLogoWhite.png">
                       <span>Enseignants</span>
                   </button>
               </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/etuList']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/etuList"
+                  routerLinkActive #rla3="routerLinkActive"
+                  [ngClass]="rla3.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\StudentLogoWhite.png">
                       <span>Etudiants</span>
                   </button>
@@ -69,6 +75,17 @@
               </a>
           </li>
           <li>
+            <a [routerLink]="['/admin/classrooms']"
+            href="javascript:void(0)" class="NavTabWrapperInactive">
+                <button routerLink="/admin/classrooms"
+              routerLinkActive #ms3_2="routerLinkActive"
+              [ngClass]="ms3_2.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                    <img src=".\..\..\..\assets\admin\side-nav\classroom.png">
+                    <span>Salles</span>
+                </button>
+            </a>
+          </li>
+          <li>
               <a href="#" class="NavTabWrapperInactive">
                   <button class="NavTabInactive">
                       <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
@@ -84,17 +101,6 @@
                 [ngClass]="ms3_1.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\PlanningLogoWhite.png">
                       <span>Planning</span>
-                  </button>
-              </a>
-          </li>
-          <li>
-              <a [routerLink]="['/admin/classrooms']"
-              href="javascript:void(0)" class="NavTabWrapperInactive">
-                  <button routerLink="/admin/classrooms"
-                routerLinkActive #ms3_2="routerLinkActive"
-                [ngClass]="ms3_2.isActive ? 'NavTabActive' : 'NavTabInactive'">
-                      <img src=".\..\..\..\assets\admin\side-nav\classroom.png">
-                      <span>Classrooms</span>
                   </button>
               </a>
           </li>

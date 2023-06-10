@@ -1,3 +1,0 @@
-Backend will be uploaded soon : )
-
-Each backend goes into separate folder ex "ms1","ms2"...

@@ -1,0 +1,98 @@
+<body class="mat-typography">
+  <div class="row m-3">
+    <div class="card col-md-5 text-center mr-1">
+
+        <div class="col">
+            <div class="mb-3 mt-3">
+              <img [src]="profilePictureUrl" alt="Profile Picture+ '?timestamp=' + timestamp" class="rounded-circle" width="200px" height="200px">
+  <div class="input-group">
+    <div class="container">
+    <div class="custom-file">
+      <input type="file" class="custom-file-input px-5 py-2" id="file-upload" (change)="onFileSelected($event)">
+      <label class="custom-file-label" for="file-upload">Modifier photo</label>
+    </div>
+    <div class="input-group-append">
+      <button class="btn btn-success upload-button px-5 py-2"  type="button" (click)="onUpload()">
+      <i class="fas fa-upload upload-icon"></i>Upload</button>
+    </div>
+  </div>
+  </div>
+
+              </div>
+            <div class="m-3" >
+
+
+                <h2 *ngIf="user">{{ user.nom }}&nbsp;{{user.prenom }}</h2>
+                <small class="form-text text-muteo" *ngIf="user">{{user.adresse.wilaya}}</small>
+            </div>
+            <div class="  col mb-3 btn-group"  >
+
+
+                <button   class="btn btn-light mx-4" (click)="modifiermotpasse()" ><i class="fa-solid fa-lock"></i>&nbsp;changer le mot de passe</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card col-md-7  ">
+
+        <table class="table table-striped mt-3" >
+
+
+            <tbody>
+
+              <tr>
+                <th scope="row">Nom Complet</th>
+
+                <td >{{user.nom}}&nbsp;{{user.prenom}}</td>
+
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td>{{user.email}}</td>
+
+              </tr>
+              <tr style="height: 60px;">
+                <th scope="row" >telephone</th>
+
+                <span >{{user.numeroTelephone }}</span>
+                <div *ngIf="editingPhone">
+                  <input type="text" [(ngModel)]="newPhone" class="form-control">
+                  <button class="btn btn-secondary" (click)="cancelPhone()">Cancel</button>
+                  <button class="btn btn-primary" (click)="savePhone()">Update</button>
+                </div>
+                <button class="btn btn-link" *ngIf="!editingPhone" (click)="editPhone()">Edit</button>
+              </tr>
+              <tr style="margin-top: 10px;">
+                <th scope="row">Adresse,ville</th>
+                <span *ngIf="!editingAddress">{{user.adresse.wilaya}}&nbsp;&nbsp;{{user.adresse.ville}}&nbsp;&nbsp;{{user.adresse.rue}}</span>
+                <div *ngIf="editingAddress">
+                  <input type="text" [(ngModel)]="newAddress.rue" class="form-control">
+                  <input type="text" [(ngModel)]="newAddress.ville" class="form-control">
+                  <input type="text" [(ngModel)]="newAddress.wilaya" class="form-control">
+                  <button class="btn btn-secondary" (click)="cancelAddress()">Cancel</button>
+                  <button class="btn btn-primary" (click)="saveAddress()">Update</button>
+                </div>
+                <button class="btn btn-link" *ngIf="!editingAddress" (click)="editAddress() " style="margin-right: 30%
+                ;">Edit</button>
+              </tr>
+              <tr>
+                <th scope="row">Date de naissance</th>
+
+                <td>{{user. datenaissance}}</td>
+
+              </tr>
+              <tr>
+                <th scope="row">Role</th>
+
+                <td>{{user.role}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+          <div >
+          <button  class="btn btn-danger "style="margin-left: 80%;">Deconnecter</button>
+          </div>
+    </div>
+    </div>
+</body>
