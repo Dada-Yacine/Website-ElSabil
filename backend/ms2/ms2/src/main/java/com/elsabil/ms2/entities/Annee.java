@@ -56,12 +56,10 @@ public class Annee {
 
 
 
-    public void updateFrom(Annee UpdatedAnnee) {
+    public void updateAnnee(Annee UpdatedAnnee) {
         this.setAnneeNom(UpdatedAnnee.getAnneeNom());
         this.setNiveauNom(UpdatedAnnee.getNiveauNom());
         this.setAnneeScolaireNom(UpdatedAnnee.getAnneeScolaireNom());
         this.setNombreMaxEtudiants(UpdatedAnnee.getNombreMaxEtudiants());
-        this.setAnneeScolaire(UpdatedAnnee.getAnneeScolaire());
-        this.setNiveau(UpdatedAnnee.getNiveau());
     }
 }

@@ -47,11 +47,15 @@ public class GroupeController {
         return groupeService.getGroupeById(id);
     }
 
-    @PatchMapping("/{anneeId}")
-    public ResponseEntity<Groupe> updateGroupe(@RequestBody Groupe groupe,
-                                             @PathVariable("anneeId") Long anneeId) throws Exception {
-        Groupe groupeAjoutee = groupeService.updateGroupe(groupe,anneeId);
-        return new ResponseEntity<>(groupeAjoutee, HttpStatus.CREATED);
+    @PutMapping ("/{groupeId}/{anneeId}")
+    public ResponseEntity<Groupe> updateCours(@RequestBody Groupe nouveauGroupe,
+                                             @PathVariable("groupeId") Long groupeId,
+                                             @PathVariable("anneeId")Long anneId) throws Exception {
+
+
+        groupeService.updateGroupe(nouveauGroupe,groupeId,anneId);
+
+        return new ResponseEntity<>(nouveauGroupe, HttpStatus.CREATED);
     }
 
 }

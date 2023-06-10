@@ -1,6 +1,8 @@
 package com.elsabil.ms2.controller;
 
+import com.elsabil.ms2.entities.Annee;
 import com.elsabil.ms2.entities.Niveau;
+import com.elsabil.ms2.repositories.NiveauRepository;
 import com.elsabil.ms2.services.NiveauService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -19,6 +22,9 @@ public class NiveauController {
     private NiveauService niveauService;
 
 
+    @Autowired
+    private NiveauRepository niveauRepository;
+
 
     @PostMapping
     public void saveNiveau(@RequestBody Niveau niveau) {
@@ -26,7 +32,7 @@ public class NiveauController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Niveau>> findAllNiveaux () {
+    public ResponseEntity<List<Niveau>> findAllNiveaux() {
         return ResponseEntity.ok(niveauService.getAllNiveaux());
     }
 
@@ -45,5 +51,14 @@ public class NiveauController {
         niveauService.updateNiveau(id, niveau);
     }
 
+
+    @GetMapping("/{niveauId}/annees")
+    public List<Annee> getAnneesByNiveau(@PathVariable Long niveauId) {
+        Niveau niveau = niveauRepository.findById(niveauId).orElse(null);
+        List<Annee> annees = niveau.getAnnees();
+        System.out.println(annees);
+        return annees;
+
+    }
 
 }

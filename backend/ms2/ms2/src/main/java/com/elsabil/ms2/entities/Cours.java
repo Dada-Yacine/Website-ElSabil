@@ -40,12 +40,5 @@ public class Cours {
     @ManyToOne
     private Annee annee;
 
-    public void updateCours(Cours updatedCours){
-        this.setCoursNom(updatedCours.getCoursNom());
-        this.setCoursCoef(updatedCours.getCoursCoef());
-        this.setEnseignantId(updatedCours.getEnseignantId());
-        this.setEnseigantNom(updatedCours.getEnseigantNom());
-        this.setAnneeNom(updatedCours.getAnneeNom());
-        this.setAnnee(updatedCours.getAnnee());
-    }
+
 }

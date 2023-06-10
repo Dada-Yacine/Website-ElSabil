@@ -46,10 +46,16 @@ public class GroupeService {
                 .orElseThrow(() -> new Exception("Cours not found with ID: " + groupeId));
     }
 
-    public Groupe updateGroupe(Groupe nouveauGroupe, Long anneeId) throws Exception{
-        Annee annee = anneeRepository.findById(anneeId).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-        nouveauGroupe.setAnnee(annee);
+    public Groupe updateGroupe(Groupe nouveauGroupe, Long groupeId, Long anneeId) throws Exception {
+        Groupe groupe = groupeRepository.findById(groupeId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+        Annee annee = anneeRepository.findById(anneeId).orElseThrow(ChangeSetPersister.NotFoundException::new);
 
-        return groupeRepository.save(nouveauGroupe);
+        groupe.setNomGroupe(nouveauGroupe.getNomGroupe());
+        groupe.setAnneeNom(nouveauGroupe.getAnneeNom());
+        groupe.setNombreMaxEtudiants(nouveauGroupe.getNombreMaxEtudiants());
+        groupe.setEtudiantsIds(nouveauGroupe.getEtudiantsIds());
+        groupe.setAnnee(annee);
+
+        return groupeRepository.save(groupe);
     }
 }

@@ -51,14 +51,11 @@ public class AnneeService {
         anneeRepository.deleteById(anneeId);
     }
 
-    public Annee updateAnnee(Annee nouvelleAnnee, Long anneeScolaireId, Long niveauId) throws Exception{
-        AnneeScolaire anneeScolaire = anneeScolaireRepository.findById(anneeScolaireId).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-        nouvelleAnnee.setAnneeScolaire(anneeScolaire);
+    public Annee updateAnnee(Annee nouvelleAnnee,Long anneeId) throws Exception{
+        Annee annee = anneeRepository.findById(anneeId).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+        annee.updateAnnee(nouvelleAnnee);
 
-        Niveau niveau = niveauRepository.findById(niveauId).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-        nouvelleAnnee.setNiveau(niveau);
-
-        return anneeRepository.save(nouvelleAnnee);
+        return anneeRepository.save(annee);
     }
 }
 

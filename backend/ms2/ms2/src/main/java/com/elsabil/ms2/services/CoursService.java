@@ -1,5 +1,6 @@
 package com.elsabil.ms2.services;
 
+import com.elsabil.ms2.DTO.CoursDto;
 import com.elsabil.ms2.entities.Annee;
 
 import com.elsabil.ms2.entities.Cours;
@@ -48,10 +49,18 @@ public class CoursService {
                 .orElseThrow(() -> new Exception("Cours not found with ID: " + coursId));
     }
 
-    public Cours updateCours(Cours nouveauCours, Long anneeId) throws Exception{
-        Annee annee = anneeRepository.findById(anneeId).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
-        nouveauCours.setAnnee(annee);
+    public Cours updateCours(Cours nouveauCours, Long coursId, Long anneeId) throws Exception {
+        Cours cours = coursRepository.findById(coursId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+        Annee annee = anneeRepository.findById(anneeId).orElseThrow(ChangeSetPersister.NotFoundException::new);
 
-        return coursRepository.save(nouveauCours);
+        cours.setCoursNom(nouveauCours.getCoursNom());
+        cours.setCoursCoef(nouveauCours.getCoursCoef());
+        cours.setEnseignantId(nouveauCours.getEnseignantId());
+        cours.setEnseigantNom(nouveauCours.getEnseigantNom());
+        cours.setAnneeNom(nouveauCours.getAnneeNom());
+        cours.setAnnee(annee);
+
+        return coursRepository.save(cours);
     }
+
 }
