@@ -86,8 +86,11 @@
             </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/course']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/course"
+                  routerLinkActive #rla9="routerLinkActive"
+                  [ngClass]="rla9.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\CourseLogoWhite.png">
                       <span>Cours</span>
                   </button>

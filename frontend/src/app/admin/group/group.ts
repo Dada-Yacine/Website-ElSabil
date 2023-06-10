@@ -1,8 +1,8 @@
 export interface Group {
-  id: number;
-  nom: string;
+  groupeId: number;
+  nomGroupe: string;
   nombreEtudiants: number;
   nombreMaxEtudiants: number;
-  year_id: number;
-  year_nom: string;
+  anneeNom: string;
+  etudiantsIds: number[];
 }

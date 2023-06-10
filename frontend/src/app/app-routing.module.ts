@@ -28,6 +28,9 @@ import { YearmodifyComponent } from './admin/year/yearmodify/yearmodify.componen
 import { AdminTimetableComponent } from './ms3/admin-timetable/admin-timetable.component';
 import { AdminEventsComponent } from './ms3/admin-events/admin-events.component';
 import { AdminClassroomsComponent } from './ms3/admin-classrooms/admin-classrooms.component';
+import { CoursetableComponent } from './admin/course/coursetable/coursetable.component';
+import { CoursecreateComponent } from './admin/course/coursecreate/coursecreate.component';
+import { CoursemodifyComponent } from './admin/course/coursemodify/coursemodify.component';
 
 import { PageChangeMotPasseComponent } from './page-change-mot-passe/page-change-mot-passe.component';
 import { TasksComponent } from './ms1/tasks/tasks.component';
@@ -68,6 +71,9 @@ const routes: Routes = [
     {path: 'planning', component:AdminTimetableComponent},
     {path: 'events', component:AdminEventsComponent},
     {path: 'classrooms', component:AdminClassroomsComponent},
+    {path: 'course', component: CoursetableComponent},
+    {path: 'course/create', component: CoursecreateComponent},
+    {path: 'course/:coursId/modify', component: CoursemodifyComponent},
   ]
   },
   {path: 'student',

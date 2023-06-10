@@ -10,7 +10,7 @@ export class SayearService {
 
   constructor(private http:HttpClient) { }
 
-  endpoint = 'http://localhost:8080/annees_scolaires';
+  endpoint = 'http://localhost:8080/annees-scolaires';
 
   getallayears(): Observable<Ayear[]> {
     return this.http.get<Ayear[]>(this.endpoint);

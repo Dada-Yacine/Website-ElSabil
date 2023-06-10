@@ -12,6 +12,12 @@ html {
     font-style: normal;
     font-weight: 400;
 }
+
+button:active,button:focus {
+  border: none;
+  outline: none;
+}
+
 /* General */
 
 .AllWrapper {

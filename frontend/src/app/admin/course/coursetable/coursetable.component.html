@@ -1,1 +1,32 @@
-<p>coursetable works!</p>
+<div class="AllWrapper">
+  <a [routerLink]="['/admin/course/create']"
+  href="javascript:void(0)" class="Add">
+      <button >
+          <span>Ajouter un Cours</span>
+      </button>
+  </a>
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Nom</th>
+        <th>Coefficient</th>
+        <th>Ensiegnant Responsable</th>
+        <th>Année</th>
+        <th class="snapright">Actions</th>
+      </tr>
+      <tr *ngFor="let course of coursesData ; let i=index">
+        <td>{{i}}</td>
+        <td>{{course.coursNom}}</td>
+        <td>{{course.coursCoef}}</td>
+        <td>{{course.enseigantNom}}</td>
+        <td>{{course.anneeNom}}</td>
+        <td class="snapright">
+          <button class="EditBtn" [routerLink]="['/admin/course/', course.coursId , 'modify']">Modifier</button>
+           |
+          <button class="DeleteBtn" (click)="deletecourse(course.coursId)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
