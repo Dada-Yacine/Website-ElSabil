@@ -8,7 +8,8 @@ exports.getAll = async function(req, res, next){
     res.send(events);
 }
 exports.getEventsByYear = async function(req, res, next){
-    let events = await Event.find({years:req.params.id});
+    let c_date = new Date().toISOString().toString().split('T')[0];
+    let events = await Event.find({years:req.params.id,date:{$gte:new Date(c_date)}});
     res.send(events);
 }
 exports.create = async function(req, res, next){
