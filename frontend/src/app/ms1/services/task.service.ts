@@ -7,8 +7,8 @@ import { Task } from '../models/task.model';
   providedIn: 'root'
 })
 export class TaskService {
-  private baseUrl = 'http://localhost:8050/api/tasks';
-  private api='http://localhost:8050/api/tasks/task';
+  private baseUrl = 'http://localhost:8080/api/tasks';
+  private api='http://localhost:8080/api/tasks/task';
 
   constructor(private http: HttpClient) {}
   createTask(task: Task,file:File): Observable<Task> {
