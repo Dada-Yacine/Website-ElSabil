@@ -20,7 +20,7 @@ export class SLevelService {
   }
 
   updatelevel(niveauId:number, data: any): Observable<Level> {
-    return this.http.put<Level>(`${this.endpoint}/${niveauId}`, data);
+    return this.http.patch<Level>(`${this.endpoint}/${niveauId}`, data);
   }
 
   deletelevel(niveauId:number): Observable<unknown> {

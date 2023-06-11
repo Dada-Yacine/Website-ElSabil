@@ -11,7 +11,7 @@
         <th>Index</th>
         <th>Nom</th>
         <th>Coefficient</th>
-        <th>Ensiegnant Responsable</th>
+        <th>Enseignant Responsable</th>
         <th>Année</th>
         <th class="snapright">Actions</th>
       </tr>
@@ -22,7 +22,7 @@
         <td>{{course.enseigantNom}}</td>
         <td>{{course.anneeNom}}</td>
         <td class="snapright">
-          <button class="EditBtn" [routerLink]="['/admin/course/', course.coursId , 'modify']">Modifier</button>
+          <button class="EditBtn" (click)="getcourseIDS(course.coursId, course.anneeNom)">Modifier</button>
            |
           <button class="DeleteBtn" (click)="deletecourse(course.coursId)">Supprimer</button>
         </td>

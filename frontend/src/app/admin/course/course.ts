@@ -5,4 +5,5 @@ export interface Course {
   enseignantId: number;
   enseigantNom: string;
   anneeNom: string;
+  annneeID?:number;
 }

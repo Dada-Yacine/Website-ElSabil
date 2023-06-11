@@ -3,9 +3,11 @@ package com.elsabil.ms2.controller;
 
 import com.elsabil.ms2.entities.Cours;
 import com.elsabil.ms2.entities.Groupe;
+import com.elsabil.ms2.repositories.GroupeRepository;
 import com.elsabil.ms2.services.CoursService;
 import com.elsabil.ms2.services.GroupeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,9 @@ public class GroupeController {
 
     @Autowired
     private GroupeService groupeService;
+
+    @Autowired
+    private GroupeRepository groupeRepository;
 
 
     @Autowired
@@ -56,6 +61,12 @@ public class GroupeController {
         groupeService.updateGroupe(nouveauGroupe,groupeId,anneId);
 
         return new ResponseEntity<>(nouveauGroupe, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/students/{groupeId}")
+    public List<Long> getEtudiantsByIdGroupe (@PathVariable Long groupeId) throws ChangeSetPersister.NotFoundException {
+        Groupe groupe = groupeRepository.findById(groupeId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+        return groupe.getEtudiantsIds();
     }
 
 }

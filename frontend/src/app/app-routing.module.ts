@@ -31,6 +31,9 @@ import { AdminClassroomsComponent } from './ms3/admin-classrooms/admin-classroom
 import { CoursetableComponent } from './admin/course/coursetable/coursetable.component';
 import { CoursecreateComponent } from './admin/course/coursecreate/coursecreate.component';
 import { CoursemodifyComponent } from './admin/course/coursemodify/coursemodify.component';
+import { GrouptableComponent } from './admin/group/grouptable/grouptable.component';
+import { GroupcreateComponent } from './admin/group/groupcreate/groupcreate.component';
+import { GroupmodifyComponent } from './admin/group/groupmodify/groupmodify.component';
 
 import { PageChangeMotPasseComponent } from './page-change-mot-passe/page-change-mot-passe.component';
 import { TasksComponent } from './ms1/tasks/tasks.component';
@@ -73,14 +76,21 @@ const routes: Routes = [
     {path: 'anneescholaire/:id/modify', component: AyearmodifyComponent},
     {path: 'annee', component: YeartableComponent},
     {path: 'annee/create', component: YearcreateComponent},
-    {path: 'annee/:anneeId/modify', component: YearmodifyComponent},
+    {path: 'annee/:anneeId/:anneeScolaireId/:niveauId/modify', component: YearmodifyComponent},
     {path: 'planning', component:AdminTimetableComponent},
     {path: 'events', component:AdminEventsComponent},
     {path: 'classrooms', component:AdminClassroomsComponent},
     {path: 'course', component: CoursetableComponent},
     {path: 'course/create', component: CoursecreateComponent},
+<<<<<<< Updated upstream
     {path: 'course/:coursId/modify', component: CoursemodifyComponent},
     {path: 'absences', component:AdminAbsenceComponent},
+=======
+    {path: 'course/:coursId/:annneeID/modify', component: CoursemodifyComponent},
+    {path: 'group', component: GrouptableComponent},
+    {path: 'group/create', component: GroupcreateComponent},
+    {path: 'group/:groupeId/:annneeID/modify', component: GroupmodifyComponent},
+>>>>>>> Stashed changes
   ]
   },
   {path: 'student',

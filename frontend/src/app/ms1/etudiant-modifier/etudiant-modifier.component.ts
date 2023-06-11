@@ -111,8 +111,8 @@ export class EtudiantModifierComponent {
   }
 
   getGroupes() {
-    if (this.selectedAnnee && this.selectedAnnee.id) {
-      const anneeIdStr = this.selectedAnnee.id.toString();
+    if (this.selectedAnnee && this.selectedAnnee.anneeId) {
+      const anneeIdStr = this.selectedAnnee.anneeId.toString();
 
       this.http.get<group[]>(`http://localhost:9050/api/${anneeIdStr}/groupes`).subscribe(
         (response:any) => {

@@ -19,16 +19,16 @@ export class ScourseService {
     return this.http.get<Course>(`${this.endpoint}/${coursId}`);
   }
 
-  updatecourse(coursId:number, data: any): Observable<Course> {
-    return this.http.put<Course>(`${this.endpoint}/${coursId}`, data);
+  updatecourse(coursId:number, annneeID: number, Data: any): Observable<Course> {
+    return this.http.put<Course>(`${this.endpoint}/${coursId}/${annneeID}`, Data);
   }
 
   deletecourse(coursId:number): Observable<unknown> {
     return this.http.delete<void>(`${this.endpoint}/${coursId}`);
   }
 
-  createcourse(Data:any): Observable<Course> {
-    return this.http.post<Course>(this.endpoint,Data);
+  createcourse(annneeID: number, Data:any): Observable<Course> {
+    return this.http.post<Course>(`${this.endpoint}/${annneeID}`, Data);
   }
 
 

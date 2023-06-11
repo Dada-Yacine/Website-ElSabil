@@ -5,4 +5,5 @@ export interface Group {
   nombreMaxEtudiants: number;
   anneeNom: string;
   etudiantsIds: number[];
+  annneeID?:number;
 }

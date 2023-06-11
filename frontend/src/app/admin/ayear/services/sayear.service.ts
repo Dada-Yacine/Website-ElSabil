@@ -21,7 +21,7 @@ export class SayearService {
   }
 
   updateayear(id:number, data: any): Observable<Ayear> {
-    return this.http.put<Ayear>(`${this.endpoint}/${id}`, data);
+    return this.http.patch<Ayear>(`${this.endpoint}/${id}`, data);
   }
 
   deleteayear(id:number): Observable<unknown> {

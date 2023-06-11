@@ -109,7 +109,7 @@ export class TeacherComponent implements OnInit {
       this.http.get<any[]>(`http://localhost:9050/api/${niveauIdStr}/annees`).subscribe(
         (response) => {
           this.annees = response.map(item => {
-            return { id: item.id, anneeNom: item.anneeNom };
+            return { anneeId: item.id, anneeNom: item.anneeNom };
 
           });
         },

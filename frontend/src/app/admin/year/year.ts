@@ -3,8 +3,8 @@ export interface Year {
   anneeNom: string;
   nombreEtudiants: number;
   nombreMaxEtudiants: number;
-  niveauId: number;
+  niveauId?: number;
   niveauNom: string;
-  anneeScolaireId: number;
+  anneeScolaireId?: number;
   anneeScolaireNom: string;
 }

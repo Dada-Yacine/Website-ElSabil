@@ -1,4 +1,4 @@
 export interface annee {
-    id: number;
+    anneeId: number;
     anneeNom: string;
   }

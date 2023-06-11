@@ -1,1 +1,55 @@
-<p>groupmodify works!</p>
+<!--<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Enseignant</td>
+        <td><input type="number" disabled
+          #enseignantId [value]="activeData?.enseignantId"></td>
+      </tr>
+      <tr>
+        <td>Nom Enseignant</td>
+        <td>
+          <select #enseigantNom (change)="updateValueIdATeacher(enseigantNom.value)">
+            <option hidden [value]="activeData?.enseigantNom">{{ activeData?.enseigantNom }}</option>
+            <option *ngFor="let teacher of DataTeacher" [value]="teacher.nom">{{ teacher.nom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Année</td>
+        <td><input type="number" disabled
+          #annneeID [value]="activeData?.annneeID"></td>
+      </tr>
+      <tr>
+        <td>Nom Année</td>
+        <td>
+          <select #anneeNom (change)="updateValueIdAnnee(anneeNom.value)">
+            <option hidden [value]="activeData?.anneeNom">{{ activeData?.anneeNom }}</option>
+            <option *ngFor="let year of DataYear" [value]="year.anneeNom">{{ year.anneeNom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Cours</td>
+        <td><input type="number" disabled #coursId [value]="activeData?.coursId"></td>
+      </tr>
+      <tr>
+        <td>Nom Cours</td>
+        <td><input type="text" #coursNom [value]="activeData?.coursNom"></td>
+      </tr>
+      <tr >
+        <td>Coefficient Cours</td>
+        <td><input type="number" min="1" step="1" #coursCoef [value]="activeData?.coursCoef"></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getValues(coursId.value,enseignantId.value, annneeID.value,
+  coursNom.value, enseigantNom.value, anneeNom.value,coursCoef.value)">
+  Sauvgarder</button>
+  <button class="CancelBtn" [routerLink]="['/admin/course']">Annuler</button>
+</div>-->

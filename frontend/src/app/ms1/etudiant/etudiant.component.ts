@@ -84,7 +84,7 @@ export class EtudiantComponent implements OnInit {
 
 
   getNiveaux() {
-    this.http.get<niveau[]>('http://localhost:9050/api/niveau').subscribe(
+    this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
       (response) => {
         this.niveaux = response;
         console.log(this.niveaux);
@@ -103,10 +103,10 @@ export class EtudiantComponent implements OnInit {
   getAnnees() {
     if (this.selectedNiveau && this.selectedNiveau.niveauId) {
       const niveauIdStr = this.selectedNiveau.niveauId.toString(); // Convertir l'ID du niveau en chaîne de caractères
-      this.http.get<any[]>(`http://localhost:9050/api/${niveauIdStr}/annees`).subscribe(
+      this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
         (response) => {
           this.annees = response.map(item => {
-            return { id: item.id, anneeNom: item.anneeNom };
+            return { anneeId: item.id, anneeNom: item.anneeNom };
           });
         },
         (error) => {
@@ -120,11 +120,11 @@ export class EtudiantComponent implements OnInit {
 
   getGroupes(){
     console.log(this.selectedAnnee);
-    console.log(this.selectedAnnee.id);
-    if (this.selectedAnnee && this.selectedAnnee.id) {
-      const anneeIdStr = this.selectedAnnee.id.toString();
+    console.log(this.selectedAnnee.anneeId);
+    if (this.selectedAnnee && this.selectedAnnee.anneeId) {
+      const anneeIdStr = this.selectedAnnee.anneeId.toString();
 
-      this.http.get<group[]>(`http://localhost:9050/api/${anneeIdStr}/groupes`).subscribe(
+      this.http.get<group[]>(`http://localhost:8080/annee/${anneeIdStr}/groupes`).subscribe(
         (response) => {
           this.groupes = response;
           console.log(this.groupes);

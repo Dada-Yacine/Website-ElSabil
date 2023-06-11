@@ -1,1 +1,32 @@
-<p>grouptable works!</p>
+<div class="AllWrapper">
+  <a [routerLink]="['/admin/group/create']"
+  href="javascript:void(0)" class="Add">
+      <button >
+          <span>Ajouter un Groupe</span>
+      </button>
+  </a>
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Index</th>
+        <th>Nom</th>
+        <th>Année</th>
+        <th>N° Etudiants</th>
+        <th>N° Max Etudiants</th>
+        <th class="snapright">Actions</th>
+      </tr>
+      <tr *ngFor="let group of GroupsData ; let i=index">
+        <td>{{i}}</td>
+        <td>{{group.nomGroupe}}</td>
+        <td>{{group.anneeNom}}</td>
+        <td>{{group.nombreEtudiants}}</td>
+        <td>{{group.nombreMaxEtudiants}}</td>
+        <td class="snapright">
+          <button class="EditBtn" (click)="getgroupeIDS(group.groupeId, group.anneeNom)">Modifier</button>
+           |
+          <button class="DeleteBtn" (click)="deletegroup(group.groupeId)">Supprimer</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

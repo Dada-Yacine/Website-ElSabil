@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Ayear } from '../../ayear/ayear';
 import { SyearService } from '../services/syear.service';
+import { Ayear } from '../../ayear/ayear';
 import { SayearService } from '../../ayear/services/sayear.service';
 import { Level } from '../../level/level';
 import { SLevelService } from '../../level/services/slevel.service';
@@ -25,7 +25,7 @@ export class YearmodifyComponent {
     ) { }
 
 
-  activeID:number = 0;
+  activeIDs: number[] = [];
   activeData: Year |  null = null;
 
   DataAYear: Ayear[] = [];
@@ -46,13 +46,27 @@ export class YearmodifyComponent {
          }
     );
 
-    this.activeID = this.route.snapshot.params['anneeId'];
+    this.activeIDs = [
+      this.route.snapshot.params['anneeId'],
+      this.route.snapshot.params['anneeScolaireId'],
+      this.route.snapshot.params['niveauId']
+    ];
 
-    this.yearService.getyear(this.activeID).subscribe(
+    this.yearService.getyear(this.activeIDs[0]).subscribe(
       (data: Year) => {
-        this.activeData = data;
+        this.activeData = {
+          niveauId: this.activeIDs[2],
+          anneeScolaireId: this.activeIDs[1],
+          anneeId: data.anneeId,
+          anneeNom: data.anneeNom,
+          nombreEtudiants: data.nombreEtudiants,
+          nombreMaxEtudiants: data.nombreMaxEtudiants,
+          niveauNom: data.niveauNom,
+          anneeScolaireNom: data.anneeScolaireNom,
+        };
       }
     );
+
   }
 
   updateValueIdAyear(selectedValue: string): void {
@@ -110,7 +124,7 @@ export class YearmodifyComponent {
     if (
       this.anneeNom!=='' &&
       this.nombreMaxEtudiants!== 0 ) {
-      this.yearService.updateyear(this.anneeId, Data).subscribe(
+      this.yearService.updateyear(this.anneeId, this.anneeScolaireId, this.niveauId, Data).subscribe(
         ()=>{
           this.router.navigate(['/admin/annee']);
         }

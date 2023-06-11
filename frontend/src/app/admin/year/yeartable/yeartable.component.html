@@ -24,7 +24,7 @@
         <td>{{year.nombreEtudiants}}</td>
         <td>{{year.nombreMaxEtudiants}}</td>
         <td class="snapright">
-          <button class="EditBtn" [routerLink]="['/admin/annee/', year.anneeId, 'modify']">Modifier</button>
+          <button class="EditBtn" (click)="getyearIDS(year.anneeId, year.anneeScolaireNom, year.niveauNom)">Modifier</button>
            |
           <button class="DeleteBtn" (click)="deleteyear(year.anneeId)">Supprimer</button>
         </td>
