@@ -19,16 +19,16 @@ export class SyearService {
     return this.http.get<Year>(`${this.endpoint}/${anneeId}`);
   }
 
-  updateyear(anneeId:number, data: any): Observable<Year> {
-    return this.http.put<Year>(`${this.endpoint}/${anneeId}`, data);
+  updateyear(anneeId:number, anneeScolaireId: number, niveauId: number , Data: any): Observable<Year> {
+    return this.http.patch<Year>(`${this.endpoint}/${anneeId}/${anneeScolaireId}/${niveauId}`, Data);
   }
 
   deleteyear(anneeId:number): Observable<unknown> {
     return this.http.delete<void>(`${this.endpoint}/${anneeId}`);
   }
 
-  createyear(Data:any): Observable<Year> {
-    return this.http.post<Year>(this.endpoint,Data);
+  createyear(anneeScolaireId: number,niveauId: number, Data:any): Observable<Year> {
+    return this.http.post<Year>(`${this.endpoint}/${anneeScolaireId}/${niveauId}`, Data);
   }
 
 }

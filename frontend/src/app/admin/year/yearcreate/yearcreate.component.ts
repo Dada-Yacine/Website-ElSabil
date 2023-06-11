@@ -97,7 +97,7 @@ export class YearcreateComponent {
       this.niveauNom!=='default' &&
       this.autoAYearValue!=='Auto' &&
       this.anneeScolaireNom!=='default') {
-      this.yearService.createyear(Data).subscribe(
+      this.yearService.createyear(this.anneeScolaireId,this.niveauId, Data).subscribe(
         ()=>{
           this.router.navigate(['/admin/annee']);
         }

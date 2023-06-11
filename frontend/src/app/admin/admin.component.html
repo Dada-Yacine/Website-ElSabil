@@ -67,8 +67,11 @@
             </a>
           </li>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a [routerLink]="['/admin/group']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button routerLink="/admin/group"
+                  routerLinkActive #rla7="routerLinkActive"
+                  [ngClass]="rla7.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\GroupLogoWhite.png">
                       <span>Groupes</span>
                   </button>
@@ -121,14 +124,6 @@
       </ul>
       <hr>
       <ul>
-          <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
-                      <img src=".\..\..\..\assets\admin\side-nav\BulletinLogoWhite.png">
-                      <span>Bulletins</span>
-                  </button>
-              </a>
-          </li>
           <li>
               <a [routerLink]="['/admin/events']"
               href="javascript:void(0)" class="NavTabWrapperInactive">

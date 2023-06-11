@@ -1,1 +1,52 @@
-<p>coursecreate works!</p>
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Enseignant</td>
+        <td>{{ autoTeacherValue }}</td>
+      </tr>
+      <tr>
+        <td>Nom Enseignant</td>
+        <td>
+          <select #enseigantNom  (change)="updateValueIdATeacher(enseigantNom.value)">
+            <option hidden value="default">Sélectionez un Enseignant</option>
+            <option *ngFor="let teacher of DataTeachers" [value]="teacher.nom">{{ teacher.nom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Année</td>
+        <td>{{ autoYearValue }}</td>
+      </tr>
+      <tr>
+        <td>Nom Année</td>
+        <td>
+          <select #anneeNom (change)="updateValueIdAnnee(anneeNom.value)">
+            <option hidden value="default">Sélectionez une Année</option>
+            <option *ngFor="let year of DataYear" [value]="year.anneeNom">{{ year.anneeNom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Cours</td>
+        <td>Auto</td>
+      </tr>
+      <tr>
+        <td>Nom Cours</td>
+        <td><input type="text" #coursNom></td>
+      </tr>
+      <tr >
+        <td>Coefficient Cours</td>
+        <td><input type="number" min="1" step="1" #coursCoef></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getValues(enseigantNom.value, anneeNom.value, coursNom.value, coursCoef.value)">
+  Ajouter</button>
+  <button class="CancelBtn" [routerLink]="['/admin/course']">Annuler</button>
+</div>

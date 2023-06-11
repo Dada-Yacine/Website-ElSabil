@@ -1,1 +1,43 @@
-<p>groupcreate works!</p>
+<div class="AllWrapper">
+  <div class="TableWrapper">
+    <table>
+      <tr>
+        <th>Propriété</th>
+        <th>Valeur</th>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Année</td>
+        <td>{{ autoYearValue }}</td>
+      </tr>
+      <tr>
+        <td>Nom Année</td>
+        <td>
+          <select #anneeNom (change)="updateValueIdAnnee(anneeNom.value)">
+            <option hidden value="default">Sélectionez une Année</option>
+            <option *ngFor="let year of DataYear" [value]="year.anneeNom">{{ year.anneeNom }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>ID Groupe</td>
+        <td>Auto</td>
+      </tr>
+      <tr>
+        <td>Nom Groupe</td>
+        <td><input type="text" #nomGroupe></td>
+      </tr>
+      <tr data-modify="disabled">
+        <td>N° D'étudiants</td>
+        <td>NaN</td>
+      </tr>
+      <tr >
+        <td>N° Max Etudiants</td>
+        <td><input type="number" min="1" step="1" #nombreMaxEtudiants></td>
+      </tr>
+    </table>
+  </div>
+  <button class="SaveBtn"
+  (click)="getValues(anneeNom.value, nomGroupe.value, nombreMaxEtudiants.value)">
+  Ajouter</button>
+  <button class="CancelBtn" [routerLink]="['/admin/group']">Annuler</button>
+</div>
