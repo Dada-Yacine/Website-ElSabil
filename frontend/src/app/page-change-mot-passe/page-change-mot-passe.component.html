@@ -1,59 +1,156 @@
-<body class="mat-typography">
-<div class="row m-3">
-    <div class="card col-md-5 text-center mr-1">
-        <div class="col">
-            <div class="mb-3 mt-3">
-              <img [src]="profilePictureUrl" alt="Profile Picture+ '?timestamp=' + timestamp" class="rounded-circle" width="200px" height="200px">
-            </div>
-            <div class="m-3">
-                <h2   *ngIf="user">{{user.nom}}&nbsp;{{user.prenom}}</h2>
-                <small class="form-text text-muteo" *ngIf="user">{{user.adresse.wilaya}}</small>
-            </div>
+<!DOCTYPE html>
+<html>
 
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    .row {
+      display: flex;
+      margin: 3rem;
+    }
+
+    .card {
+      flex: 0 1 50%;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .col-md-5 {
+      width: 50%;
+    }
+
+    .col-md-7 {
+      width: 50%;
+    }
+
+    .mb-3 {
+      margin-bottom: 1rem;
+    }
+
+    .mt-3 {
+      margin-top: 1rem;
+    }
+
+    .rounded-circle {
+      border-radius: 50%;
+    }
+
+    .m-3 {
+      margin: 1rem;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 0.25rem;
+      border: 1px solid #ced4da;
+    }
+
+    .text-danger {
+      color: #dc3545;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 0.25rem;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="row">
+    <div class="card col-md-5 text-center">
+      <div class="col">
+        <div class="mb-3 mt-3">
+          <img [src]="profilePictureUrl" alt="Profile Picture+ '?timestamp=' + timestamp" class="rounded-circle"
+            width="200px" height="200px">
         </div>
-
+        <div class="m-3">
+          <h2 *ngIf="user">{{user.nom}}&nbsp;{{user.prenom}}</h2>
+          <small class="form-text text-muted" *ngIf="user">{{user.adresse.wilaya}}</small>
+        </div>
+      </div>
     </div>
-    <div class="card col-md-7  " style="box-shadow: 5px;" >
-    <form  (ngSubmit)="onSubmit()"  [formGroup]="passwordForm">
-
-      <div class="form-group">
-        <label for="oldPassword">Ancien mot de passe</label>
-        <input type="password" class="form-control" id="oldPassword" name="oldPassword"  formControlName="oldPassword" >
-        <small class="text-danger" *ngIf="passwordForm.get('oldPassword')?.touched && passwordForm.get('oldPassword')?.errors?.['required']">
-          Ce champ est obligatoire
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="newPassword">Nouveau mot de passe:</label>
-        <input type="password" class="form-control" id="newPassword" name="newPassword"  formControlName="newPassword">
-        <small class="text-danger" *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['required']">
-          veuillez entrer le nouveau mot de passe
-        </small>
-        <small class="text-danger" *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['minlength']">
-          Le nouveau mot de passe doit comporter au moins 6 caractères
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="confirmPassword">Confirmez le mot de passe:</label>
-        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"   formControlName="confirmPassword">
-        <small class="text-danger" *ngIf="passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.errors?.['required']">
-          veuillez entrer le mot de passe de confirmation
-        </small>
-        <small class="text-danger" *ngIf="passwordForm.hasError('passwordMismatch') && isConfirmPasswordTouched()">
-          Les mots de passe ne correspondent pas.
-        </small>
-      </div>
-
-      <button type="submit"  class="btn  btn-success"style="margin-left: 50%;margin-top:5%">Change password</button>
-
-    </form>
-
-
-
-
+    <div class="card col-md-7">
+      <form (ngSubmit)="onSubmit()" [formGroup]="passwordForm">
+        <div style="margin-bottom: 1.5rem;">
+          <label for="oldPassword">Ancien mot de passe</label>
+          <input type="password" id="oldPassword" name="oldPassword" [formControlName]="'oldPassword'"
+            class="form-control">
+          <small class="text-danger"
+            *ngIf="passwordForm.get('oldPassword')?.touched && passwordForm.get('oldPassword')?.errors?.['required']">
+            Ce champ est obligatoire
+          </small>
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label for="newPassword">Nouveau mot de passe:</label>
+          <input type="password" id="newPassword" name="newPassword" [formControlName]="'newPassword'"
+            class="form-control">
+          <small class="text-danger"
+            *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['required']">
+            veuillez entrer le nouveau mot de passe
+          </small>
+          <small class="text-danger"
+            *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.errors?.['minlength']">
+            Le nouveau mot de passe doit comporter au moins 6 caractères
+          </small>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label for="confirmPassword">Confirmez le mot de passe:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" [formControlName]="'confirmPassword'"
+            class="form-control">
+          <small class="text-danger"
+            *ngIf="passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.errors?.['required']">
+            veuillez entrer le mot de passe de confirmation
+          </small>
+          <small class="text-danger" *ngIf="passwordForm.hasError('passwordMismatch') && isConfirmPasswordTouched()">
+            Les mots de passe ne correspondent pas.
+          </small>
+        </div>
+        <button type="submit" class="btn btn-success">Change password</button>
+      </form>
     </div>
-
-
   </div>
+</body>
 
-  </body>
+</html>

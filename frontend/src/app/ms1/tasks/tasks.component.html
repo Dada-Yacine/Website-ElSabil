@@ -1,7 +1,87 @@
-<body class="mat-typography">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Créer Devoir</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Add Font Awesome CSS -->
+  
+  <style>
+    /* Add custom CSS styles here */
+    /* For example, you can modify the form's width or add margins */
+    .custom-form {
+      max-width: 500px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+    .card.custom-card {
+      width: 100%;
+    }
+    tr:nth-child(even) {
+      background-color: #F4F4F4;
+    }
+    .table-custom {
+  max-width: 800px; /* Adjust the value as needed */
+  width: 100%;
+  margin-left: 20%;
+}
 
+
+    tr:nth-child(odd) {
+      background-color: #F9F9F9;
+    }
+
+    tr:nth-child(odd):hover {
+      background-color: #F4F4F4;
+    }
+
+    tr {
+      border: none;
+    }
+
+    /* Set the background color to white */
+    body {
+      background-color: #fff;
+      padding-top: 20px;
+    }
+
+    /* Set the text color to dark blue */
+    h1, label, th, td {
+      color: #333;
+    }
+    
+
+    /* Style the card with a light green background */
+    .custom-card {
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .table-rounded {
+      border-radius: 10px; /* Adjust the value as needed */
+      overflow: hidden;
+    }
+
+    /* Increase the font size of the "Créer Devoir" heading */
+    h1 {
+      font-size: 24px;
+    }
+
+    /* Style the "Créer" button */
+    .update-button {
+      background-color: #4caf50;
+      border-color: #4caf50;
+    }
+
+    /* Style the "Créer" button when hovering */
+    .update-button:hover {
+      background-color: #45a049;
+      border-color: #45a049;
+    }
+  </style>
+</head>
+<body>
   <div class="container">
-    <h1 style="text-align: center;">Creer Devoir</h1>
+   
     <div class="card custom-card custom-form">
       <div class="card-body">
         <form *ngIf="!editMode" (ngSubmit)="createTask()">
@@ -9,23 +89,26 @@
             <label for="name">Nom:</label>
             <input type="text" class="form-control" id="name" [(ngModel)]="task.name" name="name" #name="ngModel" minlength="4" required>
             <div *ngIf="name.errors && (name.invalid || name.untouched)">
-              <small class="text-danger" *ngIf="name.errors['required']">ce champs est obligatoire</small>
-              <small class="text-danger" *ngIf="name.errors['minlength']">trop court!!</small>
-         </div>
+              <small class="text-danger" *ngIf="name.errors['required']">Ce champ est obligatoire</small>
+              <small class="text-danger" *ngIf="name.errors['minlength']">Trop court!!</small>
+            </div>
           </div>
           <div class="form-group">
             <label for="date">Date:</label>
             <input type="date" class="form-control" id="date" [(ngModel)]="task.date" name="date" #date="ngModel" required>
             <div *ngIf="date.errors && (date.invalid || date.untouched)">
-              <small class="text-danger" *ngIf="date.errors['required']">veuillez saisir la date</small>
-
-         </div>
+              <small class="text-danger" *ngIf="date.errors['required']">Veuillez saisir la date</small>
+            </div>
+          
+          
           </div>
           <div class="form-group">
-            <label for="course_name">Nom de Coure:</label>
+            <label for="course_name">Nom de Cours:</label>
             <select class="form-control" id="course_name" [(ngModel)]="selectedCourseName" name="course_name" required>
-              <option *ngFor="let course of courses" [value]="course.name">{{ course.name }}</option>
+              <option *ngFor="let course of courses" [value]="course.coursNom">{{course.coursNom}}</option>
+             
             </select>
+            
           </div>
           <div class="form-group">
             <label for="fileInput">Fichier:</label>
@@ -33,7 +116,7 @@
           </div>
           <button type="submit" class="btn btn-primary update-button">
             <i class="fas fa-save"></i>
-            Creer
+            Créer
           </button>
         </form>
         <form *ngIf="editMode" (ngSubmit)="updateTask()">
@@ -41,18 +124,18 @@
             <label for="name">Nom:</label>
             <input type="text" class="form-control" id="name" [(ngModel)]="task.name" name="name" #name="ngModel" minlength="4" required>
             <div *ngIf="name.errors && (name.invalid || name.untouched)">
-                   <small class="text-danger" *ngIf="name.errors['required']">ce champs est obligatoire</small>
-                   <small class="text-danger" *ngIf="name.errors['minlength']">trop court!!</small>
-              </div>
+              <small class="text-danger" *ngIf="name.errors['required']">Ce champ est obligatoire</small>
+              <small class="text-danger" *ngIf="name.errors['minlength']">Trop court!!</small>
+            </div>
           </div>
           <div class="form-group">
             <label for="date">Date:</label>
             <input type="date" class="form-control" id="date" [(ngModel)]="task.date" name="date" required>
           </div>
           <div class="form-group">
-            <label for="course_name">Nom de Coure:</label>
+            <label for="course_name">Nom de Cours:</label>
             <select class="form-control" id="course_name" [(ngModel)]="selectedCourseName" name="course_name" required>
-              <option *ngFor="let course of courses" [value]="course.name">{{ course.name }}</option>
+              <option *ngFor="let course of courses" [value]="course.coursNom">{{ course.coursNom}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -67,14 +150,14 @@
       </div>
     </div>
 
-    <h1>devoirs</h1>
-
-    <table class="table table-striped"class="table table-rounded">
-      <thead  class="thead-dark">
+    <h1 style="margin-top: 20px;">Devoirs</h1>
+    
+    <table class="table table-striped table-rounded table-custom">
+      <thead class="thead-dark">
         <tr>
           <th>Nom</th>
           <th>Date</th>
-          <th>Coure</th>
+          <th>Cours</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -82,28 +165,28 @@
         <tr *ngFor="let task of tasks">
           <td>{{ task.name }}</td>
           <td>{{ task.date }}</td>
-          <td>{{ task.course?.name}}</td>
-
+          <td>{{ task.course?.coursNom}}</td>
+          
           <td>
             <div class="row">
-              <div class="col-sm-3">
-            <button *ngIf="task.id !== undefined" (click)="downloadTask(task.id)">Download</button>
-          </div>
-
-            <div class="col-sm-3">
-
-
-          <button class="btn btn-primary" (click)="editTask(task)">
-              <i class="fas fa-pencil-alt"></i>
-              Modifier
-            </button>
-            </div>
-            <div class="col-sm-3">
-            <button class="btn btn-danger" (click)="deleteTask(task?.id || 0)">
-              <i class="fas fa-trash"></i>
-              Supprimer
-            </button>
-          </div>
+              <div class="col-sm-4">
+                <button *ngIf="task.id !== undefined" class="btn btn-primary" (click)="downloadTask(task.id)">
+                  <i class="fas fa-download"></i>
+                  Download
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button class="btn btn-primary" (click)="editTask(task)">
+                  <i class="fas fa-pencil-alt"></i>
+                  Modifier
+                </button>
+              </div>
+              <div class="col-sm-4">
+                <button class="btn btn-danger" (click)="deleteTask(task?.id || 0)">
+                  <i class="fas fa-trash"></i>
+                  Supprimer
+                </button>
+              </div>
             </div>
           </td>
         </tr>
@@ -115,5 +198,5 @@
     <!-- Add Font Awesome JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
   </div>
-
 </body>
+</html>

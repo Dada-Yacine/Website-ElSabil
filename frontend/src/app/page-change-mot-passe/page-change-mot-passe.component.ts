@@ -2,6 +2,7 @@ import { Component, Inject,  EventEmitter, Output, OnInit } from '@angular/core'
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../ms1/services/user.service';
 import { User } from '../ms1/models/user.model';
+import { S2Service } from '../ms1/services/s2.service';
 
 
 
@@ -15,12 +16,12 @@ import { User } from '../ms1/models/user.model';
 export class PageChangeMotPasseComponent implements OnInit {
   passwordForm!: FormGroup;
   passwordMismatch = false;
-  userId: number=1;
+  userId!: number;
   oldPassword!: string;
   newPassword!: string;
   confirmPassword!: string;
   profilePictureUrl: string = "";
-  idU:number=1;
+  idU!:number;
   user!: User;
   dialog: any;
   //userId: any;
@@ -35,6 +36,7 @@ export class PageChangeMotPasseComponent implements OnInit {
   };
   closeResult!: string;
  f!:FormGroup;
+ 
 
 
 
@@ -44,7 +46,7 @@ export class PageChangeMotPasseComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService,private login:UserService,private fb: FormBuilder
+    private userService: UserService,private login:UserService,private fb: FormBuilder,private s2:S2Service
   ) {
     this.f = this.fb.group({
       newPassword: [''],
@@ -54,6 +56,7 @@ export class PageChangeMotPasseComponent implements OnInit {
 
 
     ngOnInit(): void {
+      this.idU=Number(this.s2.getUserId());
 
       this.login.getUsers(this.idU).subscribe(
 
@@ -63,7 +66,7 @@ export class PageChangeMotPasseComponent implements OnInit {
 
         });
           console.log('User:', this.user);
-          this.userId = 1; // Set the user ID here
+          this.userId = Number(this.s2.getUserId());; // Set the user ID here
           this.userService.getProfilePicture(this.userId).subscribe(blob => {
             this.profilePictureUrl = URL.createObjectURL(blob);
           }, error => {
@@ -92,21 +95,24 @@ export class PageChangeMotPasseComponent implements OnInit {
     return confirmPassword ? confirmPassword.touched : false;
   }
 
-
   onSubmit() {
     if (this.passwordForm.invalid) {
       this.passwordForm.markAllAsTouched();
+      return;
     }
-
-    this.userService.updatePassword(this.userId,this.oldPassword, this.newPassword)
+  
+    const oldPassword = this.passwordForm.get('oldPassword')?.value;
+    const newPassword = this.passwordForm.get('newPassword')?.value;
+  
+    this.userService.updatePassword(this.userId, oldPassword, newPassword)
       .subscribe(
-        () => console.log('Password changed successfully'),
-
-        error =>  console.error('Error changing password', error)
+        () => {
+          console.log('Password changed successfully');
+          this.passwordForm.reset();
+        },
+        error => console.error('Error changing password', error)
       );
-      this.passwordForm.reset();
   }
-
 
 
 

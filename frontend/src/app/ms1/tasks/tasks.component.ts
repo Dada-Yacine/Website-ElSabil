@@ -34,7 +34,7 @@ export class TasksComponent implements OnInit {
   taskId!:number;
 
   constructor(private taskService: TaskService,
-     private courseService: CourseService,private http: HttpClient) {}
+     private courseService: CourseService,private http: HttpClient,private authservice:S2Service) {}
 
   ngOnInit() {
     this.loadTasks();
@@ -42,12 +42,19 @@ export class TasksComponent implements OnInit {
     this.getCoursesByTeacherId();
   }
   getCoursesByTeacherId(): void {
-    const teacherId =1; //Number(this.authservice.getUserId()); // Replace with the actual teacher ID
-    const apiUrl = `http://localhost:8082/api/tasks/${teacherId}/teacher`; // Replace with your API endpoint
+    const teacherId =Number(this.authservice.getUserId()); // Replace with the actual teacher ID
+    const apiUrl = `http://localhost:8080/api/tasks/${teacherId}/teacher`; // Replace with your API endpoint
 
     this.http.get<Course[]>(apiUrl).subscribe(
-      (response) => {
-        this.courses = response;
+      (response:any) => {
+        /*this.courses = response ;
+        for (let index = 0; index < response.length; index++) {
+          this.courses[index].name=response[index].coursNom;
+         
+          
+        }*/
+        console.log(this.courses);
+        console.log(response);
       },
       (error) => {
         console.error('Error fetching courses:', error);
@@ -75,7 +82,7 @@ export class TasksComponent implements OnInit {
     } else {
       this.task.course = {
         id: courseId,
-        name: '',
+        coursNom: '',
         coursCoef:0, // Assign null initially
         idEnseignant: 0, // Assign null initially
         enseigantNom: '',
@@ -110,7 +117,7 @@ export class TasksComponent implements OnInit {
     formData.append('coursename', this.selectedCourseName);
     console.log('Selected Course Name:', this.selectedCourseName);
 
-    this.http.post<any>('http://localhost:8082/api/tasks/task', formData).subscribe(
+    this.http.post<any>('http://localhost:8080/api/tasks/task', formData).subscribe(
       (newTask) => {
         console.log('Task created:', newTask);
         // Reset the form or perform other actions
@@ -165,7 +172,7 @@ export class TasksComponent implements OnInit {
     formData.append('date', this.task.date);
     formData.append('coursename', this.selectedCourseName);
 
-    this.http.put<any>(`http://localhost:8082/api/tasks/${this.task.id}`, formData).subscribe(
+    this.http.put<any>(`http://localhost:8080/api/tasks/${this.task.id}`, formData).subscribe(
       (updatedTask) => {
         console.log('Task updated:', updatedTask);
         // Reset the form or perform other actions
@@ -178,7 +185,7 @@ export class TasksComponent implements OnInit {
 
 
   downloadTask(taskId: number) {
-    const url = `http://localhost:8082/api/tasks/${taskId}/download`;
+    const url = `http://localhost:8080/api/tasks/${taskId}/download`;
     this.http.get(url, { responseType: 'blob', observe: 'response' }).subscribe(
       (response: HttpResponse<Blob>) => {
         const responseBody = response.body;
@@ -220,7 +227,7 @@ export class TasksComponent implements OnInit {
     }
 
     const course = this.courses.find(c => c.id ===  course_id);
-    return course ? course.name : 'Unknown Course';
+    return course ? course.coursNom : 'Unknown Course';
   }
 
 

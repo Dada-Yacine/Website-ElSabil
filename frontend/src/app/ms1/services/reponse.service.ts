@@ -10,7 +10,7 @@ import { Course } from '../models/course.model';
 export class ReponseService {
 
 
-  private baseUrl = 'http://localhost:8082/api/tasks';
+  private baseUrl = 'http://localhost:8050/api/tasks';
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ReponseService {
     return this.http.get<Task[]>(url);
   }
   getTasksForStudent(studentId: number): Observable<Map<Course, Task[]>> {
-    return this.http.get<Map<Course, Task[]>>(`http://localhost:8082/api/tasks/students/${studentId}/tasks`);
+    return this.http.get<Map<Course, Task[]>>(`http://localhost:8050/api/tasks/students/${studentId}/tasks`);
   }
   /*getTasksForStudent(studentId: number): Observable<Course[]>{
     return this.http.get<Course[]>(`http://localhost:8082/api/tasks/students/${studentId}/tasks`);}
@@ -33,6 +33,6 @@ export class ReponseService {
     formData.append('file', file);
 
 
-    return this.http.post(`http://localhost:8082/api/tasks/${etudiantId}/devoirs/${devoirId}/solutions`, formData);
+    return this.http.post(`http://localhost:8050/api/tasks/${etudiantId}/devoirs/${devoirId}/solutions`, formData);
   }
 }

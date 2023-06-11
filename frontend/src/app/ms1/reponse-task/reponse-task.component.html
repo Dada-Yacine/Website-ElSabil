@@ -28,12 +28,12 @@
 -->
 
 
-<div *ngFor="let course of courses | keyvalue">
+<div *ngFor="let course of courses | keyvalue" class="container">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let task of course.value; let even = even" [ngClass]="{ 'bg-white': even, 'bg-light': !even }">
       <div class="row">
         <div class="col-md-3">
-          <span class="task-name">{{ task.course.name }} </span>
+          <span class="task-name">{{ task.course.coursNom }}</span>
         </div>
         <div class="col-md-3">
           <span class="task-name"> {{ task.name }}</span>

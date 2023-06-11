@@ -1,103 +1,109 @@
-@import "../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css";
-@import "../../assets/css/bootstrap.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-/* Couleurs */
-.card {
-    background-color: white;
-  }
+.container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
 
-  .profile-picture img {
-    border: 5px solid darkgreen;
-  }
+.user-details {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-  .user-name {
-    color: darkgreen;
-  }
+.profile-section {
+  padding: 20px;
+  text-align: center;
+}
 
-  .btn-success {
-    background-color: green;
-    border-color: green;
-    color: white;
-  }
+.profile-picture {
+  margin-bottom: 20px;
+}
 
-  .btn-danger {
-    background-color: darkred;
-    border-color: darkred;
-    color: white;
-  }
+.upload-section {
+  text-align: center;
+}
 
-  /* Positionnement et styles des boutons */
-  .file-upload-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.upload-button,
+.change-password {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background-color: #4285F4;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  .custom-file-input {
-    display: none;
-  }
+.upload-button:hover,
+.change-password:hover {
+  background-color: #3367D6;
+}
 
-  .custom-file-label {
-    display: flex;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: green;
-    border: 1px solid green;
-    border-radius: 0.25rem;
-    cursor: pointer;
-   ;
-  }
+.profile-details {
+  padding-top: 20px;
+}
 
-  .custom-file-label::before {
-    content: '\f07b';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    margin-right: 0.5rem;
-  }
-  .container {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .btn-upload {
-    display: flex;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    color: white;
-    background-color: green;
-    border: 1px solid green;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    width: 200px; /* Largeur personnalisée */
-    height: 80px;
+.field {
+  font-weight: bold;
+  padding: 10px;
+}
 
-  }
-  .custom-file{
-    margin-top: 7px;
-  }
-  table td, table th {
-    padding: 10px; /* Ajoute un espace interne aux cellules */
-  }
+.value {
+  padding: 10px;
+}
 
-  table tr {
-    height: 60px; /* Hauteur personnalisée */
-  }
+.edit-section {
+  margin-top: 10px;
+}
 
-  .btn-upload::before {
-    content: '\f093';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    margin-right: 0.5rem;
-  }
-  .upload-button {
-    margin-top: 10px;
-  }
+.edit-button,
+.cancel-button,
+.save-button {
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-  .upload-icon {
-    margin-right: 30px;
-  }
+.cancel-button,
+.save-button {
+  background-color: #E53935;
+}
 
-  /* Ajoutez ce CSS à votre fichier CSS existant ou à votre balise <style> dans le composant Angular */
+.edit-button:hover,
+.cancel-button:hover,
+.save-button:hover {
+  background-color: #45A049;
+}
+
+.logout-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logout-button {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background-color: #D32F2F;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #B71C1C;
+}

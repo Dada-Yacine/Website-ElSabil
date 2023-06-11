@@ -3,7 +3,7 @@ import { Task } from "./task.model";
 
 export class Course {
     id!: number ;
-    name!: string;
+    coursNom!: string;
     coursCoef!:number;
     idEnseignant!:number;
     enseigantNom!:string;

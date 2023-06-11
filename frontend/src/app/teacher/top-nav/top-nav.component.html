@@ -7,14 +7,14 @@
           </button>
       </a>
       <aside class="TNBAsideWrapper">
-          <a href="#" class="TNBProfileWrapper">
-              <button>
-                  <img src=".\..\..\..\assets\admin\top-nav\DefaultProfile.png">
+          <a href="#" class="TNBProfileWrapper"  routerLink="/profil">
+          <button>
+                <img [src]="profilePictureUrl" alt="Profile Picture+ '?timestamp=' + timestamp" class="rounded-circle" width="200px" height="200px">
               </button>
           </a>
           <div class="TNBProfileDetailsWrapper">
-              <h2>DADA YACINE</h2>
-              <h3>ETUDIANT</h3>
+              <h2 *ngIf="user">{{ user.nom }}&nbsp;{{user.prenom }}</h2>
+              <h3>{{user.role}}</h3>
           </div>
       </aside>
   </nav>

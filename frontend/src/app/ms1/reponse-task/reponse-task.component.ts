@@ -41,15 +41,11 @@ export class ReponseTaskComponent implements OnInit {
     this.etudiantId= 1;//Number(this.authservice.getUserId());
     /*this.getTasks(3);*/
     this.apiService.getTasksForStudent(this.etudiantId).subscribe(
-      (response: any) => {
-        this.courses = response;
-        console.log('Courses retrieved successfully');
+      (response:any) => {
+        this.courses = response ;
+       console.log('Courses retrieved successfully');
         console.log(this.courses);
-
-
-
-
-      },
+},
       (error: any) => {
         console.error('Error retrieving courses:', error);
       }
@@ -71,7 +67,7 @@ export class ReponseTaskComponent implements OnInit {
   }*/
 
   downloadTask(taskId: number) {
-    const url = `http://localhost:8082/api/tasks/${taskId}/download`;
+    const url = `http://localhost:8050/api/tasks/${taskId}/download`;
     this.http.get(url, { responseType: 'blob', observe: 'response' }).subscribe(
       (response: HttpResponse<Blob>) => {
         const responseBody = response.body;

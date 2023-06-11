@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   dialog: any;
   //userId: any;
   user1: any = {};
+  timestamp!: number;
 
   editingPhone = false;
   newPhone: string = '';
@@ -48,6 +49,7 @@ export class ProfileComponent implements OnInit {
 
 
   constructor(private http: HttpClient,private modalService: NgbModal,private userService: UserService,private router:Router ,private login:UserService,  private route: ActivatedRoute,private authservice:S2Service){
+   
 
   }
   open(content: any) {

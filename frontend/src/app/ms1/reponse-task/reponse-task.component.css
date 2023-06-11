@@ -19,7 +19,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .dragging {
     background-color: #f8f8f8;
   }
-
+  .container {
+    margin-top:10%; /* Adjust the value as needed */
+    max-width: 90%; /* Adjust the value as needed */
+    margin-left: 20%;
+    margin-right: auto;
+  }
   .drag-drop-text, .drag-drop-overlay {
     display: flex;
     align-items: center;
