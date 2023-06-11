@@ -61,7 +61,7 @@ const routes: Routes = [
   component: AdminComponent,
   children: [
     {path: 'teacher', component:TeacherComponent},
-    {path: 'teacherlist', component:TeacherListComponent},
+    {path: 'teacherList', component:TeacherListComponent},
     {path: 'teacherMod/:id', component:TeachermodifierComponent},
     {path: 'etuList', component: EtudiantListComponent },
     {path: 'etuMod/:id', component: EtudiantModifierComponent },

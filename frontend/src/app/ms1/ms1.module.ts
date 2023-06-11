@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 import { EtudiantListComponent } from './etudiant-list/etudiant-list.component';
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { EtudiantModifierComponent } from './etudiant-modifier/etudiant-modifier.component';
@@ -38,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    RouterModule
   ],
   exports: [
     TeacherListComponent,

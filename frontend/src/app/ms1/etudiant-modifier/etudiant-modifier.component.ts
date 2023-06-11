@@ -78,7 +78,7 @@ export class EtudiantModifierComponent {
   }
 
   getNiveaux() {
-    this.http.get<niveau[]>('http://localhost:9050/api/niveau').subscribe(
+    this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
       (response:any) => {
         this.niveaux = response;
         this.selectedNiveau = this.niveaux.find(niveau => niveau.niveauNom === this.etudiant?.niveau);
@@ -93,10 +93,10 @@ export class EtudiantModifierComponent {
   getAnnees() {
     if (this.selectedNiveau && this.selectedNiveau.niveauId) {
       const niveauIdStr = this.selectedNiveau.niveauId.toString();
-      this.http.get<any[]>(`http://localhost:9050/api/${niveauIdStr}/annees`).subscribe(
+      this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
         (response:any) => {
-          this.annees = response.map((item: { id: any; anneeNom: any; }) => {
-            return { id: item.id, anneeNom: item.anneeNom };
+          this.annees = response.map((item: { anneeId: any; anneeNom: any; }) => {
+            return { anneeId: item.anneeId, anneeNom: item.anneeNom };
           });
           this.selectedAnnee = this.annees.find(annee => annee.anneeNom === this.etudiant?.annee);
           this.getGroupes();
@@ -114,7 +114,7 @@ export class EtudiantModifierComponent {
     if (this.selectedAnnee && this.selectedAnnee.anneeId) {
       const anneeIdStr = this.selectedAnnee.anneeId.toString();
 
-      this.http.get<group[]>(`http://localhost:9050/api/${anneeIdStr}/groupes`).subscribe(
+      this.http.get<group[]>(`http://localhost:8080/annees/${anneeIdStr}/groupes`).subscribe(
         (response:any) => {
           this.groupes = response;
           this.selectedGroupe = this.groupes.find(groupe => groupe.groupeNom === this.etudiant?.groupe);
@@ -133,7 +133,9 @@ export class EtudiantModifierComponent {
       this.etudiant.niveau = this.selectedNiveau?.niveauNom;
       this.etudiant.annee = this.selectedAnnee?.anneeNom;
       this.etudiant.groupe = this.selectedGroupe?.groupeNom;
-
+      this.etudiant.idannee=this.selectedAnnee?.anneeId 
+      this.etudiant.idniveau=this.selectedNiveau?.niveauId 
+     this.etudiant.idgroupe=this.selectedGroupe?.groupeId
       this.http.patch(`http://localhost:9040/api/etudiants/${this.etudiantId}`, this.etudiant).subscribe(
         () => {
           console.log('Modifié');

@@ -30,7 +30,7 @@ export class ResetComponent implements OnInit{
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
       if (!this.token) {
-        this.router.navigate(['/clogin']);
+        this.router.navigate(['/login']);
       }
     });
   }

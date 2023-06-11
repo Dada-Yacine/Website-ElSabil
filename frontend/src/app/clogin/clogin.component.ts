@@ -70,9 +70,20 @@ export class CloginComponent implements OnInit {
        this.S2Service.setToken(token);// Assurez-vous que le token est une chaîne de caractères sans conversion
         console.log(this.S2Service.getUserId());
         console.log(this.S2Service.getUserRole());
+        const role=this.S2Service.getUserRole();
+       
 
-          return this.router.navigate(['/login']);
-
+        if (role === 'admin') {
+          return this.router.navigate(['/admin']);
+        } else if (role === 'enseignant') {
+          return this.router.navigate(['/teacher']);
+        } else if (role === 'etudiant') {
+          return this.router.navigate(['/student']);
+        } else {
+          // Cas où le rôle n'est pas admin, teacher ou etudiant
+          console.log('Rôle non reconnu');
+          return;
+        }
       },
       error => {
         // Erreur de connexion

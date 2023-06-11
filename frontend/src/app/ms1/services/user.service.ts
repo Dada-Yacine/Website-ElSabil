@@ -17,7 +17,7 @@ export class UserService {
   private baseUrl = "http://localhost:9040/api/etudiants/users";
   private apiUrl = "http://localhost:9040/api/etudiants";
   private baseurl = 'http://localhost:9040/apiuser/users';
-private currentUser!: User;
+ private currentUser!: User;
 
   timestamp!: number;
 

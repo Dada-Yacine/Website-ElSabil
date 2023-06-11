@@ -34,9 +34,11 @@ export class EtudiantComponent implements OnInit {
     active: '',
     niveau: '',
     annee: '',
-    groupe: ''
+    groupe: '',
+    idgroupe:0,
+    idannee:0,
+    idniveau:0,
   };
-
 
 
 
@@ -106,7 +108,7 @@ export class EtudiantComponent implements OnInit {
       this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
         (response) => {
           this.annees = response.map(item => {
-            return { anneeId: item.id, anneeNom: item.anneeNom };
+            return { anneeId: item.anneeId, anneeNom: item.anneeNom };
           });
         },
         (error) => {
@@ -124,7 +126,7 @@ export class EtudiantComponent implements OnInit {
     if (this.selectedAnnee && this.selectedAnnee.anneeId) {
       const anneeIdStr = this.selectedAnnee.anneeId.toString();
 
-      this.http.get<group[]>(`http://localhost:8080/annee/${anneeIdStr}/groupes`).subscribe(
+      this.http.get<group[]>(`http://localhost:8080/annees/${anneeIdStr}/groupes`).subscribe(
         (response) => {
           this.groupes = response;
           console.log(this.groupes);
@@ -139,26 +141,29 @@ export class EtudiantComponent implements OnInit {
     }
   }
   ajouterEtudiant() {
-   // const niveauIdStr = this.selectedNiveau.toString(); // Convertir l'ID du niveau en chaîne de caractères
- this.nouvelEtudiant.annee=this.selectedAnnee.anneeNom;
- this.nouvelEtudiant.niveau=this.selectedNiveau.niveauNom;
- this.nouvelEtudiant.groupe=this.selectedGroupe.groupeNom;
- console.log(this.selectedGroupe.groupeNom);
-    this.etudiantService
-      .ajouterEtudiant(this.nouvelEtudiant)
-      .subscribe({
-        next: () => {
-          // Connexion réussie
-          console.log('ajouté');
-          this.router.navigate(['/etuList']);
-        },
-        error: (error) => {
-          console.log("ths is error");
-          // Erreur de connexion
-          console.log(error);
-        },
-      });
-  }
+    // const niveauIdStr = this.selectedNiveau.toString(); // Convertir l'ID du niveau en chaîne de caractères
+  this.nouvelEtudiant.annee=this.selectedAnnee.anneeNom;
+  this.nouvelEtudiant.niveau=this.selectedNiveau.niveauNom;
+  this.nouvelEtudiant.groupe=this.selectedGroupe.groupeNom;
+  this.nouvelEtudiant.idgroupe=this.selectedGroupe.groupeId; 
+  this.nouvelEtudiant.idannee=this.selectedAnnee.anneeId; 
+  this.nouvelEtudiant.idniveau=this.selectedNiveau.niveauId;
+  console.log(this.selectedGroupe.groupeNom);
+     this.etudiantService
+       .ajouterEtudiant(this.nouvelEtudiant)
+       .subscribe({
+         next: () => {
+           // Connexion réussie
+           console.log('ajouté');
+           this.router.navigate(['/admin/etuList']);
+         },
+         error: (error) => {
+           console.log("ths is error");
+           // Erreur de connexion
+           console.log(error);
+         },
+       });
+   }
 
 
 }

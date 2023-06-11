@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Etudiants } from '../models/etudiants.model';
 import { EtudiantserviceService } from '../services/etudiantservice.service';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-etudiant-list',
   templateUrl: './etudiant-list.component.html',
-  styleUrls: ['./etudiant-list.component.css']
+  styleUrls: ['./etudiant-list.component.css'],
+
 })
 export class EtudiantListComponent   {
   etudiants!: Etudiants[];
@@ -29,8 +31,8 @@ export class EtudiantListComponent   {
       this.getEtudiantsEtudiantRole();
     });
   }
-  modifierEtudiant(id: number): void {
+ /* modifierEtudiant(id: number): void {
     this.router.navigate(['/etuMod', id]);
-  }
+  }*/
 
 }

@@ -17,6 +17,9 @@ export class Etudiants {
     niveau:string | undefined;
     annee:string | undefined;
     groupe:string | undefined;
+    idgroupe!:number| undefined; 
+    idannee!:number | undefined; 
+    idniveau!:number| undefined;
     
   }
   export interface Adresse {

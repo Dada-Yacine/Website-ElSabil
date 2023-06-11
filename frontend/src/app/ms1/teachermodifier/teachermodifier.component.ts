@@ -78,7 +78,7 @@ export class TeachermodifierComponent  implements OnInit{
     }
 
   getNiveaux() {
-    this.http.get<niveau[]>('http://localhost:9050/api/niveau').subscribe(
+    this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
       (response) => {
         this.niveaux = response;
         this.selectedNiveau = this.niveaux.find(niveau => niveau.niveauNom === this.etudiant?.niveau);
@@ -93,10 +93,10 @@ export class TeachermodifierComponent  implements OnInit{
   getAnnees() {
     if (this.selectedNiveau && this.selectedNiveau.niveauId) {
       const niveauIdStr = this.selectedNiveau.niveauId.toString();
-      this.http.get<any[]>(`http://localhost:9050/api/${niveauIdStr}/annees`).subscribe(
+      this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
         (response) => {
           this.annees = response.map(item => {
-            return { anneeId: item.id, anneeNom: item.anneeNom };
+            return { anneeId: item.anneeId, anneeNom: item.anneeNom };
           });
           this.selectedAnnee = this.annees.find(annee => annee.anneeNom === this.etudiant?.annee);
 
@@ -117,11 +117,12 @@ export class TeachermodifierComponent  implements OnInit{
       this.etudiant.niveau = this.selectedNiveau?.niveauNom;
       this.etudiant.annee = this.selectedAnnee?.anneeNom;
       this.etudiant.groupe = this.selectedGroupe?.groupeNom;
-
+      this.etudiant.idannee=this.selectedAnnee?.anneeId 
+      this.etudiant.idniveau=this.selectedNiveau?.niveauId
       this.http.patch(`http://localhost:9040/api/etudiants/${this.etudiantId}`, this.etudiant).subscribe(
         (response) => {
           console.log('Modifié');
-          this.router.navigate(['/teacherlist']);
+          this.router.navigate(['/admin/teacherlist']);
         },
         (error) => {
           console.error('Erreur lors de la modification de l\'étudiant:', error);

@@ -35,6 +35,9 @@ export class S2Service {
     } 
     return id; 
   }
+  removeToken() {
+    localStorage.removeItem('token');
+  }
   
   
   

@@ -1,5 +1,5 @@
-<body class="mat-typography">
-<h2>Modifier l'étudiant</h2>
+<div class="AllWrapper">
+  <div class="TableWrapper">
 
 <form (submit)="modifierEtudiant()" #form="ngForm" *ngIf="etudiant">
 
@@ -65,13 +65,16 @@
   </div>
 
   <div>
-    <label for="active">Active:</label>
+    <label for="active">Actif:</label>
     <select id="active" [(ngModel)]="etudiant.active" name="active" required>
       <option value="True">true</option>
       <option value="False">false</option>
     </select>
   </div>
 
-  <button type="submit">Enregistrer</button>
+  <button class="CancelBtn" [routerLink]="['/admin/etuList']">Annuler</button>
+  <button class="SaveBtn" type="submit">Modifier</button>
 </form>
-</body>
+  </div>
+  </div>
+

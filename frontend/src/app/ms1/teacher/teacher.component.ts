@@ -38,7 +38,10 @@ export class TeacherComponent implements OnInit {
     active: '',
     niveau: '',
     annee: '',
-    groupe: ''
+    groupe: '',
+    idgroupe:0,
+    idannee:0,
+    idniveau:0,
   };
   selectedCours!: cours[];
   selectedNiveau!: niveau;
@@ -59,7 +62,7 @@ export class TeacherComponent implements OnInit {
     this.getNiveaux();
   }
   getNiveaux() {
-    this.http.get<niveau[]>('http://localhost:9050/api/niveau').subscribe(
+    this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
       (response) => {
         this.niveaux = response;
         console.log(this.niveaux);
@@ -106,10 +109,10 @@ export class TeacherComponent implements OnInit {
   getAnnees() {
     if (this.selectedNiveau && this.selectedNiveau.niveauId) {
       const niveauIdStr = this.selectedNiveau.niveauId.toString(); // Convertir l'ID du niveau en chaîne de caractères
-      this.http.get<any[]>(`http://localhost:9050/api/${niveauIdStr}/annees`).subscribe(
+      this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
         (response) => {
           this.annees = response.map(item => {
-            return { anneeId: item.id, anneeNom: item.anneeNom };
+            return { anneeId: item.anneeId, anneeNom: item.anneeNom };
 
           });
         },
@@ -126,23 +129,25 @@ export class TeacherComponent implements OnInit {
 
 
   ajouterEtudiant() {
-  // const niveauIdStr = this.selectedNiveau.toString(); // Convertir l'ID du niveau en chaîne de caractères
-  this.nouvelEtudiant.annee=this.selectedAnnee.anneeNom;
-  this.nouvelEtudiant.niveau=this.selectedNiveau.niveauNom;
-
-
-     this.etudiantService
-       .ajouterEtudiant(this.nouvelEtudiant)
-       .subscribe({
-         next: () => {
-           // Connexion réussie
-           console.log('ajouté');
-           this.router.navigate(['/teacherlist']);
-         },
-         error: (error:any) => {
-           // Erreur de connexion
-           console.log(error);
-         },
-       });
-  }
+    // const niveauIdStr = this.selectedNiveau.toString(); // Convertir l'ID du niveau en chaîne de caractères
+    this.nouvelEtudiant.annee=this.selectedAnnee.anneeNom;
+    this.nouvelEtudiant.niveau=this.selectedNiveau.niveauNom;
+    this.nouvelEtudiant.idannee=this.selectedAnnee.anneeId; 
+   this.nouvelEtudiant.idniveau=this.selectedNiveau.niveauId;
+  
+    
+       this.etudiantService
+         .ajouterEtudiant(this.nouvelEtudiant)
+         .subscribe({
+           next: () => {
+             // Connexion réussie
+             console.log('ajouté');
+             this.router.navigate(['/teacherlist']);
+           },
+           error: (error:any) => {
+             // Erreur de connexion
+             console.log(error);
+           },
+         });
+    }
 }

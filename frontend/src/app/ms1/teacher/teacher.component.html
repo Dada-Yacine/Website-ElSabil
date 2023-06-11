@@ -1,30 +1,23 @@
-<body class="mat-typography">
-<h2>Add Teacher</h2>
+<div class="AllWrapper">
+  <div class="TableWrapper">
 
 <form (submit)="ajouterEtudiant()">
   <div>
-    <label for="nom">Family Name:</label>
+    <label for="nom">Nom:</label>
     <input type="text" id="nom" [(ngModel)]="nouvelEtudiant.nom" name="nom" required>
   </div>
 
   <div>
-    <label for="prenom">Fisrt Name:</label>
+    <label for="prenom">Prénom:</label>
     <input type="text" id="prenom" [(ngModel)]="nouvelEtudiant.prenom" name="prenom" required>
   </div>
 
   <div>
-    <label for="dateNaissance">Date of birth:</label>
+    <label for="dateNaissance">Date de naissance:</label>
     <input type="date" id="dateNaissance" [(ngModel)]="nouvelEtudiant.dateNaissance" name="dateNaissance" required>
   </div>
 
-  <!--<div>
-    <label for="adresse">Willaya:</label>
-    <input type="text" id="adresse" [(ngModel)]="nouvelEtudiant.adresse.wilaya" name="adresse" required>
-  </div>
-  <div>
-    <label for="adresse">Ville:</label>
-    <input type="text" id="adresse" [(ngModel)]="nouvelEtudiant.adresse.ville" name="adresse" required>
-  </div>-->
+  
   <div>
     <label for="adresse">wilaya:</label>
     <input type="text" id="adresse" [(ngModel)]="adresseWilaya" name="wilaya" required>
@@ -40,7 +33,7 @@
   </div>
 
   <div>
-    <label for="numeroTelephone">Phone Number:</label>
+    <label for="numeroTelephone">Numéro de téléphone:</label>
     <input type="tel" id="numeroTelephone" [(ngModel)]="nouvelEtudiant.numeroTelephone" name="numeroTelephone" required>
   </div>
 
@@ -50,7 +43,7 @@
   </div>
 
   <div>
-    <label for="motDePasse">Password:</label>
+    <label for="motDePasse">Mot de passe:</label>
     <input type="password" id="motDePasse" [(ngModel)]="nouvelEtudiant.motDePasse" name="motDePasse" required>
   </div>
   <div>
@@ -80,7 +73,7 @@
 
 
   <div>
-    <label for="active">Active:</label>
+    <label for="active">Actif:</label>
     <select id="active" [(ngModel)]="nouvelEtudiant.active" name="active" required>
       <option value="true">true</option>
       <option value="false">false</option>
@@ -93,6 +86,8 @@
 
 
 
-  <button type="submit">Add</button>
+  <button class="CancelBtn" [routerLink]="['/admin/teacherList']">Annuler</button>
+  <button class="SaveBtn" type="submit">Ajouter</button>
 </form>
-</body>
+  </div>
+  </div>
