@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { S2Service } from 'src/app/ms1/services/s2.service';
+import { S2Service } from '../../ms1/services/s2.service';
 @Component({
   selector: 'app-atop-nav',
   templateUrl: './top-nav.component.html',

@@ -1,21 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-
 import { HomeComponent } from './home/home.component';
 import { CloginComponent } from './clogin/clogin.component';
 import { ResetComponent } from './reset/reset.component';
 import { ProfileComponent } from './profile/profile.component';
-
 import { AdminComponent } from './admin/admin.component';
 import { EtudiantListComponent } from './ms1/etudiant-list/etudiant-list.component';
 import { EtudiantComponent } from './ms1/etudiant/etudiant.component';
 import { EtudiantModifierComponent } from './ms1/etudiant-modifier/etudiant-modifier.component';
-
 import { TeacherListComponent } from './ms1/teacher-list/teacher-list.component';
 import { TeacherComponent } from './ms1/teacher/teacher.component';
 import { TeachermodifierComponent } from './ms1/teachermodifier/teachermodifier.component';
-
 import { LeveltableComponent } from './admin/level/leveltable/leveltable.component';
 import { LevelcreateComponent } from './admin/level/levelcreate/levelcreate.component';
 import { LevelmodifyComponent } from './admin/level/levelmodify/levelmodify.component';
@@ -34,13 +29,10 @@ import { CoursemodifyComponent } from './admin/course/coursemodify/coursemodify.
 import { GrouptableComponent } from './admin/group/grouptable/grouptable.component';
 import { GroupcreateComponent } from './admin/group/groupcreate/groupcreate.component';
 import { GroupmodifyComponent } from './admin/group/groupmodify/groupmodify.component';
-
 import { PageChangeMotPasseComponent } from './page-change-mot-passe/page-change-mot-passe.component';
 import { TasksComponent } from './ms1/tasks/tasks.component';
 import { ReponseTaskComponent } from './ms1/reponse-task/reponse-task.component';
-
 import { TeacherComponentDash } from './teacher/teacher.component';
-
 import { StudentComponentDash } from './student/student.component';
 import { AdminAbsenceComponent } from './ms3/admin-absence/admin-absence.component';
 import { StudentAbsenceComponent } from './ms3/student-absence/student-absence.component';
@@ -66,8 +58,6 @@ const routes: Routes = [
     {path: 'etuList', component: EtudiantListComponent },
     {path: 'etuMod/:id', component: EtudiantModifierComponent },
     {path: 'ajouterEtu', component:EtudiantComponent},
-
-
     {path: 'niveau', component: LeveltableComponent},
     {path: 'niveau/create', component: LevelcreateComponent},
     {path: 'niveau/:niveauId/modify', component: LevelmodifyComponent},
@@ -93,8 +83,6 @@ const routes: Routes = [
   component: StudentComponentDash,
   children: [
     {path: 'tasketudiant', component:ReponseTaskComponent},
-
-    /*ms3*/
     {path: 'absences', component:StudentAbsenceComponent},
     {path: 'events', component:StudentEventsComponent},
     {path: 'planning', component:StudentTimetableComponent},
@@ -105,8 +93,6 @@ const routes: Routes = [
   component: TeacherComponentDash,
   children: [
     {path: 'tasks', component: TasksComponent },
-
-    /*ms3*/
     {path: 'absences', component:TeacherAbsenceComponent},
     {path: 'planning', component:TeacherTimetableComponent},
   ]
