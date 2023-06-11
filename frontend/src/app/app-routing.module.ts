@@ -80,17 +80,13 @@ const routes: Routes = [
     {path: 'planning', component:AdminTimetableComponent},
     {path: 'events', component:AdminEventsComponent},
     {path: 'classrooms', component:AdminClassroomsComponent},
+    {path: 'absences', component:AdminAbsenceComponent},
     {path: 'course', component: CoursetableComponent},
     {path: 'course/create', component: CoursecreateComponent},
-<<<<<<< Updated upstream
-    {path: 'course/:coursId/modify', component: CoursemodifyComponent},
-    {path: 'absences', component:AdminAbsenceComponent},
-=======
     {path: 'course/:coursId/:annneeID/modify', component: CoursemodifyComponent},
     {path: 'group', component: GrouptableComponent},
     {path: 'group/create', component: GroupcreateComponent},
     {path: 'group/:groupeId/:annneeID/modify', component: GroupmodifyComponent},
->>>>>>> Stashed changes
   ]
   },
   {path: 'student',
