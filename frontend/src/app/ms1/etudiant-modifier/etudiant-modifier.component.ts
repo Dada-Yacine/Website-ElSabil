@@ -18,6 +18,8 @@ export class EtudiantModifierComponent {
   selectedNiveau: niveau | undefined;
   selectedAnnee: annee | undefined;
   selectedGroupe: group | undefined;
+  selectedactif:string | undefined;
+  selecteddate: string| undefined;
   niveaux: niveau[] = [];
   annees: annee[] = [];
   groupes: group[] = [];
@@ -67,8 +69,12 @@ export class EtudiantModifierComponent {
     this.http.get<Etudiants>(`http://localhost:9040/api/etudiants/${this.etudiantId}`).subscribe(
       (etudiant) => {
         this.etudiant = etudiant;
+        console.log(this.etudiant.active);
+        console.log(this.etudiant.dateNaissance);
         this.selectedNiveau = this.niveaux.find(niveau => niveau.niveauNom === etudiant.niveau);
         this.selectedAnnee = this.annees.find(annee => annee.anneeNom === etudiant.annee);
+        this.selectedactif=this.etudiant.active;
+      this.selecteddate = new Date(etudiant.dateNaissance).toISOString().substring(0, 10);
         this.getAnnees();
       },
       (error) => {
@@ -117,7 +123,7 @@ export class EtudiantModifierComponent {
       this.http.get<group[]>(`http://localhost:8080/annees/${anneeIdStr}/groupes`).subscribe(
         (response:any) => {
           this.groupes = response;
-          this.selectedGroupe = this.groupes.find(groupe => groupe.groupeNom === this.etudiant?.groupe);
+          this.selectedGroupe = this.groupes.find(groupe => groupe.nomGroupe === this.etudiant?.groupe);
         },
         (error:any) => {
           console.error('Erreur lors de la récupération des groupes:', error);
@@ -132,14 +138,19 @@ export class EtudiantModifierComponent {
     if (this.etudiant) {
       this.etudiant.niveau = this.selectedNiveau?.niveauNom;
       this.etudiant.annee = this.selectedAnnee?.anneeNom;
-      this.etudiant.groupe = this.selectedGroupe?.groupeNom;
-      this.etudiant.idannee=this.selectedAnnee?.anneeId 
-      this.etudiant.idniveau=this.selectedNiveau?.niveauId 
-     this.etudiant.idgroupe=this.selectedGroupe?.groupeId
+      this.etudiant.groupe = this.selectedGroupe?.nomGroupe;
+      this.etudiant.idannee=this.selectedAnnee?.anneeId; 
+      this.etudiant.idniveau=this.selectedNiveau?.niveauId; 
+     this.etudiant.idgroupe=this.selectedGroupe?.groupeId;
+  
+   if (this.selecteddate !== undefined) {
+      // Convertir la chaîne de caractères en objet Date
+      this.etudiant.dateNaissance = new Date(this.selecteddate);
+    }
       this.http.patch(`http://localhost:9040/api/etudiants/${this.etudiantId}`, this.etudiant).subscribe(
         () => {
           console.log('Modifié');
-          this.router.navigate(['/etuList']);
+          this.router.navigate(['/admin/etuList']);
         },
         (error:any) => {
           console.error('Erreur lors de la modification de l\'étudiant:', error);

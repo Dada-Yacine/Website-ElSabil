@@ -67,12 +67,12 @@ export class TeacherComponent implements OnInit {
         this.niveaux = response;
         console.log(this.niveaux);
         // Sélectionnez le premier niveau par défaut
-        if (this.niveaux.length > 0) {
+        /*if (this.niveaux.length > 0) {
           this.selectedNiveau = this.niveaux[0];
           this.getAnnees();
           console.log(  this.selectedNiveau);
           console.log("asdrtyuio");
-        }
+        }*/
       },
       (error) => {
         console.error('Erreur lors de la récupération des niveaux:', error);
@@ -142,7 +142,7 @@ export class TeacherComponent implements OnInit {
            next: () => {
              // Connexion réussie
              console.log('ajouté');
-             this.router.navigate(['/teacherlist']);
+             this.router.navigate(['/admin/teacherList']);
            },
            error: (error:any) => {
              // Erreur de connexion

@@ -103,11 +103,11 @@ nouvelEtudiant.setCompte(login);
             }
             if (etudiantModifie.getDateNaissance() != null) {
                 etudiantExist.setDateNaissance(etudiantModifie.getDateNaissance());}
-
-                etudiantExist.getAdresse().setWilaya(etudiantModifie.getAdresse().getWilaya());
+          if (etudiantModifie.getAdresse() != null) {
+            etudiantExist.getAdresse().setWilaya(etudiantModifie.getAdresse().getWilaya());
             etudiantExist.getAdresse().setVille(etudiantModifie.getAdresse().getVille());
             etudiantExist.getAdresse().setRue(etudiantModifie.getAdresse().getRue());
-
+          }
 
 
 
@@ -140,10 +140,18 @@ nouvelEtudiant.setCompte(login);
 
 
             Etudiant nouvelEtudiant = etudiantRepository.save(etudiantExist);
-            Login login=loginRepository.findLoginById(id);
-            login.setActive(nouvelEtudiant.getActive());
-            login.setUsername(nouvelEtudiant.getEmail());
+          Login login = etudiantExist.getCompte();
+          if (login != null) {
+            if (etudiantModifie.getActive() != null) {
+              login.setActive(etudiantModifie.getActive());
+            }
+            if (etudiantModifie.getEmail() != null) {
+              login.setUsername(etudiantModifie.getEmail());
+            }
+
+            // Enregistrez l'objet Login
             loginRepository.save(login);
+          }
 
             return nouvelEtudiant;
         } else {

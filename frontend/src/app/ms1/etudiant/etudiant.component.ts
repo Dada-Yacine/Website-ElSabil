@@ -85,40 +85,47 @@ export class EtudiantComponent implements OnInit {
     }
 
 
-  getNiveaux() {
-    this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
-      (response) => {
-        this.niveaux = response;
-        console.log(this.niveaux);
-        // Sélectionnez le premier niveau par défaut
-        if (this.niveaux.length > 0) {
-          this.selectedNiveau = this.niveaux[0];
-          this.getAnnees();
-        }
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des niveaux:', error);
-      }
-    );
-  }
-
-  getAnnees() {
-    if (this.selectedNiveau && this.selectedNiveau.niveauId) {
-      const niveauIdStr = this.selectedNiveau.niveauId.toString(); // Convertir l'ID du niveau en chaîne de caractères
-      this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
+    getNiveaux() {
+      this.http.get<niveau[]>('http://localhost:8080/niveaux').subscribe(
         (response) => {
-          this.annees = response.map(item => {
-            return { anneeId: item.anneeId, anneeNom: item.anneeNom };
-          });
+          this.niveaux = response;
+          console.log(this.niveaux);
+          // Sélectionnez le niveau par défaut
+          // ...
         },
         (error) => {
-          console.error('Erreur lors de la récupération des années:', error);
+          console.error('Erreur lors de la récupération des niveaux:', error);
         }
       );
-    } else {
-      this.annees = [];
     }
-  }
+    
+    selectNiveau(niveau: niveau) {
+      this.selectedNiveau = niveau;
+      this.getAnnees();
+    }
+    
+    getAnnees() {
+      console.log(this.selectedNiveau?.niveauId);
+      if (this.selectedNiveau && this.selectedNiveau.niveauId) {
+        const niveauIdStr = this.selectedNiveau.niveauId.toString();
+        this.http.get<any[]>(`http://localhost:8080/niveaux/${niveauIdStr}/annees`).subscribe(
+          (response) => {
+            console.log(response);
+            this.annees = response.map(item => {
+              return { anneeId: item.anneeId, anneeNom: item.anneeNom };
+            });
+          },
+          (error) => {
+            console.error('Erreur lors de la récupération des années:', error);
+          }
+        );
+      } else {
+        this.annees = [];
+        console.log("vide");
+      }
+    }
+    
+  
 
   getGroupes(){
     console.log(this.selectedAnnee);
@@ -144,11 +151,11 @@ export class EtudiantComponent implements OnInit {
     // const niveauIdStr = this.selectedNiveau.toString(); // Convertir l'ID du niveau en chaîne de caractères
   this.nouvelEtudiant.annee=this.selectedAnnee.anneeNom;
   this.nouvelEtudiant.niveau=this.selectedNiveau.niveauNom;
-  this.nouvelEtudiant.groupe=this.selectedGroupe.groupeNom;
+  this.nouvelEtudiant.groupe=this.selectedGroupe.nomGroupe;
   this.nouvelEtudiant.idgroupe=this.selectedGroupe.groupeId; 
   this.nouvelEtudiant.idannee=this.selectedAnnee.anneeId; 
   this.nouvelEtudiant.idniveau=this.selectedNiveau.niveauId;
-  console.log(this.selectedGroupe.groupeNom);
+  console.log(this.selectedGroupe.nomGroupe);
      this.etudiantService
        .ajouterEtudiant(this.nouvelEtudiant)
        .subscribe({

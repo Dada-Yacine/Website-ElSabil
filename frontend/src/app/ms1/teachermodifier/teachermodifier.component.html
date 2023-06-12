@@ -15,7 +15,7 @@
 
   <div>
     <label for="dateNaissance">Date de naissance</label>
-    <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="etudiant.dateNaissance" required>
+    <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="selecteddate" required>
   </div>
 
   <div>
@@ -57,16 +57,15 @@
   </div>
 
 
-
   <div>
     <label for="active">Actif:</label>
-    <select id="active" [(ngModel)]="etudiant.active" name="active" required>
-      <option value="True">true</option>
-      <option value="False">false</option>
+    <select id="active" [(ngModel)]="selectedactif" name="active" required>
+      <option value="true">true</option>
+      <option value="false" >false</option>
     </select>
   </div>
 
-
+<div></div>
   <button class="CancelBtn" [routerLink]="['/admin/teacherList']">Annuler</button>
   <button class="SaveBtn" type="submit">Modifier</button>
 </form></div></div>

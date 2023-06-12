@@ -15,8 +15,9 @@
 
   <div>
     <label for="dateNaissance">Date de naissance</label>
-    <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="etudiant.dateNaissance" required>
+    <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="selecteddate" required>
   </div>
+  
 
 
 
@@ -60,17 +61,18 @@
   <div>
     <label for="groupe">Groupe:</label>
     <select id="groupe" [(ngModel)]="selectedGroupe" name="groupe">
-      <option *ngFor="let groupe of groupes" [ngValue]="groupe" [selected]="groupe.groupeNom === etudiant.groupe">{{ groupe.groupeNom }}</option>
+      <option *ngFor="let groupe of groupes" [ngValue]="groupe" [selected]="groupe.nomGroupe === etudiant.groupe">{{ groupe.nomGroupe}}</option>
     </select>
   </div>
 
   <div>
     <label for="active">Actif:</label>
-    <select id="active" [(ngModel)]="etudiant.active" name="active" required>
-      <option value="True">true</option>
-      <option value="False">false</option>
+    <select id="active" [(ngModel)]="selectedactif" name="active" required>
+      <option value="true">true</option>
+      <option value="false" >false</option>
     </select>
   </div>
+  
 
   <button class="CancelBtn" [routerLink]="['/admin/etuList']">Annuler</button>
   <button class="SaveBtn" type="submit">Modifier</button>

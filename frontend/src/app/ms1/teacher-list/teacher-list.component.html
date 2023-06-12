@@ -1,22 +1,28 @@
-<body class="mat-typography">
-<h2>Liste of teachers</h2>
+<div class="AllWrapper">
+	<a [routerLink]="['/admin/teacher']"
+	href="javascript:void(0)" class="Add">
+		<button >
+			<span>Ajouter un Enseignant</span>
+		</button>
+	</a>
+  <div class="TableWrapper">
 
 <table>
   <tr>
     <th>ID</th>
-    <th>FamilyName</th>
-    <th>FisrtName</th>
-    <th>Date Of Birth</th>
-    <td>wilaya</td>
-    <td>Ville</td>
-    <td> rue</td>
-    <th>Phone Number</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Date de naissance</th>
+    <th>Wilaya</th>
+    <th>Ville</th>
+    <th>Rue</th>
+    <th>Numéro de téléphone</th>
     <th>Email</th>
-    <th>Level</th>
-    <th>Year</th>
-
+    <th>niveau</th>
+    <th>Année</th>
+  
     <th>Status</th>
-    <th>Action</th>
+    <th class="snapright">Action</th>
 
   </tr>
   <tr *ngFor="let etudiant of etudiants">
@@ -35,12 +41,12 @@
 
 
     <td>{{etudiant.active}}</td>
-
-    <td>
-      <button class="mod" (click)="modifierEtudiant(etudiant.id)">Edit</button>
-      <button class="supp" (click)="supprimerEtudiant(etudiant.id,etudiant.role)">Delete</button>
+    <td class="snapright">
+      <button class="EditBtn" [routerLink]="['/admin/teacherMod/', etudiant.id]" >Modifier</button>
+      <button class="DeleteBtn" (click)="supprimerEtudiant(etudiant.id,etudiant.role)">Supprimer</button>
     </td>
   </tr>
 </table>
 
-  </body>
+  </div>
+  </div>

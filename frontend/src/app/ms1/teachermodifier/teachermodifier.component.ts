@@ -18,6 +18,8 @@ export class TeachermodifierComponent  implements OnInit{
   selectedNiveau: niveau | undefined;
   selectedAnnee: annee | undefined;
   selectedGroupe: group | undefined;
+  selectedactif:string | undefined;
+  selecteddate: string| undefined;
   niveaux!: niveau[]  ;
   annees!: annee[];
   groupes: group[] | undefined ;
@@ -43,6 +45,8 @@ export class TeachermodifierComponent  implements OnInit{
         this.etudiant = etudiant;
         this.selectedNiveau = this.niveaux.find(niveau => niveau.niveauNom === etudiant.niveau);
         this.selectedAnnee = this.annees.find(annee => annee.anneeNom === etudiant.annee);
+        this.selectedactif=this.etudiant.active;
+        this.selecteddate = new Date(etudiant.dateNaissance).toISOString().substring(0, 10);
         this.getAnnees();
       },
       (error) => {
@@ -116,13 +120,17 @@ export class TeachermodifierComponent  implements OnInit{
     if (this.etudiant) {
       this.etudiant.niveau = this.selectedNiveau?.niveauNom;
       this.etudiant.annee = this.selectedAnnee?.anneeNom;
-      this.etudiant.groupe = this.selectedGroupe?.groupeNom;
-      this.etudiant.idannee=this.selectedAnnee?.anneeId 
-      this.etudiant.idniveau=this.selectedNiveau?.niveauId
+     
+      this.etudiant.idannee=this.selectedAnnee?.anneeId ;
+      this.etudiant.idniveau=this.selectedNiveau?.niveauId;
+      if (this.selecteddate !== undefined) {
+        // Convertir la chaîne de caractères en objet Date
+        this.etudiant.dateNaissance = new Date(this.selecteddate);
+      }
       this.http.patch(`http://localhost:9040/api/etudiants/${this.etudiantId}`, this.etudiant).subscribe(
         (response) => {
           console.log('Modifié');
-          this.router.navigate(['/admin/teacherlist']);
+          this.router.navigate(['/admin/teacherList']);
         },
         (error) => {
           console.error('Erreur lors de la modification de l\'étudiant:', error);

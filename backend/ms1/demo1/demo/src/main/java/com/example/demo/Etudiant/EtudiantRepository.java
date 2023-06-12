@@ -15,4 +15,5 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
     List<Etudiant> findEtudiantByIdgroupe(Long idgroupe);
 
 
+
 }

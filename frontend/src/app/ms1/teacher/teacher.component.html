@@ -54,14 +54,10 @@
     </select>
   </div>
   <div>
-    <label for="niveau">Niveau:</label>
-
-
-    <select id="niveau" [(ngModel)]="selectedNiveau" name="niveau" (change)="getNiveaux()" required>
-      <option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau.niveauNom}}</option>
-
-    </select>
-
+    <label for="role">Niveau:</label>
+  <select id="niveau" [(ngModel)]="selectedNiveau" name="niveau" (change)="getAnnees()" required>
+    <option *ngFor="let niveau of niveaux" [ngValue]="niveau">{{ niveau.niveauNom }}</option>
+  </select>
   </div>
  <div>
     <label for="annee">Année:</label>
@@ -81,7 +77,7 @@
   </div>
 
 
-
+<div></div>
 
 
 

@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Table(name="login")
 @Data
 public class Login {
-    @Id
+  @Id
 
     private Long id;
     private String username;
