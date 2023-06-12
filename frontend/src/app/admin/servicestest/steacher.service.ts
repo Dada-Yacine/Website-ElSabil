@@ -7,16 +7,16 @@ import { Teacher } from './teacher';
 export class SteacherService {
 
   TeacherData:Teacher[] = [{
-    id:0,
-    nom:'Yacine',
-  },
-  {
     id:1,
-    nom:'Hani'
+    nom:'Djamel Bensaber',
   },
   {
     id:2,
-    nom:'Lokmane'
+    nom:'Abdelkader Amrane'
+  },
+  {
+    id:3,
+    nom:'Amina Taouli'
   }
 ]
 
