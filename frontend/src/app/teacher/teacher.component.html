@@ -7,12 +7,15 @@
       <hr>
       <ul>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
-                      <img src=".\..\..\..\assets\admin\side-nav\GroupLogoWhite.png">
-                      <span>Cours</span>
-                  </button>
-              </a>
+            <a  [routerLink]="['/teacher/course']"
+            href="javascript:void(0)" class="NavTabWrapperInactive">
+                <button outerLink="/teacher/course"
+                routerLinkActive #test1="routerLinkActive"
+                [ngClass]="test1.isActive ? 'NavTabActive' : 'NavTabInactive'">
+                    <img src=".\..\..\..\assets\admin\side-nav\GroupLogoWhite.png">
+                    <span>Cours</span>
+                </button>
+            </a>
           </li>
           <li>
               <a [routerLink]="['/teacher/tasks']"

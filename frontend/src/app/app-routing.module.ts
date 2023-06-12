@@ -41,6 +41,9 @@ import { StudentTimetableComponent } from './ms3/student-timetable/student-timet
 import { TeacherAbsenceComponent } from './ms3/teacher-absence/teacher-absence.component';
 import { TeacherTimetableComponent } from './ms3/teacher-timetable/teacher-timetable.component';
 
+import { ScoursetableComponent } from './student/scoursetable/scoursetable.component';
+import { TcoursetableComponent } from './teacher/tcoursetable/tcoursetable.component';
+
 
 
 const routes: Routes = [
@@ -86,6 +89,7 @@ const routes: Routes = [
     {path: 'absences', component:StudentAbsenceComponent},
     {path: 'events', component:StudentEventsComponent},
     {path: 'planning', component:StudentTimetableComponent},
+    {path: 'course', component:ScoursetableComponent},
 
   ]
   },
@@ -95,6 +99,7 @@ const routes: Routes = [
     {path: 'tasks', component: TasksComponent },
     {path: 'absences', component:TeacherAbsenceComponent},
     {path: 'planning', component:TeacherTimetableComponent},
+    {path: 'course', component:TcoursetableComponent},
   ]
   },
 ];

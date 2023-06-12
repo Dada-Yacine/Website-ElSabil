@@ -7,8 +7,11 @@
       <hr>
       <ul>
           <li>
-              <a href="#" class="NavTabWrapperInactive">
-                  <button class="NavTabInactive">
+              <a  [routerLink]="['/student/course']"
+              href="javascript:void(0)" class="NavTabWrapperInactive">
+                  <button outerLink="/student/course"
+                  routerLinkActive #rla1_1="routerLinkActive"
+                  [ngClass]="rla1_1.isActive ? 'NavTabActive' : 'NavTabInactive'">
                       <img src=".\..\..\..\assets\admin\side-nav\GroupLogoWhite.png">
                       <span>Cours</span>
                   </button>
